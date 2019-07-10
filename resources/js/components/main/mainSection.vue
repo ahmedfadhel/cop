@@ -1,0 +1,78 @@
+<template>
+   <div class="mt-4">
+      <b-container>
+        <best-videos v-if="firstPage"></best-videos>
+        <b-row >
+          <b-col sm="12">
+            <b-card
+              header="New Videos"
+              header-tag="header"
+            >
+              <new-videos></new-videos>
+              <b-row>
+                <div class="mt-4" style="margin:auto">
+                  <b-col sm="12">
+                    <b-pagination-nav
+                      :link-gen="linkGen"
+                      :number-of-pages="lastPage"
+
+                      @input='viewChange'
+                      use-router
+                    ></b-pagination-nav>
+                  </b-col>
+                </div>
+              </b-row>
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-container>
+     <b-row>
+
+        <footer-section></footer-section>
+     </b-row>
+   </div>
+</template>
+
+<script>
+// import videoThumbnail from './videoThumbnail'
+import footerSection from '../general/footerSection'
+import newVideos from './newVideos.vue'
+import bestVideos from './bestVideos.vue'
+export default {
+    created(){
+      this.$store.dispatch('fetchVideos')
+    },
+    data:()=>{
+        return{
+
+        }
+    },
+    components:{
+        // videoThumbnail,
+        newVideos,
+        bestVideos,
+        footerSection
+    },
+    methods: {
+      linkGen(pageNum) {
+        return pageNum === 1 ? '?' : `?page=${pageNum}`
+      },
+      viewChange(change){
+        this.$store.dispatch('fetchVideos',change)
+
+      }
+    },
+    computed:{
+      firstPage(){
+        return this.$store.getters.getFirstPage
+      },
+      lastPage(){
+        return this.$store.getters.getLastPage
+      }
+    }
+}
+</script>
+
+<style>
+
+</style>

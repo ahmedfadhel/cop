@@ -1,0 +1,85 @@
+// Fonts
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/src/index.scss';
+@import '~vue-multiselect/dist/vue-multiselect.min.css';
+
+// Custom Style
+// Dashboard Style
+body{
+  overflow-x: hidden;
+  position: relative;
+  // height: 100%;
+  #footer{
+    color: $fontColor;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: $mainColor;
+    text-align:center;
+    }
+  #app{
+    position: relative;
+    height: 100vh;
+    .dashboard{
+      nav{
+        background-color:$mainColor !important
+      }
+    }
+    .card{
+      .card-body{
+
+        p{
+          color:$fontColor;
+        }
+        .badge-secondary{
+          background-color: $mainColor
+        }
+        .video-title{
+          color:$fontColor;
+          font-weight: bold;
+          letter-spacing: 0.2rem
+        }
+      }
+    }
+    .video{
+      .card{
+        .card-img-top {
+          height: 200px;
+        }
+        .card-body{
+          .card-title{
+            a{
+              color: $fontColor;
+              font-weight: bold
+            }
+
+          }
+        }
+        .card-footer{
+          background-color:$secondaryColor;
+          color:$fontColor;
+          .col-4{
+            padding:0px;
+          }
+
+        }
+
+      }
+    }
+    .card-header{
+      background-color:$secondaryColor;
+      color:$fontColor;
+      font-weight: bold;
+    }
+
+  }
+
+
+}
+
