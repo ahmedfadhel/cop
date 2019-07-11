@@ -13,9 +13,30 @@
       </b-button>
     </b-col>
   </b-row>
+    <b-row>
+    <b-col cols="12">
+     <b-form-group  class="mb-4 mt-4">
+        <b-input-group>
+          <b-form-input v-model="filter" placeholder="Search For Star"></b-form-input>
+          <b-input-group-append>
+            <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </b-form-group>
+    </b-col>
+  </b-row>
   <b-row>
     <b-col cols="12">
-      <b-table striped hover :items="starsItem" :fields="fields" per-page="5" :current-page="currentPage">
+      <b-table
+      striped
+      stacked="sm"
+      hover
+      :items="starsItem"
+      :fields="fields"
+      per-page="5"
+      :current-page="currentPage"
+      @filtered="onFiltered"
+      :filter="filter">
         <template slot="image" slot-scope="row">
            <b-media>
               <b-img  :src="row.item.photos[0].url"  width="64" alt="placeholder"></b-img>
@@ -102,15 +123,18 @@ export default {
         variant: 'danger'
       })
     }
+    this.totalRow = this.stars.length
+
   },
   data() {
       return {
+        filter:null,
+        totalRows:1,
         allStars:this.stars,
         fields: [
           { key:'id', label: "#"},
           { key:'image', label: "Thumbnail"},
           {key:'name',label:'Star Name'},
-          // {key:'alias_name',label:'Star Alias Name'},
           {key:'gender',label:'Gender'},
           { key: 'created_at', label: 'Creation Time' },
           {key:'actions', label:'Control'}
@@ -126,9 +150,6 @@ export default {
       }
     },
     computed:{
-      totalRows:function(){
-        return this.stars.length
-      },
       starsItem:function(){
         return this.allStars
       },
@@ -146,6 +167,11 @@ export default {
       },
     },
     methods:{
+       onFiltered(filteredItems) {
+        // Trigger pagination to update the number of buttons/pages due to filtering
+        this.totalRows = filteredItems.length
+        this.currentPage = 1
+      },
       addNewStar(){
         document.location.href=this.url + "stars/create"
       },

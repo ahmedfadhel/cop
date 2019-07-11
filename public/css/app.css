@@ -12208,7 +12208,6 @@ input[type=color].form-control:disabled {
 }
 
 body {
-  overflow-x: hidden;
   position: relative;
 }
 

@@ -29,6 +29,7 @@
     <b-col cols="12">
       <b-table
         striped
+        stacked="sm"
         hover
         :items="tagsItem"
         :fields="fields"

@@ -10,11 +10,11 @@
               <b-row >
                   <b-col cols="12" sm="6"  md="4">
                       <div class="info">
-                          <i class="fas fa-upload"></i>
+                        <i class="fas fa-upload"></i>
 
-                          <span>
-                                {{video.created_at | fromatTime}}
-                          </span>
+                        <span>
+                          {{video.created_at | fromatTime}}
+                        </span>
                       </div>
                   </b-col>
                   <b-col cols="12" sm="6" md="4">

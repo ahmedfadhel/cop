@@ -29,7 +29,16 @@
   </b-row>
   <b-row>
     <b-col cols="12">
-      <b-table striped hover :items="categories" :fields="fields" per-page="5" :current-page="currentPage" @filtered="onFiltered" :filter="filter">
+      <b-table
+      striped
+      hover
+      stacked="sm"
+      :items="categories"
+      :fields="fields"
+      per-page="5"
+      :current-page="currentPage"
+      @filtered="onFiltered"
+      :filter="filter">
         <template slot="image" slot-scope="row">
            <b-media>
               <b-img v-if="row.item.photos.length"  :src="row.item.photos[0].url"  width="64" alt="placeholder"></b-img>
@@ -80,6 +89,9 @@
         </b-col>
         <b-col cols="6">
           <p class="my-4">
+            <strong>
+              Category Description:
+            </strong>
             {{category.description}}
           </p>
         </b-col>
@@ -116,9 +128,7 @@ export default {
   },
   data() {
       return {
-        // showDismissibleAlert:false,
-        // message:'',
-        // variant:'',
+
         filter:null,
         totalRows:1,
         allcats:this.cats,
@@ -140,9 +150,6 @@ export default {
       }
     },
     computed:{
-      // totalRows:function(){
-      //   return this.cats.length
-      // },
       categories:function(){
         return this.allcats
       },

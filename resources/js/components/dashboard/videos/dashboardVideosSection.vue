@@ -13,9 +13,30 @@
       </b-button>
     </b-col>
   </b-row>
+    <b-row>
+    <b-col cols="12">
+     <b-form-group  class="mb-4 mt-4">
+        <b-input-group>
+          <b-form-input v-model="filter" placeholder="Search For Video"></b-form-input>
+          <b-input-group-append>
+            <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </b-form-group>
+    </b-col>
+  </b-row>
   <b-row>
     <b-col cols="12">
-      <b-table striped hover :items="displayVideos" :fields="fields" per-page="10" :current-page="currentPage">
+      <b-table
+      striped
+      stacked="sm"
+      hover
+      :items="displayVideos"
+      :fields="fields"
+      per-page="10"
+      :current-page="currentPage"
+      @filtered="onFiltered"
+      :filter="filter">
         <template slot="image" slot-scope="row">
            <b-media>
               <b-img :src="row.item.photos[0].url" width="64" alt="placeholder"></b-img>
@@ -122,10 +143,14 @@ export default {
         variant: 'danger'
       })
     }
+    this.totalRow = this.videos.length
+
   },
   data() {
       return {
+        filter:null,
         allVideos:this.videos,
+        totalRows:1,
         fields: [
           { key:'id', label: "#"},
           {key:'image',label:'Thumbnail'},
@@ -149,9 +174,9 @@ export default {
       }
     },
     computed:{
-      totalRows:function(){
-        return this.videos.length
-      },
+      // totalRows:function(){
+      //   return this.videos.length
+      // },
       displayVideos:function(){
         return this.allVideos;
       },
@@ -169,6 +194,11 @@ export default {
       },
     },
     methods:{
+       onFiltered(filteredItems) {
+        // Trigger pagination to update the number of buttons/pages due to filtering
+        this.totalRows = filteredItems.length
+        this.currentPage = 1
+      },
       addNewVideo(){
         document.location.href=this.url + "videos/create"
       },
