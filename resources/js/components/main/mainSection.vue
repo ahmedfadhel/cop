@@ -34,10 +34,10 @@
 </template>
 
 <script>
-// import videoThumbnail from './videoThumbnail'
 import footerSection from '../general/footerSection'
 import newVideos from './newVideos.vue'
 import bestVideos from './bestVideos.vue'
+
 export default {
     created(){
       this.$store.dispatch('fetchVideos')

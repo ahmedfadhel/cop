@@ -16,8 +16,9 @@ export const store  = new Vuex.Store({
         message:null,
         variant:null,
         page:null,
-        api: 'http://172.16.45.16/api/',
-        url:'http://172.16.45.16/admin/',
+        api: 'http://127.0.0.1:8000/api/',
+        url:'http://127.0.0.1:8000/admin/',
+        index:'http://172.16.45.16',
         firstPage:null
     },
     getters:{
@@ -121,9 +122,9 @@ export const store  = new Vuex.Store({
         console.log(error)
       })
     },
-    logout:()=>{
-      Axios.post('http://127.0.0.1:8000/admin/logout').then(response=>{
-        location.href = "http://127.0.0.1:8000"
+    logout:(context)=>{
+      Axios.post(context.state.url + 'logout').then(response=>{
+        location.href = context.state.index
       })
     },
   }

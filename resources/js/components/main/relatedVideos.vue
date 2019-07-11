@@ -1,6 +1,6 @@
 <template>
 
-    <b-row class="mt-4">
+    <b-row class="mt-4 related-video">
       <b-col sm="12">
 <!--    header="Best Videos"
           header-tag="header" -->
@@ -36,10 +36,8 @@
 var moment = require('moment')
 import videoThumbnail from './videoThumbnail.vue'
 export default {
-  props:['tag'],
-    created(){
-      // console.log(this.tag)
-    },
+  props:['tags'],
+
     data:()=>{
         return{
 
@@ -55,7 +53,8 @@ export default {
     },
     methods:{
       refreshRelatedVideos(){
-        this.$store.dispatch('fetchRelatedVideos')
+        let tag = this.tags[Math.floor(Math.random() * this.tags.length)]
+        this.$store.dispatch('fetchRelatedVideo',tag.name)
       }
     }
 

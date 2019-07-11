@@ -1,4 +1,5 @@
 <template>
+  <div>
     <b-container>
       <b-row>
         <b-col cols="12">
@@ -13,7 +14,7 @@
               >
                 <b-row>
                   <b-col cols="12">
-                   <b-embed
+                  <b-embed
                       type="iframe"
                       aspect="16by9"
                       :src="link.url"
@@ -23,11 +24,11 @@
                 </b-row>
                 <b-row>
                   <b-col cols="12">
-                    <h3 class="text-center mt-3 video-title">{{video.title}}</h3>
+                    <h1 class="text-center mt-3 video-title">{{video.title}}</h1>
                   </b-col>
                 </b-row>
                 <b-row>
-                  <b-col cols="6">
+                  <b-col cols="12" md="4">
                     <p >
                       <strong>
                         Stars:
@@ -55,27 +56,36 @@
                       </b-badge>
                     </p>
                   </b-col>
-                  <b-col cols="6">
+                  <b-col cols="12" md="4">
                     <p>
                       <strong>
-                         Uploaded at:
+                        Video Description:
+                      </strong>
+                      {{video.description}}
+                    </p>
+                  </b-col>
+                  <b-col cols="12" md="4">
+                    <p>
+                      <strong>
+                        Uploaded at:
                       </strong>
                       {{video.updated_at}}
                     </p>
                     <p>
                       <strong>
-                         Length:
+                        Length:
                       </strong>
                       {{video.length}} m
                     </p>
                     <p>
                       <strong>
-                         Views:
+                        Views:
                       </strong>
                       {{video.views}}
                     </p>
 
                   </b-col>
+
                 </b-row>
 
               </b-tab>
@@ -85,29 +95,43 @@
       </b-row>
       <b-row>
         <b-col cols="12">
-          <related-videos></related-videos>
+          <related-videos :tags="searchTags"></related-videos>
         </b-col>
       </b-row>
+
       <b-row>
         <!-- {{searchTagValue}} -->
       </b-row>
     </b-container>
-
+    <footer-section></footer-section>
+  </div>
 </template>
 
 <script>
+import footerSection from '../general/footerSection'
 import relatedVideos from './relatedVideos.vue'
 export default {
-  created(){
+  mounted(){
     this.$store.dispatch('fetchDisplayedVideo',this.$route.params.videoId).then(res=>{
-      this.$store.dispatch('fetchRelatedVideo',res[0].name)
+      let tag = res[Math.floor(Math.random() * res.length)];
+      this.searchTags = res
+      this.$store.dispatch('fetchRelatedVideo',tag.name)
+
     })
 
   },
   data:()=>{
     return {
-      searchTag:null,
+      searchTags:null,
     }
+  },
+  beforeRouteUpdate (to, from, next) {
+    let id = to.params.videoId
+    this.$store.dispatch('fetchDisplayedVideo',id).then(res=>{
+      let tag = res[Math.floor(Math.random() * res.length)];
+      this.$store.dispatch('fetchRelatedVideo',tag.name)
+    })
+    next()
   },
   computed:{
     video:function(){
@@ -116,12 +140,10 @@ export default {
     relatedVideos:function(){
       return this.$store.getters.getRelatedVideos
     },
-    searchTagValue:function(){
-      // return this.video.tags[Math.floor(Math.random() * this.video.tags.length)].name
-    }
   },
   components:{
-    relatedVideos
+    relatedVideos,
+    footerSection
   }
 }
 </script>

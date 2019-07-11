@@ -1,6 +1,6 @@
 <template>
 
-    <b-row class="mb-4">
+    <b-row class="mb-4 ">
       <b-col sm="12">
 <!--    header="Best Videos"
           header-tag="header" -->
@@ -21,7 +21,7 @@
               </b-col>
             </b-row>
           </div>
-              <b-row>
+              <b-row class="equal-height">
                   <b-col cols="6" sm="6" md="4" lg="3" v-for="(video,index) in bestVideos" :key="index">
                       <video-thumbnail :video="video"></video-thumbnail>
                   </b-col>
@@ -65,7 +65,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-span{
-  display: inline-block;
+.equal-height{
+  display: flex;
+  flex-wrap: wrap;
+}
+[class*="col-*"]{
+  height: 100;
 }
 </style>

@@ -1,5 +1,6 @@
 import mainSection from './components/main/mainSection'
 import displayVideo from './components/main/displayVideo'
+import {store} from './store'
 import pageNotFound from './components/general/pageNotFound.vue'
 const routes = [
   {
@@ -10,7 +11,7 @@ const routes = [
   {
     path: '/video/:videoId',
     name: 'video',
-    component:displayVideo
+    component:displayVideo,
   },
   {
     path: "*",

@@ -8,13 +8,49 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
 @import '~vue-multiselect/dist/vue-multiselect.min.css';
+@import "~bootstrap/scss/mixins/_breakpoints";
 
 // Custom Style
 // Dashboard Style
 body{
   overflow-x: hidden;
   position: relative;
-  // height: 100%;
+}
+
+#app{
+  position: relative;
+  height: 100vh;
+  .dashboard{
+    nav{
+      background-color:$mainColor !important
+    }
+  }
+  // Card Component sytle
+
+  .card{
+    color:$fontColor;
+    .card-header{
+      background-color:$secondaryColor
+    }
+    .card-body{
+      .badge-secondary{
+        background-color:$mainColor;
+      }
+      .video-title{
+        color:$fontColor;
+        font-weight: bold;
+        letter-spacing: 0.2rem
+      }
+    }
+  }
+  // related Video Section Syle
+  .relate-video{
+    span{
+      display: inline-block;
+    }
+
+  }
+// Footer style
   #footer{
     color: $fontColor;
     width: 100%;
@@ -23,63 +59,92 @@ body{
     background-color: $mainColor;
     text-align:center;
     }
-  #app{
-    position: relative;
-    height: 100vh;
-    .dashboard{
-      nav{
-        background-color:$mainColor !important
-      }
-    }
-    .card{
-      .card-body{
-
-        p{
-          color:$fontColor;
-        }
-        .badge-secondary{
-          background-color: $mainColor
-        }
-        .video-title{
-          color:$fontColor;
-          font-weight: bold;
-          letter-spacing: 0.2rem
-        }
-      }
-    }
-    .video{
-      .card{
-        .card-img-top {
-          height: 200px;
-        }
-        .card-body{
-          .card-title{
-            a{
-              color: $fontColor;
-              font-weight: bold
-            }
-
-          }
-        }
-        .card-footer{
-          background-color:$secondaryColor;
-          color:$fontColor;
-          .col-4{
-            padding:0px;
-          }
-
-        }
-
-      }
-    }
-    .card-header{
-      background-color:$secondaryColor;
-      color:$fontColor;
-      font-weight: bold;
-    }
-
-  }
-
 
 }
+// Page Not Found Style
+.not-found{
+  position: relative;
+  height: calc(100vh - 60px);
 
+  .not-found_box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 3rem;
+    color:$fontColor;
+    text-align: center
+  }
+}
+// Video thumbnail video Syle
+.video{
+  img{
+    height: 10rem;
+  }
+  .card{
+    .card-body{
+      padding: 1rem 1.25rem;
+      a{
+        text-decoration: none;
+        color:$fontColor;
+        cursor: pointer;
+      }
+      .card-title{
+          margin-bottom:0px;
+          text-align: center;
+          font-size: 1rem
+      }
+    }
+  }
+  .card-footer{
+    background-color: $secondaryColor;
+      .info{
+
+        svg{
+          display: block;
+          margin: auto;
+        }
+        span{
+          display: block;
+          text-align: center
+        }
+      }
+  }
+}
+// Pagination video style
+.page-item.active .page-link {
+  color: $fontColor;
+  background-color:$mainColor ;
+  border-color:$mainColor;
+}
+@include media-breakpoint-between(xs,sm){
+  .card{
+    .card-body{
+
+      .video-title{
+        font-size: 1.1rem;
+        letter-spacing: 0.1rem
+      }
+    }
+  }
+  .video {
+    .info {
+      font-size: .7rem
+    }
+   .card{
+     .card-body{
+       padding: .5rem .625rem;
+       .card-title{
+          text-align: center;
+          font-size: 0.65rem
+
+       }
+     }
+   }
+  }
+  .not-found{
+    .not-found_box{
+      font-size:2rem
+    }
+  }
+}
