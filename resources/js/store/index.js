@@ -16,9 +16,9 @@ export const store  = new Vuex.Store({
         message:null,
         variant:null,
         page:null,
-        api: 'http://127.0.0.1:8000/api/',
-        url:'http://127.0.0.1:8000/admin/',
-        index:'http://172.16.45.16',
+        api: 'http://5.182.210.234/api/',
+        url:'http://5.182.210.234/admin/',
+        index:'http://5.182.210.234',
         firstPage:null
     },
     getters:{
