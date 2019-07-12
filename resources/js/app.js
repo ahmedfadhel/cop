@@ -16,7 +16,6 @@ import routes from './router';
 
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.use(VueRouter)
 const router = new VueRouter({
     mode: 'history',
