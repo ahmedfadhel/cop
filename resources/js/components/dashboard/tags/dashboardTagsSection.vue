@@ -9,7 +9,7 @@
     </b-col>
     <b-col cols="6">
       <b-button v-b-tooltip.hover title="Add New Tag" class="float-right" @click="addNewTag()">
-        <i class="fa fa-plus"></i>
+        <span class="icon-plus"></span>
       </b-button>
     </b-col>
   </b-row>
@@ -51,13 +51,13 @@
         <template slot="actions" slot-scope="row">
           <b-button-group>
             <b-button variant="outline-info"  @click="showTag(row.item)">
-              <i class="fas fa-eye"></i>
+              <span class="icon-eye"></span>
             </b-button>
             <b-button variant="outline-success" @click="editTag(row.item)">
-              <i class="fa fa-edit"></i>
+              <span class="icon-pencil"></span>
             </b-button>
             <b-button variant="outline-danger" @click="deleteTag(row.item)">
-              <i class="fa fa-trash-alt"></i>
+              <span class="icon-bin"></span>
             </b-button>
           </b-button-group>
         </template>

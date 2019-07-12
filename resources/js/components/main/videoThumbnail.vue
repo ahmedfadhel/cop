@@ -10,8 +10,8 @@
               <b-row >
                   <b-col cols="12" sm="6"  md="4">
                       <div class="info">
-                        <i class="fas fa-upload"></i>
-
+                        <!-- <i class="fas fa-upload"></i> -->
+                        <span class="icon-upload2"></span>
                         <span>
                           {{video.created_at | fromatTime}}
                         </span>
@@ -19,7 +19,8 @@
                   </b-col>
                   <b-col cols="12" sm="6" md="4">
                       <div class="info">
-                          <i class="far fa-clock"></i>
+                          <!-- <i class="far fa-clock"></i> -->
+                          <span class="icon-clock"></span>
                           <span>
                               {{video.length | removeHour}}
                           </span>
@@ -27,9 +28,9 @@
                   </b-col>
                   <b-col cols="12" sm="6" md="4">
                       <div class="info">
-                          <i class="fas fa-eye"></i>
+                          <span class="icon-eye"></span>
                           <span>
-                              {{video.views}}
+                            {{video.views}}
                           </span>
                       </div>
                   </b-col>

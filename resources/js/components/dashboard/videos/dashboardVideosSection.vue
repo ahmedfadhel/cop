@@ -9,7 +9,7 @@
     </b-col>
     <b-col cols="6">
       <b-button v-b-tooltip.hover title="Add New Video" class="float-right" @click="addNewVideo()">
-        <i class="fa fa-plus"></i>
+        <span class="icon-plus"></span>
       </b-button>
     </b-col>
   </b-row>
@@ -64,13 +64,13 @@
         <template slot="actions" slot-scope="row">
           <b-button-group>
             <b-button variant="outline-info"  @click="showVideo(row.item)">
-              <i class="fas fa-eye"></i>
+              <span class="icon-eye"></span>
             </b-button>
             <b-button variant="outline-success" @click="editVideo(row.item)">
-              <i class="fa fa-edit"></i>
+              <span class="icon-pencil"></span>
             </b-button>
             <b-button variant="outline-danger" @click="deleteVideo(row.item)">
-              <i class="fa fa-trash-alt"></i>
+              <span class="icon-bin"></span>
             </b-button>
           </b-button-group>
         </template>

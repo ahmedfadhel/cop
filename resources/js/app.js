@@ -10,7 +10,6 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import '@fortawesome/fontawesome-free/js/all'
 import {store} from './store/index'
 import routes from './router';
 
