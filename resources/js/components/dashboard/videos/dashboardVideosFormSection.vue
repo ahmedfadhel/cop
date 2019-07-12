@@ -303,7 +303,7 @@
         description: {
           required,
           minLength: minLength(20),
-          maxLength: maxLength(250)
+
         },
         title: {
           required,

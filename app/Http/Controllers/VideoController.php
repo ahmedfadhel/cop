@@ -124,7 +124,7 @@ class VideoController extends Controller
       // Validation Rule Section
       $validator = Validator::make($request->all(), [
         'title'                                 => 'required|min:20|max:100|string|unique:videos',
-        'description'                           => 'required|min:10|max:250|string',
+        'description'                           => 'required|min:10|string',
         'tags'                                  => 'required|array',
         'cats'                                  => 'required|array',
         'image'                                 => 'required|active_url',
@@ -265,7 +265,7 @@ class VideoController extends Controller
       // Validation Rule Section
       $validator = Validator::make($request->all(), [
         'title'                                 => 'required|min:20|max:100|string|unique:videos,title,'.$id,
-        'description'                           => 'required|min:10|max:250|string',
+        'description'                           => 'required|min:10|string',
         'tags'                                  => 'required|array',
         'cats'                                  => 'required|array',
         'image'                                 => 'required|active_url',

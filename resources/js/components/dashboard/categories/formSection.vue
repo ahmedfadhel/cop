@@ -99,7 +99,7 @@ import { validationMixin } from 'vuelidate'
         description: {
           required,
           minLength: minLength(3),
-          maxLength: maxLength(65535)
+
         },
         name: {
           required,
