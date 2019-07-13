@@ -24,11 +24,6 @@
       {{-- Header Section Start --}}
       @include('includes.header')
       {{-- Header Section End --}}
-      <div class="container">
-          <script type="text/javascript" data-cfasync="false" async src="https://adserver.juicyads.com/js/jads.js"></script>
-            <ins id="778030" data-width="728" data-height="102"></ins>
-          <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':778030});</script>
-      </div>
       {{-- Main Section Start --}}
         <main>
             @yield('content')
@@ -43,6 +38,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <div class="container">
+      <script type="text/javascript" data-cfasync="false" async src="https://adserver.juicyads.com/js/jads.js"></script>
+        <ins id="778030" data-width="728" data-height="102"></ins>
+      <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':778030});</script>
+    </div>
 </body>
 </html>
