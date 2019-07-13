@@ -7,34 +7,26 @@
           </b-card-title>
 
           <div slot="footer">
-              <b-row >
-                  <b-col cols="12" sm="6"  md="4">
-                      <div class="info">
-                        <!-- <i class="fas fa-upload"></i> -->
-                        <span class="icon-upload2"></span>
-                        <span>
-                          {{video.created_at | fromatTime}}
-                        </span>
-                      </div>
-                  </b-col>
-                  <b-col cols="12" sm="6" md="4">
-                      <div class="info">
-                          <!-- <i class="far fa-clock"></i> -->
-                          <span class="icon-clock"></span>
-                          <span>
-                              {{video.length | removeHour}}
-                          </span>
-                      </div>
-                  </b-col>
-                  <b-col cols="12" sm="6" md="4">
-                      <div class="info">
-                          <span class="icon-eye"></span>
-                          <span>
-                            {{video.views}}
-                          </span>
-                      </div>
-                  </b-col>
-              </b-row>
+              <ul class="info">
+                <li class="info_item">
+                  <span class="icon-clock"></span>
+                  <span>
+                    {{video.length | removeHour}}
+                  </span>
+                </li>
+                <li class="info_item">
+                  <span class="icon-eye"></span>
+                  <span>
+                    {{video.views}}
+                  </span>
+                </li>
+                <li class="info_item">
+                  <span class="icon-upload2"></span>
+                  <span>
+                    {{video.created_at | fromatTime}}
+                  </span>
+                </li>
+              </ul>
           </div>
         </b-card>
         </b-card-group>
@@ -42,8 +34,7 @@
 </template>
 
 <script>
-var moment = require('moment');
-
+// var moment = require('moment');
 export default {
     props:[
         'video',
@@ -67,7 +58,7 @@ export default {
         return value.substr(0,50)
       },
       fromatTime: function(value){
-        return moment.duration(value.split(' ')[1],'hours').humanize()
+        return moment(value).fromNow()
       },
       removeHour:function(value){
         let newvalue = value.split(':');

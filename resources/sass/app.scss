@@ -1,6 +1,3 @@
-// Fonts
-// @import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
 
@@ -10,18 +7,18 @@
 @import '~vue-multiselect/dist/vue-multiselect.min.css';
 @import "~bootstrap/scss/mixins/_breakpoints";
 @import "./icons/style.css";
-// @import "./icons/fonts/icomoon.woff";
 // Custom Style
 // Dashboard Style
 body{
   // overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
 }
 
 #app{
   overflow-x: hidden;
   position: relative;
-  height: 100vh;
+  // min-height: 100vh;
   .dashboard{
     nav{
       background-color:$mainColor !important
@@ -52,32 +49,19 @@ body{
     }
 
   }
+}
 // Footer style
-  #footer{
-    color: $fontColor;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    background-color: $mainColor;
-    text-align:center;
-    }
-
-}
-// Page Not Found Style
-.not-found{
-  position: relative;
-  height: calc(100vh - 60px);
-
-  .not-found_box{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 3rem;
-    color:$fontColor;
-    text-align: center
+#footer{
+  color: $fontColor;
+  height: 50px;
+  line-height: 50px;
+  position: absolute;
+  bottom: -75px;
+  width: 100%;
+  background-color: $mainColor;
+  text-align:center;
   }
-}
+
 // Video thumbnail video Syle
 .video{
   img{
@@ -101,14 +85,14 @@ body{
   .card-footer{
     background-color: $secondaryColor;
       .info{
-
-        svg{
-          display: block;
-          margin: auto;
-        }
-        span{
-          display: block;
-          text-align: center
+        padding:0px;
+        margin:0px;
+        .info_item{
+          list-style: none;
+          display: inline-block;
+          &:not(:first-of-type){
+            margin-left: 1rem;
+          }
         }
       }
   }
@@ -119,10 +103,49 @@ body{
   background-color:$mainColor ;
   border-color:$mainColor;
 }
+@media screen and (max-width:320px){
+  .video {
+    img{
+      height: 7rem;
+    }
+    .card-footer{
+      padding: 5px 5px 5px 0.5rem !important;
+      .info{
+        .info_item{
+          margin-left: 0.4rem !important;
+          &:nth-of-type(1){
+            margin-left: 0.2rem !important;
+          }
+
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-only(xs){
+  .card-footer{
+    padding: 0.35rem 0.7rem;
+  }
+  .video {
+    .card-footer{
+      padding: 5px 5px 5px 0.7rem;
+      .info{
+        .info_item{
+          &:nth-of-type(2){
+            margin-left: 2rem
+          }
+        }
+      }
+    }
+  }
+  #footer{
+    bottom: -70px;
+  }
+
+}
 @include media-breakpoint-between(xs,sm){
   .card{
     .card-body{
-
       .video-title{
         font-size: 1.1rem;
         letter-spacing: 0.1rem
@@ -144,9 +167,58 @@ body{
      }
    }
   }
-  .not-found{
-    .not-found_box{
-      font-size:2rem
+}
+@include media-breakpoint-only(lg){
+  .card-footer {
+    padding: 0.75rem 2rem;
+
+  }
+}
+@include media-breakpoint-only(xl){
+  .video{
+    .card-footer{
+      .info{
+        .info_item{
+          margin-left: 0px;
+          padding-right: 3.5px;
+          &:not(:first-of-type){
+            margin-left: 0px
+          }
+        }
+      }
     }
   }
 }
+@include media-breakpoint-between(md,lg){
+  #app {
+    #footer{
+      bottom: -80px;
+    }
+  }
+  .video{
+    .card-footer{
+      .info{
+        .info_item{
+          margin-left: 0.8rem;
+          &:not(:first-of-type){
+            margin-left: 2.3rem
+          }
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-between(sm,md){
+  .card-footer {
+    padding: 0.75rem 0.65rem;
+
+  }
+}
+@include media-breakpoint-between(lg,xl){
+  .card-footer {
+    padding: 0.75rem 0.65rem;
+
+  }
+}
+
+

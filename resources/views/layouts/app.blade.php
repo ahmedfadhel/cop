@@ -28,11 +28,13 @@
             @yield('content')
         </main>
         {{-- Main Section Start --}}
+
     </div>
     {{-- Footer Section Start --}}
 
-    {{-- @include('includes.footer') --}}
+    @include('includes.footer')
     {{-- Footer Section End --}}
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>

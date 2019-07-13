@@ -13,6 +13,7 @@ import VueRouter from 'vue-router'
 import {store} from './store/index'
 import routes from './router';
 
+window.moment = require('moment')
 
 Vue.use(Vuex)
 Vue.use(BootstrapVue)

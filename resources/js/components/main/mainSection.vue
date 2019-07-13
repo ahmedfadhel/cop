@@ -1,40 +1,33 @@
 <template>
-   <div class="mt-4">
-      <b-container>
-        <best-videos v-if="firstPage"></best-videos>
-        <b-row >
-          <b-col sm="12">
-            <b-card
-              header="New Videos"
-              header-tag="header"
-            >
-              <new-videos></new-videos>
-              <b-row>
-                <div class="mt-4" style="margin:auto">
-                  <b-col sm="12">
-                    <b-pagination-nav
-                      :link-gen="linkGen"
-                      :number-of-pages="lastPage"
+  <b-container class="mt-4">
+    <best-videos v-if="firstPage"></best-videos>
+    <b-row >
+      <b-col sm="12">
+        <b-card
+          header="New Videos"
+          header-tag="header"
+        >
+          <new-videos></new-videos>
+          <b-row>
+            <div class="mt-4" style="margin:auto">
+              <b-col sm="12">
+                <b-pagination-nav
+                  :link-gen="linkGen"
+                  :number-of-pages="lastPage"
 
-                      @input='viewChange'
-                      use-router
-                    ></b-pagination-nav>
-                  </b-col>
-                </div>
-              </b-row>
-            </b-card>
-          </b-col>
-        </b-row>
-      </b-container>
-     <b-row>
-
-        <footer-section></footer-section>
-     </b-row>
-   </div>
+                  @input='viewChange'
+                  use-router
+                ></b-pagination-nav>
+              </b-col>
+            </div>
+          </b-row>
+        </b-card>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
-import footerSection from '../general/footerSection'
 import newVideos from './newVideos.vue'
 import bestVideos from './bestVideos.vue'
 
@@ -51,7 +44,6 @@ export default {
         // videoThumbnail,
         newVideos,
         bestVideos,
-        footerSection
     },
     methods: {
       linkGen(pageNum) {
