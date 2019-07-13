@@ -47,7 +47,7 @@ class VideoController extends Controller
     public function videos()
     {
       //Get 10 Random High Views Videos
-      $videos = Video::with('photos')->paginate(5);
+      $videos = Video::with('photos')->paginate(12);
       return response()->json([
         'videos'    => $videos,
         'Status'    => 'Success',
