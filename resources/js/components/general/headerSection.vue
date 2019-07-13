@@ -20,19 +20,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-	$mainColor: #EE94B4;
-	.navbar{
-		padding: 0px;
-	}
-	.navbar-brand{
-		margin: auto;
-		img{
-
-
-			height: 50px;
-		}
-	}
-	.bg-info {
-    background-color: $mainColor !important;
-}
 </style>
