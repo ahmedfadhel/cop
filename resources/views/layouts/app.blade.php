@@ -6,6 +6,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- juicyads site meta --}}
+    <meta name="juicyads-site-verification" content="24b72af007bdd090cca2d95122315685">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
