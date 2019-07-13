@@ -16,7 +16,7 @@
               </b-col>
               <b-col cols="6">
                 <span class=" float-right" v-b-tooltip.hover title="Refresh" @click="refreshRelatedVideos">
-                  <i class="fas  fa-sync" ></i>
+                  <span class="icon-loop2"></span>
                 </span>
               </b-col>
             </b-row>
