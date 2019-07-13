@@ -13,7 +13,7 @@
               <b-col sm="12">
                 <b-pagination-nav
                   :link-gen="linkGen"
-                  :number-of-pages="lastPage"
+                  :number-of-pages="totalPages"
 
                   @input='viewChange'
                   use-router
@@ -33,11 +33,13 @@ import bestVideos from './bestVideos.vue'
 
 export default {
     created(){
-      this.$store.dispatch('fetchVideos')
+      this.$store.dispatch('fetchVideos').then(res=>{
+        this.totalPages = res
+      })
     },
     data:()=>{
         return{
-
+          totalPages: null,
         }
     },
     components:{
@@ -58,9 +60,6 @@ export default {
       firstPage(){
         return this.$store.getters.getFirstPage
       },
-      lastPage(){
-        return this.$store.getters.getLastPage
-      }
     }
 }
 </script>

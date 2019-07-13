@@ -11,7 +11,6 @@ export const store  = new Vuex.Store({
         bestVideos:[],
         relatedVideos:[],
         displayVideo:{},
-        lastPage:null,
         showAlert:null,
         message:null,
         variant:null,
@@ -34,9 +33,6 @@ export const store  = new Vuex.Store({
       getFirstPage(state){
         return state.firstPage
       },
-      getLastPagt(state){
-        return state.lastPage
-      },
       getDisplayVideo(state){
         return state.displayVideo
       },
@@ -55,7 +51,6 @@ export const store  = new Vuex.Store({
     },
     mutations:{
       setVideos(state,payload){
-
         state.videos = payload
       },
       setBestVideos(state,payload){
@@ -66,9 +61,6 @@ export const store  = new Vuex.Store({
       },
       setRelatedVideos(state,payload){
         state.relatedVideos = payload
-      },
-      setFirstPage(state,payload){
-        state.firstPage = payload
       },
       setLastPage(state,payload){
         state.lastPage = payload
@@ -81,21 +73,24 @@ export const store  = new Vuex.Store({
     },
     actions:{
       fetchVideos:(context,payload)=>{
-        context.state.page = payload || 1
-        Axios.get(context.state.api + 'new?page='+ context.state.page)
-          .then((response)=>{
+        return new Promise((resolve,reject)=>{
+          context.state.page = payload || 1
+          Axios.get(context.state.api + 'new?page='+ context.state.page)
+            .then((response)=>{
 
-            context.commit('setVideos',response.data.videos.data)
-            context.commit('setLastPage', response.data.videos.last_page)
-            if(response.data.videos.current_page === 1){
-              context.commit('setFirstPage',1)
-            }else{
-              context.commit('setFirstPage',null)
-            }
-          })
-          .catch((error=>{
-            console.log(error)
-        }))
+              context.commit('setVideos',response.data.videos.data)
+              resolve(response.data.videos.last_page)
+              if(response.data.videos.current_page === 1){
+                context.commit('setFirstPage',1)
+              }else{
+                context.commit('setFirstPage',null)
+              }
+            })
+            .catch((error=>{
+              console.log(error)
+          }))
+        })
+
       },
     fetchBestVideos:(context,payload)=>{
       Axios.get(context.state.api + 'best')
