@@ -4,7 +4,7 @@
 			<b-container>
 				<!-- <b-row> -->
 					<b-navbar-brand href="/">
-						<img src="../../../assets/logo.png" alt="" class="image">
+						<img src="/images/logo2.png" alt="" class="image">
 
 					</b-navbar-brand>
 				<!-- </b-row> -->
@@ -28,7 +28,7 @@ export default {
 		margin: auto;
 		img{
 
-			width: 50px;
+
 			height: 50px;
 		}
 	}

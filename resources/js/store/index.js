@@ -15,9 +15,9 @@ export const store  = new Vuex.Store({
         message:null,
         variant:null,
         page:null,
-        api: 'http://pornezium.com/api/',
-        url:'http://pornezium.com/admin/',
-        index:'http://pornezium.com',
+        api: 'http://127.0.0.1:8000/api/',
+        url:'http://127.0.0.1:8000/admin/',
+        index:'http://127.0.0.1:8000',
         firstPage:null
     },
     getters:{
@@ -62,8 +62,8 @@ export const store  = new Vuex.Store({
       setRelatedVideos(state,payload){
         state.relatedVideos = payload
       },
-      setLastPage(state,payload){
-        state.lastPage = payload
+      setFirstPage(state,payload){
+        state.firstPage = payload
       },
       setMessage(state,payload){
         state.showAlert = payload.state
