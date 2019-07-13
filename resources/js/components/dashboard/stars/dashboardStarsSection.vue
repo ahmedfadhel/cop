@@ -123,13 +123,11 @@ export default {
         variant: 'danger'
       })
     }
-    this.totalRow = this.stars.length
 
   },
   data() {
       return {
         filter:null,
-        totalRows:1,
         allStars:this.stars,
         fields: [
           { key:'id', label: "#"},
@@ -150,6 +148,9 @@ export default {
       }
     },
     computed:{
+      totalRows:function(){
+        return this.stars.length
+      },
       starsItem:function(){
         return this.allStars
       },

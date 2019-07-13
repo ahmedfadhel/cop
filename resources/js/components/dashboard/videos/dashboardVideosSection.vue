@@ -143,14 +143,12 @@ export default {
         variant: 'danger'
       })
     }
-    this.totalRow = this.videos.length
 
   },
   data() {
       return {
         filter:null,
         allVideos:this.videos,
-        totalRows:1,
         fields: [
           { key:'id', label: "#"},
           {key:'image',label:'Thumbnail'},
@@ -174,9 +172,9 @@ export default {
       }
     },
     computed:{
-      // totalRows:function(){
-      //   return this.videos.length
-      // },
+      totalRows:function(){
+        return this.videos.length
+      },
       displayVideos:function(){
         return this.allVideos;
       },

@@ -42,7 +42,6 @@
         <template slot="image" slot-scope="row">
            <b-media>
               <b-img v-if="row.item.photos.length"  :src="row.item.photos[0].url"  width="64" alt="placeholder"></b-img>
-              <!-- <b-img v-else aside  width="64" alt="placeholder"></b-img> -->
               <b-img v-else slot="aside" blank blank-color="#ccc" width="64" alt="placeholder"></b-img>
            </b-media>
         </template>
@@ -124,13 +123,11 @@ export default {
         variant: 'danger'
       })
     }
-    this.totalRow = this.cats.length
   },
   data() {
       return {
 
         filter:null,
-        totalRows:1,
         allcats:this.cats,
         fields: [
           { key:'id', label: "#"},
@@ -150,6 +147,9 @@ export default {
       }
     },
     computed:{
+      totalRows:function(){
+        return this.cats.length
+      },
       categories:function(){
         return this.allcats
       },

@@ -103,7 +103,6 @@ export default {
         variant: 'danger'
       })
     }
-    this.totalRow = this.tags.length
 
   },
   data() {
