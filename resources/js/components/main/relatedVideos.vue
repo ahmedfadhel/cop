@@ -54,7 +54,7 @@ export default {
         return this.$store.getters.getRelatedVideos
       },
       totalRelatedVideos:function(){
-        return this.$store.getters.getTotalRelatedVideo
+        return this.$store.getters.getTotalRelatedVideos
       }
     },
     methods:{

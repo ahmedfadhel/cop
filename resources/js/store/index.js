@@ -14,7 +14,7 @@ export const store  = new Vuex.Store({
         showAlert:null,
         message:null,
         variant:null,
-        totalRelatedVideos:null,
+        totalRelatedVideos:0,
         siteDesc: 'Pornezium.com is free porn site ... ',
         page:null,
         api: 'http://pornezium.com/api/',
