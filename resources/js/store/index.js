@@ -14,11 +14,12 @@ export const store  = new Vuex.Store({
         showAlert:null,
         message:null,
         variant:null,
+        totalRelatedVideos:null,
         siteDesc: 'Pornezium.com is free porn site ... ',
         page:null,
-        api: 'http://pornezium.com/api/',
-        url:'http://pornezium.com/admin/',
-        index:'http://pornezium.com',
+        api: 'http://127.0.0.1:8000/api/',
+        url:'http://127.0.0.1:8000/admin/',
+        index:'http://127.0.0.1:8000',
         firstPage:null
     },
     getters:{
@@ -40,6 +41,9 @@ export const store  = new Vuex.Store({
       getRelatedVideos(state){
         return state.relatedVideos
       },
+      getTotalRelatedVideos(state){
+        return state.totalRelatedVideos
+      },
       getShowAlert(state){
         return state.showAlert
       },
@@ -49,6 +53,7 @@ export const store  = new Vuex.Store({
       getVariant(state){
         return state.variant
       },
+
     },
     mutations:{
       setVideos(state,payload){
@@ -65,6 +70,9 @@ export const store  = new Vuex.Store({
       },
       setFirstPage(state,payload){
         state.firstPage = payload
+      },
+      setTotalRelatedVideos(state,payload){
+        state.totalRelatedVideos = payload
       },
       setMessage(state,payload){
         state.showAlert = payload.state
@@ -127,6 +135,7 @@ export const store  = new Vuex.Store({
     fetchRelatedVideo(context,payload){
       Axios.get(context.state.api+'getrelated/'+payload).then(res=>{
         if(res.data.status === 'success'){
+          context.commit('setTotalRelatedVideos',res.data.videos.length)
           context.commit('setRelatedVideos',res.data.videos)
         }
       }).catch(error=>{

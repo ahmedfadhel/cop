@@ -19,14 +19,14 @@
             </b-row>
           </div>
               <b-row>
-                  <b-col cols="6" sm="6" md="4" lg="3" v-for="(count,index) in videoAppear" :key="index" v-if="count < relatedVideo.length">
+                  <b-col cols="6" sm="6" md="4" lg="3"  v-if="count < totalRelatedVideos" v-for="count in videoAppear" :key="count" >
                       <video-thumbnail :video="relatedVideo[count]"></video-thumbnail>
                   </b-col>
               </b-row>
 
               <b-row>
                 <b-col cols="12" class="mt-4">
-                  <b-button class="mx-auto" variant="outline-primary" @click="videoAppear += 4">Show more (+4)</b-button>
+                  <b-button class="mx-auto" variant="outline-secondary" @click="videoAppear += 4">Show more (+4)</b-button>
                 </b-col>
               </b-row>
           </b-card>
@@ -43,7 +43,7 @@ export default {
 
     data:()=>{
         return{
-          videoAppear:8
+          videoAppear:8,
         }
     },
     components:{
@@ -52,6 +52,9 @@ export default {
     computed:{
       relatedVideo:function(){
         return this.$store.getters.getRelatedVideos
+      },
+      totalRelatedVideos:function(){
+        return this.$store.getters.getTotalRelatedVideo
       }
     },
     methods:{
