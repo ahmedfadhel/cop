@@ -105,9 +105,12 @@ import relatedVideos from './relatedVideos.vue'
 export default {
   mounted(){
     this.$store.dispatch('fetchDisplayedVideo',this.$route.params.videoId).then(res=>{
-      let tag = res[Math.floor(Math.random() * res.length)];
-      this.searchTags = res
+      let tag = res.tags[Math.floor(Math.random() * res.tags.length)];
+      this.searchTags = res.tags
       this.$store.dispatch('fetchRelatedVideo',tag.name)
+      this.$store.commit('setPageTitle',res.title)
+      this.$store.commit('setPageDescription',res.desc)
+      this.$store.commit('setPageKeywords',res.tags)
 
     })
 

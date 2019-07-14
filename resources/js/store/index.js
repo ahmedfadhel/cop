@@ -14,10 +14,11 @@ export const store  = new Vuex.Store({
         showAlert:null,
         message:null,
         variant:null,
+        siteDesc: 'Pornezium.com is free porn site ... ',
         page:null,
-        api: 'http://pornezium.com/api/',
-        url:'http://pornezium.com/admin/',
-        index:'http://pornezium.com',
+        api: 'http://127.0.0.1:8000/api/',
+        url:'http://127.0.0.1:8000/admin/',
+        index:'http://127.0.0.1:8000',
         firstPage:null
     },
     getters:{
@@ -70,6 +71,16 @@ export const store  = new Vuex.Store({
         state.message = payload.message
         state.variant = payload.variant
       },
+      setPageTitle(state,payload){
+        document.title = payload
+      },
+      setPageKeywords(state,payload){
+        let keywords = payload.map(x=>x.name).join();
+        document.querySelector('meta[name="keywords"]').content = keywords
+      },
+      setPageDescription(state,payload){
+        document.querySelector('meta[name="description"]').content = state.siteDesc + payload.substr(0,84)
+      },
     },
     actions:{
       fetchVideos:(context,payload)=>{
@@ -102,6 +113,11 @@ export const store  = new Vuex.Store({
       return new Promise((resolve,reject)=>{
         Axios.get(context.state.api+'getvideo/'+payload).then(response=>{
           context.commit('setDisplayVideo',response.data.video)
+          resolve({
+            tags:response.data.video.tags,
+            title:response.data.video.title,
+            desc: response.data.video.description
+          })
           resolve(response.data.video.tags)
         }).catch(error=>{
           console.log(error)
