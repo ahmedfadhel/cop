@@ -1,10 +1,19 @@
 <template>
     <div class="video mt-4">
       <b-card-group>
-        <b-card :img-src="video.photos[0].url" img-alt="Image" img-top>
-          <b-card-title>
-            <router-link :to="{ name: 'video', params: { videoId: video.id }}">{{video.title | trimTitle}}</router-link>
-          </b-card-title>
+        <b-card no-body>
+          <router-link :to="{ name: 'video', params: { videoId: video.id }}">
+          <b-card-img
+            :src="video.photos[0].url"
+            img-top
+            alt="Video Image"
+          ></b-card-img>
+          </router-link>
+          <b-card-body>
+            <b-card-title>
+              <router-link :to="{ name: 'video', params: { videoId: video.id }}">{{video.title | trimTitle}}</router-link>
+            </b-card-title>
+          </b-card-body>
 
           <div slot="footer">
               <ul class="info">
