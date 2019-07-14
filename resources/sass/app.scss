@@ -9,6 +9,11 @@
 @import "./icons/style.css";
 // Custom Style
 // Dashboard Style
+
+iframe{
+  margin-left: 25%;
+  transform: translateX(-25px);
+}
 body{
   // overflow-x: hidden;
   position: relative;
