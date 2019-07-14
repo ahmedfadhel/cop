@@ -16,7 +16,7 @@
               </b-col>
               <b-col cols="6">
                 <span class=" float-right" v-b-tooltip.hover title="Refresh" @click="refreshRelatedVideos">
-                  <span class="icon-loop2"></span>
+                  <span class="icon-spinner11"></span>
                 </span>
               </b-col>
             </b-row>
