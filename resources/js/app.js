@@ -55,7 +55,7 @@ import dashboardEditTagFormSection from './components/dashboard/tags/dashboardEd
  import dashboardStarsSection from './components/dashboard/stars/dashboardStarsSection.vue'
  import dashboardStarsFormSection from './components/dashboard/stars/dashboardStarsFormSection.vue'
  import dashboardStarsEditFormSection from './components/dashboard/stars/dashboardStarsEditFormSection.vue'
-Vue.config.devtools = true;
+Vue.config.devtools = false;
 const app = new Vue({
     el: '#app',
     store,
