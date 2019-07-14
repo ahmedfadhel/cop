@@ -17,9 +17,9 @@ export const store  = new Vuex.Store({
         relatedVideosLength:null,
         siteDesc: 'Pornezium.com is free porn site ... ',
         page:null,
-        api: 'http://127.0.0.1:8000/api/',
-        url:'http://127.0.0.1:8000/admin/',
-        index:'http://127.0.0.1:8000',
+        api: 'http://pornezium.com/api/',
+        url:'http://pornezium.com/admin/',
+        index:'http://pornezium.com',
         firstPage:null
     },
     getters:{
