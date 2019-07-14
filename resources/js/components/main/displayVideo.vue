@@ -123,8 +123,11 @@ export default {
   beforeRouteUpdate (to, from, next) {
     let id = to.params.videoId
     this.$store.dispatch('fetchDisplayedVideo',id).then(res=>{
-      let tag = res[Math.floor(Math.random() * res.length)];
-      this.$store.dispatch('fetchRelatedVideo',tag.name)
+      let tag = res.tags[Math.floor(Math.random() * res.tags.length)];
+      this.$store.commit('setPageTitle',res.title)
+      this.$store.commit('setPageDescription',res.desc)
+      this.$store.commit('setPageKeywords',res.tags)
+
     })
     next()
   },
