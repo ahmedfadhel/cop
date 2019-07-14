@@ -19,7 +19,7 @@
             </b-row>
           </div>
               <b-row>
-                  <b-col cols="6" sm="6" md="4" lg="3"  v-if="count < totalRelatedVideos" v-for="count in videoAppear" :key="count" >
+                  <b-col cols="6" sm="6" md="4" lg="3"  v-if="count < 16" v-for="count in videoAppear" :key="count" >
                       <video-thumbnail :video="relatedVideo[count]"></video-thumbnail>
                   </b-col>
               </b-row>
@@ -53,9 +53,6 @@ export default {
       relatedVideo:function(){
         return this.$store.getters.getRelatedVideos
       },
-      totalRelatedVideos:function(){
-        return this.$store.getters.getTotalRelatedVideos
-      }
     },
     methods:{
       refreshRelatedVideos(){
