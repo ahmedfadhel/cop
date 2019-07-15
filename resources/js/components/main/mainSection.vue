@@ -37,6 +37,11 @@ export default {
         this.totalPages = res
       })
     },
+     mounted() {
+       this.$store.commit('setJuicyAds')
+       this.$store.commit('setJuicyPop')
+
+    },
     data:()=>{
         return{
           totalPages: null,

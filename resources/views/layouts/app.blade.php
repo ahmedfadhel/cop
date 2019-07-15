@@ -26,7 +26,9 @@
 
 </head>
 <body>
+    <div id="juicy-pop">
 
+    </div>
     <div id="app" class="front">
       {{-- Header Section Start --}}
       @include('includes.header')
@@ -46,10 +48,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <div class="container ads">
-      <div id="leaderboard-pixfuture" class="mt-4">
-        <script type="text/javascript" data-cfasync="false" async src="https://adserver.juicyads.com/js/jads.js"></script>
-        <ins id="778030" data-width="728" data-height="102"></ins>
-        <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':778030});</script>
+      <div id="juicy-ads" class="leaderboard mt-4">
+
       </div>
     </div>
 </body>

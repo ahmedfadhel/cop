@@ -84,6 +84,40 @@ export const store  = new Vuex.Store({
       setPageDescription(state,payload){
         document.querySelector('meta[name="description"]').content = state.siteDesc + payload.substr(0,84)
       },
+      // Set Juicy Ads Script
+      // Bottom leaderboard
+
+      setJuicyAds(){
+        let container = document.getElementById('juicy-ads');
+        // Script one
+        let script1 = document.createElement('script')
+        script1.type="text/javascript"
+        script1.src="https://adserver.juicyads.com/js/jads.js"
+        script1.setAttribute('data-cfasync','false')
+        script1.async = true
+        // script 2
+        let script2 =document.createElement('script')
+        script2.type = "text/javascript"
+        script2.setAttribute('data-cfasync','false')
+        script2.async = true
+        script2.innerHTML = "(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':778030});"
+      // ins
+        let ins = document.createElement('ins')
+        ins.setAttribute('id','778030')
+        ins.setAttribute('data-width','728')
+        ins.setAttribute('data-height','102')
+        // Append to parent
+        container.appendChild(script1)
+        container.appendChild(script2)
+        container.appendChild(ins)
+      },
+      // PopUp at top
+      setJuicyPop(){
+        let script = document.createElement('script')
+        script.type = "text/javascript"
+        script.src = "https://js.juicyads.com/jp.php?c=348423x2x264u4q2r2e4238414&u=http%3A%2F%2Fwww.juicyads.rocks"
+        document.getElementById('juicy-pop').appendChild(script)
+      }
     },
     actions:{
       fetchVideos:(context,payload)=>{

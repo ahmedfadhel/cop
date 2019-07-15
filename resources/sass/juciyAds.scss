@@ -1,19 +1,32 @@
-// @media all and (min-device-width: 729px) {
-//   #leaderboard-pixfuture {
-//       transform: scale(0.9);
-//   }
-// }
-// @media all and (min-device-width: 700px) and (max-device-width: 728px) {
-//   #leaderboard-pixfuture {
-//       transform: scale(0.7);
-//   }
-//   .container.ads{
-//     margin: 0px;
-//   }
-// }
+@media all and (min-device-width:992px) {
+  #juicy-ads.leaderboard{
+
+      & > iframe{
+        margin-left: 12.5%;
+        transform: translateX(-12.5px)
+      }
+  }
+}
+@media all and (min-device-width: 768px) and (max-device-width: 991px) {
+  #juicy-ads.leaderboard{
+    transform: scale(0.9);
+      & > iframe{
+        margin-left: -3%;
+      }
+  }
+}
+@media all and (min-device-width: 700px) and (max-device-width: 767px) {
+  #juicy-ads.leaderboard{
+      transform: scale(0.7);
+      & > iframe{
+        margin-left:-6rem;
+      }
+  }
+}
+
 
 @media all and (min-device-width: 576px) and (max-device-width: 699px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
     transform: scale(0.7);
     transform-origin: 0 0;
     height: 5em;
@@ -21,7 +34,7 @@
 }
 
 @media all and (min-device-width: 560px) and (max-device-width: 575px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
     transform: scale(0.735);
     transform-origin: 0 0;
     height: 5em;
@@ -29,7 +42,7 @@
 }
 
 @media all and (min-device-width: 520px) and (max-device-width: 559px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
       transform: scale(0.675);
       transform-origin: 0 0;
       height: 4em;
@@ -37,7 +50,7 @@
 }
 
 @media all and (min-device-width: 491px) and (max-device-width: 519px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
       transform: scale(0.635);
       transform-origin: 0 0;
       height: 4em;
@@ -45,7 +58,7 @@
 }
 
 @media all and (min-device-width: 451px) and (max-device-width: 490px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
       transform: scale(0.58);
       transform-origin: 0 0;
       height: 4em;
@@ -53,14 +66,14 @@
 }
 
 @media all and (min-device-width: 426px) and (max-device-width: 450px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
       transform: scale(0.545);
       transform-origin: 0 0;
       height: 3.5em;
   }
 }
 @media all and (min-device-width: 401px) and (max-device-width: 425px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
       transform: scale(0.525);
       transform-origin: 0 0;
       height: 3.5em;
@@ -68,7 +81,7 @@
 }
 
 @media all and (min-device-width: 371px) and (max-device-width: 400px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
       transform: scale(0.47);
       transform-origin: 0 0;
       height: 45px;
@@ -76,7 +89,7 @@
 }
 
 @media all and (min-device-width: 341px) and (max-device-width: 370px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
       transform: scale(0.427);
       transform-origin: 0 0;
       height:2.5em;
@@ -84,7 +97,7 @@
 }
 
 @media all and (min-device-width: 301px) and (max-device-width: 340px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
     transform: scale(0.4);
     transform-origin: 0 0;
     height: 35px;
@@ -92,7 +105,7 @@
 }
 
 @media all and (max-device-width: 300px) {
-  #leaderboard-pixfuture {
+  #juicy-ads.leaderboard{
       transform: scale(0.4);
       transform-origin: 0 0;
   }
