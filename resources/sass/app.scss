@@ -1,6 +1,6 @@
 // Variables
 @import 'variables';
-
+@import './juciyAds.scss';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
@@ -26,11 +26,12 @@ body{
   // overflow-x: hidden;
   position: relative;
   min-height: 100vh;
-  & > div.container > iframe{
-    margin-left: 25% !important;
-    transform: translateX(-25px);
-    margin-top: 2rem !important;
-  }
+
+  // & > div.container > iframe{
+  //   margin-left: 25% !important;
+  //   transform: translateX(-25px);
+  //   margin-top: 2rem !important;
+  // }
 }
 // NavBar style
 .navbar{
