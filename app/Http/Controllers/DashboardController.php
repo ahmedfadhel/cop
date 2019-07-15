@@ -18,6 +18,6 @@ class DashboardController extends Controller
 
     // Admin Dashboard Index
     public function index(){
-      return redirect()->route('videos.index');
+      return redirect()->route('stats');
     }
 }

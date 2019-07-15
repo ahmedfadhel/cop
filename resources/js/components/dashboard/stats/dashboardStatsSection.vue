@@ -149,9 +149,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.stats-last{
-  font-size: 1rem;
-
-}
 
 </style>

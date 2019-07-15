@@ -135,6 +135,10 @@ body{
   border: 2px solid $mainColor;
   text-align: center;
 }
+.stats-last{
+  font-size: 1rem;
+}
+
 // Pagination video style
 .page-item.active .page-link {
   color: $fontColor;
