@@ -51,10 +51,12 @@ import dashboardTagsSection from './components/dashboard/tags/dashboardTagsSecti
 import dashboardTagsFormSection from './components/dashboard/tags/dashboardTagsFormSection.vue'
 import dashboardEditTagFormSection from './components/dashboard/tags/dashboardEditTagFormSection.vue'
 
-// Dashboard Stars Section
+ // Dashboard Stars Section
  import dashboardStarsSection from './components/dashboard/stars/dashboardStarsSection.vue'
  import dashboardStarsFormSection from './components/dashboard/stars/dashboardStarsFormSection.vue'
  import dashboardStarsEditFormSection from './components/dashboard/stars/dashboardStarsEditFormSection.vue'
+ // Dashboard Statistics Section
+ import dashboardStatsSection from './components/dashboard/stats/dashboardStatsSection'
 Vue.config.devtools = false
 const app = new Vue({
     el: '#app',
@@ -79,6 +81,7 @@ const app = new Vue({
       dashboardEditTagFormSection,
       dashboardStarsSection,
       dashboardStarsFormSection,
-      dashboardStarsEditFormSection
+      dashboardStarsEditFormSection,
+      dashboardStatsSection
     }
 });

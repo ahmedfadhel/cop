@@ -17,6 +17,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/stars','StarController');
     Route::resource('/tags','TagController');
     Route::resource('/category','CategoryController');
+    Route::resource('/stats','StatsController');
     Auth::routes();
 });
 Route::get('/{any}', 'SpaController@index')->where('any', '^(?!admin).*$');
