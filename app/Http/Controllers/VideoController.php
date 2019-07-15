@@ -69,7 +69,7 @@ class VideoController extends Controller
         if(!is_null($video->tags()->where('name',$tag)->first())){
           return $video;
         }
-      });
+      })->take(8);
 
       if($videos){
         return response()->json([

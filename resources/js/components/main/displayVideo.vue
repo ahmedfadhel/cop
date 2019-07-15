@@ -94,7 +94,7 @@
     </b-row>
     <b-row>
       <b-col cols="12">
-        <related-videos :tags="searchTags"></related-videos>
+        <related-videos :tags="searchTags" ></related-videos>
       </b-col>
     </b-row>
   </b-container>
@@ -124,6 +124,7 @@ export default {
     let id = to.params.videoId
     this.$store.dispatch('fetchDisplayedVideo',id).then(res=>{
       let tag = res.tags[Math.floor(Math.random() * res.tags.length)];
+      this.$store.dispatch('fetchRelatedVideo',tag.name)
       this.$store.commit('setPageTitle',res.title)
       this.$store.commit('setPageDescription',res.desc)
       this.$store.commit('setPageKeywords',res.tags)

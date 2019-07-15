@@ -14,7 +14,6 @@ export const store  = new Vuex.Store({
         showAlert:null,
         message:null,
         variant:null,
-        relatedVideosLength:null,
         siteDesc: 'Pornezium.com is free porn site ... ',
         page:null,
         api: 'http://pornezium.com/api/',
@@ -51,9 +50,7 @@ export const store  = new Vuex.Store({
       getVariant(state){
         return state.variant
       },
-      getRelatedVideosLegnth(state){
-        return state.relatedVideosLength
-      }
+
     },
     mutations:{
       setVideos(state,payload){
@@ -67,7 +64,6 @@ export const store  = new Vuex.Store({
       },
       setRelatedVideos(state,payload){
         state.relatedVideos = payload
-        state.relatedVideosLength = payload.length
       },
       setFirstPage(state,payload){
         state.firstPage = payload
