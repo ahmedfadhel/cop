@@ -94,7 +94,7 @@
     </b-row>
     <b-row>
       <b-col cols="12">
-        <related-videos :tags="searchTags" ></related-videos>
+        <related-videos :tags="searchTags"></related-videos>
       </b-col>
     </b-row>
   </b-container>
