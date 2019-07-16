@@ -1,16 +1,16 @@
 <template>
-  <b-container class="mt-4" >
-    <b-row >
-      <b-col sm="12">
-        <best-videos v-if="firstPage"></best-videos>
+  <div class="container mt-4">
+    <best-videos v-if="firstPage"></best-videos>
+    <div class="row">
+      <div class="col-12">
         <b-card
           header="New Videos"
           header-tag="header"
         >
           <new-videos></new-videos>
-          <b-row>
+          <div class="row">
             <div class="mt-4" style="margin:auto">
-              <b-col sm="12">
+              <div class="col-12">
                 <b-pagination-nav
                   :link-gen="linkGen"
                   :number-of-pages="totalPages"
@@ -18,13 +18,13 @@
                   @input='viewChange'
                   use-router
                 ></b-pagination-nav>
-              </b-col>
+              </div >
             </div>
-          </b-row>
+          </div>
         </b-card>
-      </b-col>
-    </b-row>
-  </b-container>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

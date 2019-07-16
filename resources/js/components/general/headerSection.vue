@@ -1,7 +1,7 @@
 <template>
   <div>
 		<b-navbar toggleable="lg" type="dark" variant="info">
-			<b-container>
+			<div class="container">
 				<!-- <b-row> -->
 					<b-navbar-brand href="/">
 						<img src="/images/logo2.png" alt="" class="image">
@@ -9,7 +9,7 @@
 					</b-navbar-brand>
 				<!-- </b-row> -->
 
-			</b-container>
+			</div>
 		</b-navbar>
 	</div>
 </template>

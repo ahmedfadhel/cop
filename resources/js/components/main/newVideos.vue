@@ -1,9 +1,9 @@
 <template>
-  <b-row >
-    <b-col cols="6" sm="6" md="4" lg="3" v-for="(video,index) in videos" :key="index">
-          <video-thumbnail :video="video"></video-thumbnail>
-    </b-col>
-  </b-row>
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3" v-for="(video,index) in videos" :key="index">
+      <video-thumbnail :video="video"></video-thumbnail>
+    </div>
+  </div>
 
 </template>
 

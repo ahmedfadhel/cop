@@ -1,69 +1,67 @@
 <template>
-  <b-container>
-    <b-row>
-      <b-col cols="12">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
         <b-card
           :header="video.title"
           header-tag="header"
           class="mt-4"
-          >
+        >
           <b-tabs content-class="mt-3">
             <b-tab v-for="(link,index) in video.links" :key="index"
               :title="link.server_name"
             >
-              <b-row>
-                <b-col cols="12">
+              <div class="row">
+                <div class="col-12">
                 <b-embed
                     type="iframe"
                     aspect="16by9"
                     :src="link.url"
                     allowfullscreen
                   ></b-embed>
-                </b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="12">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
                   <h1 class="text-center mt-3 video-title">{{video.title}}</h1>
-                </b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="12" md="4">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-4" >
                   <p >
                     <strong>
                       Stars:
                     </strong>
-                    <b-badge v-for="(star,index) in video.stars" :key="index" class="mr-1">
+                    <span v-for="(star,index) in video.stars" :key="index" class="mr-1 badge badge-secondary">
                       {{star.name}}
-                    </b-badge>
-
+                    </span>
                   </p>
                   <p >
                     <strong>
                       Categories:
                     </strong>
-                    <b-badge v-for="(cat,index) in video.cats" :key="index" class="mr-1">
+                    <span v-for="(cat,index) in video.cats" :key="index" class="mr-1 badge badge-secondary">
                       {{cat.name}}
-                    </b-badge>
-
+                    </span>
                   </p>
                   <p>
                     <strong>
                       Tags:
                     </strong>
-                    <b-badge v-for="(tag,index) in video.tags" :key="index" class="mr-1">
+                    <span v-for="(tag,index) in video.tags" :key="index" class="mr-1 badge badge-secondary">
                       {{tag.name}}
-                    </b-badge>
+                    </span>
                   </p>
-                </b-col>
-                <b-col cols="12" md="4">
+                </div>
+                <div class="col-12 col-md-4">
                   <p>
                     <strong>
                       Video Description:
                     </strong>
                     {{video.description}}
                   </p>
-                </b-col>
-                <b-col cols="12" md="4">
+                </div>
+                <div class="col-12 col-md-4">
                   <p>
                     <strong>
                       Uploaded at:
@@ -82,22 +80,21 @@
                     </strong>
                     {{video.views}}
                   </p>
-
-                </b-col>
-
-              </b-row>
-
+                </div>
+              </div>
             </b-tab>
           </b-tabs>
         </b-card>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col cols="12">
-        <related-videos :tags="searchTags"></related-videos>
-      </b-col>
-    </b-row>
-  </b-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <related-videos
+          :tags="searchTags"
+        ></related-videos>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

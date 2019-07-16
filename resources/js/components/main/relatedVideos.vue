@@ -1,32 +1,29 @@
 <template>
-
-    <b-row class="mt-4 related-video">
-      <b-col sm="12">
-          <b-card
-          >
+  <div class="row mt-4 related-video">
+    <div class="col-12">
+        <b-card>
           <div slot="header">
-            <b-row>
-              <b-col cols="6">
-                <div >
+            <div class="row">
+              <div class="col-6">
+                <div>
                   Related Videos
                 </div>
-              </b-col>
-              <b-col cols="6">
+              </div>
+              <div class="col-6">
                 <span class=" float-right" v-b-tooltip.hover title="Refresh" @click="refreshRelatedVideos">
                   <span class="icon-spinner11"></span>
                 </span>
-              </b-col>
-            </b-row>
+              </div>
+            </div>
           </div>
-              <b-row>
-                  <b-col cols="6" sm="6" md="4" lg="3"  v-for="(video,index) in relatedVideo" :key="index" >
-                    <video-thumbnail :video="video"></video-thumbnail>
-                  </b-col>
-              </b-row>
-          </b-card>
-
-      </b-col>
-    </b-row>
+          <div class="row">
+              <div class="col-6 col-sm-6 col-md-4 col-lg-3" v-for="(video,index) in relatedVideo" :key="index" >
+                <video-thumbnail :video="video"></video-thumbnail>
+              </div>
+          </div>
+        </b-card>
+    </div>
+  </div>
 </template>
 
 <script>
