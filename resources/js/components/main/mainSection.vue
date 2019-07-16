@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-4" v-if="appear">
     <best-videos v-if="firstPage"></best-videos>
     <div class="row">
       <div class="col-12">
@@ -7,7 +7,7 @@
           header="New Videos"
           header-tag="header"
         >
-          <new-videos></new-videos>
+          <new-videos ></new-videos>
           <div class="row">
             <div class="mt-4" style="margin:auto">
               <div class="col-12">
@@ -30,6 +30,7 @@
 <script>
 import newVideos from './newVideos.vue'
 import bestVideos from './bestVideos.vue'
+import { setTimeout } from 'timers';
 
 export default {
     created(){
@@ -38,12 +39,17 @@ export default {
       })
     },
      mounted() {
-       this.$store.commit('setJuicyAds')
-       this.$store.commit('setJuicyPop')
+      // this.appear = true
+      this.showCom()
+      this.$store.commit('setJuicyAds')
+      this.$store.commit('setJuicyPop')
+
+      //  console.log(loader)
     },
     data:()=>{
         return{
           totalPages: null,
+          appear:false,
         }
     },
     components:{
@@ -57,8 +63,13 @@ export default {
       },
       viewChange(change){
         this.$store.dispatch('fetchVideos',change)
-
+      },
+      showCom(){
+        this.appear = true;
+        let ele = document.querySelector('.loader')
+        ele.parentNode.removeChild(ele)
       }
+
     },
     computed:{
       firstPage(){

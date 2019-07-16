@@ -23,16 +23,24 @@
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
 </head>
 <body>
+    @include('includes.header')
     <div id="juicy-pop">
 
     </div>
+    <div class="loader" :disable="disable">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
     <div id="app" class="front">
-      {{-- Header Section Start --}}
-      @include('includes.header')
-      {{-- Header Section End --}}
+
       {{-- Main Section Start --}}
         <main>
             @yield('content')

@@ -1,7 +1,7 @@
 require('./bootstrap');
 import Vue from 'vue'
 // import BootstrapVue from 'bootstrap-vue'
-import { VBTooltipPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,NavbarPlugin,TabsPlugin } from 'bootstrap-vue'
+import { VBTooltipPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,TabsPlugin } from 'bootstrap-vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import {store} from './store/index'
@@ -15,7 +15,6 @@ Vue.use(VBTooltipPlugin)
 Vue.use(CardPlugin)
 Vue.use(PaginationNavPlugin)
 Vue.use(EmbedPlugin)
-Vue.use(NavbarPlugin)
 Vue.use(TabsPlugin)
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -25,9 +24,6 @@ const router = new VueRouter({
       return { x: 0, y: 0 }
     }
 });
-// Import General Vue Component Section Start
-import headerSection from './components/general/headerSection.vue'
-// Import General Vue Component Section End
 
 // Import Main Section Vue Compoenent Start
 import mainSection from './components/main/mainSection.vue'
@@ -39,7 +35,6 @@ const app = new Vue({
     router,
     components:{
       // General Section Component
-      headerSection,
       mainSection,
     }
 });
