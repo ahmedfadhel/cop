@@ -1,8 +1,8 @@
 <template>
-  <b-container class="mt-4">
-    <best-videos v-if="firstPage"></best-videos>
+  <b-container class="mt-4" >
     <b-row >
       <b-col sm="12">
+        <best-videos v-if="firstPage"></best-videos>
         <b-card
           header="New Videos"
           header-tag="header"
@@ -40,7 +40,6 @@ export default {
      mounted() {
        this.$store.commit('setJuicyAds')
        this.$store.commit('setJuicyPop')
-
     },
     data:()=>{
         return{

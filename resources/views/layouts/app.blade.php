@@ -37,6 +37,8 @@
         <main>
             @yield('content')
         </main>
+
+
         {{-- Main Section Start --}}
 
     </div>
@@ -46,8 +48,8 @@
     {{-- Footer Section End --}}
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <div class="container ads">
+    <script src="{{ asset('js/main/app.js') }}" defer></script>
+    <div class="container ads" >
       <div id="juicy-ads" class="leaderboard mt-4">
 
       </div>

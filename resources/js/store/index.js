@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios';
-import { resolve } from 'url';
 
 Vue.use(Vuex)
 
@@ -16,9 +15,9 @@ export const store  = new Vuex.Store({
         variant:null,
         siteDesc: 'Pornezium.com is free porn site ... ',
         page:null,
-        api: 'http://pornezium.com/api/',
-        url:'http://pornezium.com/admin/',
-        index:'http://pornezium.com',
+        api: 'http://127.0.0.1:8000/api/',
+        url:'http://127.0.0.1:8000/admin/',
+        index:'http://127.0.0.1:8000',
         firstPage:null
     },
     getters:{

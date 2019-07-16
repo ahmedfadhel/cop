@@ -33,14 +33,10 @@
 </template>
 
 <script>
-var moment = require('moment')
 import videoThumbnail from './videoThumbnail.vue'
 export default {
     created(){
       this.$store.dispatch('fetchBestVideos')
-    },
-    mounted(){
-
     },
     data:()=>{
         return{

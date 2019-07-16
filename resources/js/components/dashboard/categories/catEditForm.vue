@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
+  import { validationMixin } from 'vuelidate'
   import { required, minLength,maxLength,url } from 'vuelidate/lib/validators'
 
   export default {

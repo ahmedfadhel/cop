@@ -46,7 +46,6 @@
 </template>
 
 <script>
-// var moment = require('moment');
 export default {
     props:[
         'video',
@@ -59,9 +58,9 @@ export default {
     },
     methods:{
       updateVideo(){
-         this.$store.dispatch('fetchDisplayedVideo',this.video.id).then(res=>{
-        let tag = res[Math.floor(Math.random() * res.length)];
-        this.$store.dispatch('fetchRelatedVideo',tag.name)
+          this.$store.dispatch('fetchDisplayedVideo',this.video.id).then(res=>{
+          let tag = res[Math.floor(Math.random() * res.length)];
+          this.$store.dispatch('fetchRelatedVideo',tag.name)
         })
       }
     },
@@ -82,6 +81,3 @@ export default {
     }
 }
 </script>
-<style scoped lang="scss">
-
-</style>

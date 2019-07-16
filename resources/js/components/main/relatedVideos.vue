@@ -30,7 +30,6 @@
 </template>
 
 <script>
-var moment = require('moment')
 import videoThumbnail from './videoThumbnail.vue'
 export default {
   props:['tags'],
