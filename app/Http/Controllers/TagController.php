@@ -9,16 +9,35 @@ use App\Tag;
 use Session;
 class TagController extends Controller
 {
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware('auth');
-  }
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+      $this->middleware('auth',['except' => ['alltags','tagvideos']]);
+    }
 
+    public function alltags()
+    {
+      $tags = Tag::all();
+      return response()->json([
+        'tags'    => $tags,
+        'status'  => 'success'
+      ]);
+    }
+    public function tagvideos($id)
+    {
+      $tag = Tag::find($id);
+      $videos = $tag->videos()->with(['photos'])->get();
+      return response()->json([
+        'videos'  =>$videos,
+        'tag'     => $tag,
+        'status'  => 'success'
+      ]);
+      # code...
+    }
     /**
      * Display a listing of the resource.
      *

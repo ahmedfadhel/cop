@@ -20,3 +20,5 @@ Route::get('new','VideoController@videos')->name('videos');
 Route::get('best','VideoController@best')->name('bests');
 Route::get('getvideo/{id}','VideoController@getvideo')->name('getvideo');
 Route::get('getrelated/{tag}','VideoController@getrelated')->name('getrelated');
+Route::get('alltags','TagController@alltags')->name('getalltags');
+Route::get('tagvideos/{id}','TagController@tagvideos')->name('tagvideos');

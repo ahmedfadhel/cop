@@ -67,7 +67,9 @@ export default {
       showCom(){
         this.appear = true;
         let ele = document.querySelector('.loader')
-        ele.parentNode.removeChild(ele)
+        if(ele){
+          ele.parentNode.removeChild(ele)
+        }
       }
 
     },

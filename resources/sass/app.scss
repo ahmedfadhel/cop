@@ -26,6 +26,20 @@
 body{
   position: relative;
   min-height: 100vh;
+  color: $fontColor;
+  .tags{
+    padding: 0px;
+    .tag-item{
+      list-style: none;
+      display: inline-block;
+      a{
+        color:$fontColor;
+      }
+    }
+  }
+  .input-group-text{
+    cursor: pointer;
+  }
 }
 // NavBar style
 .navbar{
@@ -49,6 +63,7 @@ body{
     nav{
       background-color:$mainColor !important
     }
+
   }
   // Card Component sytle
 
@@ -60,6 +75,10 @@ body{
     .card-body{
       .badge-secondary{
         background-color:$mainColor;
+       a{
+         color:white;
+         text-decoration: none
+       }
       }
       .video-title{
         color:$fontColor;

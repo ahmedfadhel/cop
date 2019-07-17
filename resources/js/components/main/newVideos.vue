@@ -23,11 +23,5 @@ export default {
       return this.$store.getters.getVideos
     }
   }
-
-
 }
 </script>
-
-<style scoped lang="scss">
-
-</style>

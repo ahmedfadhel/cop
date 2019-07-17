@@ -28,7 +28,7 @@ const router = new VueRouter({
 // Import Main Section Vue Compoenent Start
 import mainSection from './components/main/mainSection.vue'
 // Import Main Section Vue Compoenent End
-Vue.config.devtools = false
+Vue.config.devtools = true
 const app = new Vue({
     el: '#app',
     store,

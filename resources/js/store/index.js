@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Axios from 'axios';
 
 Vue.use(Vuex)
 
@@ -9,6 +8,8 @@ export const store  = new Vuex.Store({
         videos:[],
         bestVideos:[],
         relatedVideos:[],
+        tags:null,
+        tagVideos:null,
         displayVideo:{},
         showAlert:null,
         message:null,
@@ -39,7 +40,12 @@ export const store  = new Vuex.Store({
       getRelatedVideos(state){
         return state.relatedVideos
       },
-
+      getAllTags(state){
+        return state.tags
+      },
+      getTagVideos(state){
+        return state.tagVideos
+      },
       getShowAlert(state){
         return state.showAlert
       },
@@ -83,32 +89,43 @@ export const store  = new Vuex.Store({
       setPageDescription(state,payload){
         document.querySelector('meta[name="description"]').content = state.siteDesc + payload.substr(0,84)
       },
+      setAllTags(state,payload){
+        state.tags = payload
+      },
+      setTagVideos(state,payload){
+        state.tagVideos = payload
+      },
+
       // Set Juicy Ads Script
       // Bottom leaderboard
 
       setJuicyAds(){
         let container = document.getElementById('juicy-ads');
-        // Script one
-        let script1 = document.createElement('script')
-        script1.type="text/javascript"
-        script1.src="https://adserver.juicyads.com/js/jads.js"
-        script1.setAttribute('data-cfasync','false')
-        script1.async = true
-        // script 2
-        let script2 =document.createElement('script')
-        script2.type = "text/javascript"
-        script2.setAttribute('data-cfasync','false')
-        script2.async = true
-        script2.innerHTML = "(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':778030});"
-      // ins
-        let ins = document.createElement('ins')
-        ins.setAttribute('id','778030')
-        ins.setAttribute('data-width','728')
-        ins.setAttribute('data-height','102')
-        // Append to parent
-        container.appendChild(script1)
-        container.appendChild(script2)
-        container.appendChild(ins)
+
+        if(!container.firstChild){
+          // Script one
+          let script1 = document.createElement('script')
+          script1.type="text/javascript"
+          script1.src="https://adserver.juicyads.com/js/jads.js"
+          script1.setAttribute('data-cfasync','false')
+          script1.async = true
+          // script 2
+          let script2 =document.createElement('script')
+          script2.type = "text/javascript"
+          script2.setAttribute('data-cfasync','false')
+          script2.async = true
+          script2.innerHTML = "(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':778030});"
+        // ins
+          let ins = document.createElement('ins')
+          ins.setAttribute('id','778030')
+          ins.setAttribute('data-width','728')
+          ins.setAttribute('data-height','102')
+          // Append to parent
+          container.appendChild(script1)
+          container.appendChild(script2)
+          container.appendChild(ins)
+        }
+
       },
       // PopUp at top
       setJuicyPop(){
@@ -122,7 +139,7 @@ export const store  = new Vuex.Store({
       fetchVideos:(context,payload)=>{
         return new Promise((resolve,reject)=>{
           context.state.page = payload || 1
-          Axios.get(context.state.api + 'new?page='+ context.state.page)
+          axios.get(context.state.api + 'new?page='+ context.state.page)
             .then((response)=>{
 
               context.commit('setVideos',response.data.videos.data)
@@ -140,14 +157,14 @@ export const store  = new Vuex.Store({
 
       },
     fetchBestVideos:(context,payload)=>{
-      Axios.get(context.state.api + 'best')
+      axios.get(context.state.api + 'best')
       .then(response=>{
         context.commit('setBestVideos',response.data.best)
       })
     },
     fetchDisplayedVideo(context,payload){
       return new Promise((resolve,reject)=>{
-        Axios.get(context.state.api+'getvideo/'+payload).then(response=>{
+        axios.get(context.state.api+'getvideo/'+payload).then(response=>{
           context.commit('setDisplayVideo',response.data.video)
           resolve({
             tags:response.data.video.tags,
@@ -161,7 +178,7 @@ export const store  = new Vuex.Store({
       })
     },
     fetchRelatedVideo(context,payload){
-      Axios.get(context.state.api+'getrelated/'+payload).then(res=>{
+      axios.get(context.state.api+'getrelated/'+payload).then(res=>{
         if(res.data.status === 'success'){
           context.commit('setRelatedVideos',res.data.videos)
         }
@@ -169,8 +186,30 @@ export const store  = new Vuex.Store({
         console.log(error)
       })
     },
+    fetchAllTags(context,payload){
+      axios.get(context.state.api+'alltags').then((res)=>{
+        if(res.data.status === 'success'){
+          context.commit('setAllTags',res.data.tags)
+        }
+      })
+    },
+    fetchTagVideos(context,payload){
+      return new Promise((resolve,reject)=>{
+        axios.get(context.state.api+'tagvideos/'+payload).then((res)=>{
+          if(res.data.status === 'success'){
+            context.commit('setTagVideos',res.data.videos)
+            return resolve({
+              tag:res.data.tag,
+              total: res.data.videos.length
+            })
+          }
+        }).catch((error)=>{
+          console.log(error)
+        })
+      })
+    },
     logout:(context)=>{
-      Axios.post(context.state.url + 'logout').then(response=>{
+      axios.post(context.state.url + 'logout').then(response=>{
         location.href = context.state.index
       })
     },

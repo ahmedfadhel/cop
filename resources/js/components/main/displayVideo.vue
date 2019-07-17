@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="appear">
     <div class="row">
       <div class="col-12">
         <b-card
@@ -49,7 +49,12 @@
                       Tags:
                     </strong>
                     <span v-for="(tag,index) in video.tags" :key="index" class="mr-1 badge badge-secondary">
+                      <router-link
+                      :to="{ name: 'tagVideos', params: { tagId: tag.id }}"
+
+                      >
                       {{tag.name}}
+                      </router-link>
                     </span>
                   </p>
                 </div>
@@ -108,13 +113,14 @@ export default {
       this.$store.commit('setPageTitle',res.title)
       this.$store.commit('setPageDescription',res.desc)
       this.$store.commit('setPageKeywords',res.tags)
-
+      this.showCom()
     })
 
   },
   data:()=>{
     return {
       searchTags:null,
+      appear:false,
     }
   },
   beforeRouteUpdate (to, from, next) {
@@ -139,6 +145,16 @@ export default {
   },
   components:{
     relatedVideos,
+  },
+  methods:{
+    showCom(){
+      this.appear = true;
+      let ele = document.querySelector('.loader')
+      if(ele)
+        {
+          ele.parentNode.removeChild(ele)
+        }
+    }
   }
 }
 </script>

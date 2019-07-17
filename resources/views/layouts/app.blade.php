@@ -58,9 +58,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/main/app.js') }}" defer></script>
     <div class="container ads" >
-      <div id="juicy-ads" class="leaderboard mt-4">
-
-      </div>
+      <div id="juicy-ads" class="leaderboard mt-4"></div>
     </div>
 </body>
 </html>
