@@ -41,7 +41,12 @@
                       Categories:
                     </strong>
                     <span v-for="(cat,index) in video.cats" :key="index" class="mr-1 badge badge-secondary">
+                      <router-link
+                      :to="{ name: 'catVideos', params: { catId: cat.id }}"
+
+                      >
                       {{cat.name}}
+                      </router-link>
                     </span>
                   </p>
                   <p>

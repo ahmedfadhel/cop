@@ -22,3 +22,5 @@ Route::get('getvideo/{id}','VideoController@getvideo')->name('getvideo');
 Route::get('getrelated/{tag}','VideoController@getrelated')->name('getrelated');
 Route::get('alltags','TagController@alltags')->name('getalltags');
 Route::get('tagvideos/{id}','TagController@tagvideos')->name('tagvideos');
+Route::get('allcats','CategoryController@allcats')->name('getallcats');
+Route::get('catvideos/{id}','CategoryController@catvideos')->name('catvideos');

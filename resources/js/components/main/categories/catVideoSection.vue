@@ -3,7 +3,7 @@
      <div class="row">
        <div class="col-12">
          <b-card
-          :header="tag"
+          :header="cat"
          >
           <div class="row" v-if="loading">
             <div class="col-6 col-sm-6 col-md-4 col-lg-3" v-for="count in displayed" :key="count">
@@ -26,9 +26,8 @@ import videoThumbnail from '../videoThumbnail'
 
 export default {
 created(){
-
-    this.$store.dispatch('fetchTagVideos',this.$route.params.tagId).then(res=>{
-    this.keyword = res.tag.name
+    this.$store.dispatch('fetchCatVideos',this.$route.params.catId).then(res=>{
+    this.keyword = res.cat.name
     this.totalvideos = res.total
   })
 },
@@ -52,9 +51,9 @@ components:{
   },
   computed:{
     videos:function(){
-      return this.$store.getters.getTagVideos
+      return this.$store.getters.getCatVideos
     },
-    tag:function(){
+    cat:function(){
       return 'Videos Related To ' + this.keyword
     },
     displayed:function(){

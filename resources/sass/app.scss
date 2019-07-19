@@ -46,12 +46,26 @@ body{
   padding: 0px;
 }
 .navbar-brand{
-  margin: auto;
-  img{
+  // display: block;
+  // margin: auto;
 
+  img{
     height: 50px;
   }
+
 }
+.nav-link{
+  padding: 1.05rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #a99388 !important;
+  width: 5rem;
+  text-align: center;
+  &.active{
+    background-color:#ff509d
+  }
+}
+
 .bg-info {
   background-color: $mainColor !important;
 }
@@ -157,7 +171,28 @@ body{
 .stats-last{
   font-size: 1rem;
 }
+// categories style
+.cat{
+  img{
+    height: 200px;
+  }
+  .card-img-overlay {
+    position: absolute;
+    top:inherit;
+    padding: 0.7rem 0rem;
+    text-align: center;
+    background: #fa93bbe3;
 
+    letter-spacing: 0.2rem;
+    .card-title{
+      margin: 0;
+      color: $fontColor;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none
+    }
+  }
+}
 // Pagination video style
 .page-item.active .page-link {
   color: $fontColor;
@@ -202,7 +237,9 @@ body{
   #footer{
     bottom: -70px;
   }
-
+  .nav-link{
+    width: 100%
+  }
 }
 @include media-breakpoint-between(xs,sm){
   .card{
@@ -229,6 +266,7 @@ body{
        }
      }
    }
+
   }
   .dot{
     width: 20px;

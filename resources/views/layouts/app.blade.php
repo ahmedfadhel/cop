@@ -25,7 +25,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    @include('includes.header')
+
     <div id="juicy-pop">
 
     </div>
@@ -40,7 +40,7 @@
       <div class="dot"></div>
     </div>
     <div id="app" class="front">
-
+        @include('includes.header')
       {{-- Main Section Start --}}
         <main>
             @yield('content')

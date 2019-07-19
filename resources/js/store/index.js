@@ -9,7 +9,9 @@ export const store  = new Vuex.Store({
         bestVideos:[],
         relatedVideos:[],
         tags:null,
+        cats:null,
         tagVideos:null,
+        catVideos:null,
         displayVideo:{},
         showAlert:null,
         message:null,
@@ -43,8 +45,15 @@ export const store  = new Vuex.Store({
       getAllTags(state){
         return state.tags
       },
+
       getTagVideos(state){
         return state.tagVideos
+      },
+      getAllCats(state){
+        return state.cats
+      },
+      getCatVideos(state){
+        return state.catVideos
       },
       getShowAlert(state){
         return state.showAlert
@@ -95,7 +104,12 @@ export const store  = new Vuex.Store({
       setTagVideos(state,payload){
         state.tagVideos = payload
       },
-
+      setAllCats(context,payload){
+        context.cats = payload
+      },
+      setCatVideos(state,payload){
+        state.catVideos = payload
+      },
       // Set Juicy Ads Script
       // Bottom leaderboard
 
@@ -200,6 +214,28 @@ export const store  = new Vuex.Store({
             context.commit('setTagVideos',res.data.videos)
             return resolve({
               tag:res.data.tag,
+              total: res.data.videos.length
+            })
+          }
+        }).catch((error)=>{
+          console.log(error)
+        })
+      })
+    },
+    fetchAllCats(context,payload){
+      axios.get(context.state.api+'allcats').then((res)=>{
+        if(res.data.status === 'success'){
+          context.commit('setAllCats',res.data.cats)
+        }
+      })
+    },
+    fetchCatVideos(context,payload){
+      return new Promise((resolve,reject)=>{
+        axios.get(context.state.api+'catvideos/'+payload).then((res)=>{
+          if(res.data.status === 'success'){
+            context.commit('setCatVideos',res.data.videos)
+            return resolve({
+              cat:res.data.cat,
               total: res.data.videos.length
             })
           }

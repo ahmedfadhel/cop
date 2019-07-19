@@ -16,9 +16,28 @@ class CategoryController extends Controller
    */
   public function __construct()
   {
-    $this->middleware('auth');
+    $this->middleware('auth',['except' => ['allcats','catvideos']]);
   }
-
+  // Get All Category for API
+  public function allcats()
+  {
+    $cats = Category::orderBy('name','DESC')->with(['photos'])->get();
+    return response()->json([
+      'cats'    => $cats,
+      'status'  => 'success'
+    ]);
+  }
+  public function catvideos($id)
+  {
+    $cat = Category::find($id);
+    $videos = $cat->videos()->with(['photos'])->get();
+    return response()->json([
+      'videos'  =>$videos,
+      'cat'     => $cat,
+      'status'  => 'success'
+    ]);
+    # code...
+  }
     /**
      * Display a listing of the resource.
      *
