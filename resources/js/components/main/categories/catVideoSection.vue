@@ -88,5 +88,6 @@ components:{
       this.loading = true
     }
   },
+
 }
 </script>

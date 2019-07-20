@@ -18,13 +18,13 @@
             </div>
           </div>
           <div class="row mt-4">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mt-4" v-for="(cat,index) in filteredCats" :key="index">
+            <div class="col-6 col-lg-3 mt-4" v-for="(cat,index) in filteredCats" :key="index">
               <div class="card text-white">
                 <img :src="cat.photos[0].url" class="card-img img-fluid" :alt="cat.name" >
                 <div class="card-img-overlay">
                   <router-link
                     :to="{ name: 'catVideos', params: { catId: cat.id }}"
-                    class="card-title">{{cat.name}}</router-link>
+                    class="card-title">{{cat.name.toLowerCase()}}</router-link>
                 </div>
               </div>
 
@@ -67,7 +67,7 @@ export default {
     },
     filteredCats:function(){
       if(this.searchedCat){
-        let filtered = this.cats.filter((cat)=>cat.name.includes(this.searchedCat))
+        let filtered = this.cats.filter((cat)=>cat.name.toLowerCase().includes(this.searchedCat.toLowerCase()))
         return filtered
       }else{
         return this.cats
