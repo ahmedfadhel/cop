@@ -44,6 +44,17 @@ body{
 // NavBar style
 .navbar{
   padding: 0px;
+  .nav-link{
+    padding: 1.05rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #a99388 !important;
+    width: 5rem;
+    text-align: center;
+    &.active{
+      background-color:#ff509d
+    }
+  }
 }
 .navbar-brand{
   // display: block;
@@ -54,17 +65,7 @@ body{
   }
 
 }
-.nav-link{
-  padding: 1.05rem 1rem;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #a99388 !important;
-  width: 5rem;
-  text-align: center;
-  &.active{
-    background-color:#ff509d
-  }
-}
+
 
 .bg-info {
   background-color: $mainColor !important;
