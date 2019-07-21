@@ -18,6 +18,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('/tags','TagController');
     Route::resource('/category','CategoryController');
     Route::Get('/stats','StatsController@index')->name('stats');
+    Route::Get('/sitemap','SitemapController@index')->name('sitemap');
+    Route::Get('/videos','SitemapController@videos')->name('sitemap-generation');
     Auth::routes();
 });
 Route::get('/{any}', 'SpaController@index')->where('any', '^(?!admin).*$');

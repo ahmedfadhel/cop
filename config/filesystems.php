@@ -64,6 +64,11 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'sitemap' =>[
+          'driver'  => 'local',
+          'root'    => public_path(),
+        ]
+
     ],
 
 ];
