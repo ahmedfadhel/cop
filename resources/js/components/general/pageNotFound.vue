@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-23">
+      <div class="col-12 text-center">
 
       <img
           src="images/404page.png"
@@ -9,7 +9,6 @@
           center
 
         />
-        <!-- </img> -->
       </div>
     </div >
   </div>

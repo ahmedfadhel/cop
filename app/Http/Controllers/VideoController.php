@@ -10,7 +10,7 @@ use App\Link;
 use App\Star;
 use App\Part;
 use App\Photo;
-
+use Str;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -54,11 +54,10 @@ class VideoController extends Controller
       ],200);
     }
 
-    public function getvideo($id){
-      // return $id;
+    public function getvideo($slug){
 
-      $video = Video::find($id)->load('photos','links','tags','cats','stars');
-      // dd($video);
+
+      $video = Video::where('slug',$slug)->with(['photos','links','tags','cats','stars'])->first();
       return response()->json([
         'video'=>$video,
 
@@ -160,6 +159,7 @@ class VideoController extends Controller
         $video->title = $title;
         $video->description = $description;
         $video->length = $length;
+        $video->slug = Str::slug($title,'_');
         $video->views = random_int ( 1000 , 5000 );
         // Save the New Video
         $video->save();

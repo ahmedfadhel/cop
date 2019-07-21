@@ -21,7 +21,7 @@
             <div class="col-12">
               <ul class="tags mt-4">
                 <li class="tag-item mr-3" v-for="(tag,index) in filteredTags" :key="index">
-                  <router-link :to="{ name: 'tagVideos', params: { tagId: tag.id }}">
+                  <router-link :to="{ name: 'tagVideos', params: { name: tag.name }}">
                     <span class="icon-tags"></span>
                     {{tag.name}}
                   </router-link>

@@ -27,9 +27,9 @@ class TagController extends Controller
         'status'  => 'success'
       ]);
     }
-    public function tagvideos($id)
+    public function tagvideos($name)
     {
-      $tag = Tag::find($id);
+      $tag = Tag::where('name',$name)->first();
       $videos = $tag->videos()->with(['photos'])->get();
       return response()->json([
         'videos'  =>$videos,

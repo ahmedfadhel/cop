@@ -27,9 +27,9 @@ class CategoryController extends Controller
       'status'  => 'success'
     ]);
   }
-  public function catvideos($id)
+  public function catvideos($name)
   {
-    $cat = Category::find($id);
+    $cat = Category::where('name',$name)->first();
     $videos = $cat->videos()->with(['photos'])->get();
     return response()->json([
       'videos'  =>$videos,

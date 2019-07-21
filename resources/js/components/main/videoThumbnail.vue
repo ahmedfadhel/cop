@@ -12,7 +12,7 @@
           <b-card-body>
             <b-card-title>
               <router-link
-                :to="{ name: 'video', params: { videoId: video.id }}"
+                :to="{ name: 'video', params: { videoSlug: video.slug }}"
                 v-b-tooltip.hover
                 :title="video.title">{{video.title | trimTitle}}</router-link>
             </b-card-title>

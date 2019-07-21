@@ -23,7 +23,7 @@
                 <img :src="cat.photos[0].url" class="card-img img-fluid" :alt="cat.name" >
                 <div class="card-img-overlay">
                   <router-link
-                    :to="{ name: 'catVideos', params: { catId: cat.id }}"
+                    :to="{ name: 'catVideos', params: { name: cat.name }}"
                     class="card-title">{{cat.name.toLowerCase()}}</router-link>
                 </div>
               </div>

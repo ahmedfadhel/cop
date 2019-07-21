@@ -18,9 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('new','VideoController@videos')->name('videos');
 Route::get('best','VideoController@best')->name('bests');
-Route::get('getvideo/{id}','VideoController@getvideo')->name('getvideo');
+Route::get('getvideo/{slug}','VideoController@getvideo')->name('getvideo');
 Route::get('getrelated/{tag}','VideoController@getrelated')->name('getrelated');
 Route::get('alltags','TagController@alltags')->name('getalltags');
-Route::get('tagvideos/{id}','TagController@tagvideos')->name('tagvideos');
+Route::get('tagvideos/{name}','TagController@tagvideos')->name('tagvideos');
 Route::get('allcats','CategoryController@allcats')->name('getallcats');
-Route::get('catvideos/{id}','CategoryController@catvideos')->name('catvideos');
+Route::get('catvideos/{name}','CategoryController@catvideos')->name('catvideos');

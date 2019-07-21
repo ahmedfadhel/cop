@@ -26,7 +26,7 @@ import videoThumbnail from '../videoThumbnail'
 
 export default {
 created(){
-    this.$store.dispatch('fetchCatVideos',this.$route.params.catId).then(res=>{
+    this.$store.dispatch('fetchCatVideos',this.$route.params.name).then(res=>{
     this.keyword = res.cat.name
     this.totalvideos = res.total
   })

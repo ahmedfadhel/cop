@@ -13,7 +13,7 @@ const routes = [
     name:'home'
   },
   {
-    path: '/video/:videoId',
+    path: '/video/:videoSlug',
     name: 'video',
     component:displayVideo,
   },
@@ -23,7 +23,7 @@ const routes = [
     component:tagsSection,
   },
   {
-    path: '/tags/:tagId',
+    path: '/tags/:name',
     name: 'tagVideos',
     component:tagVideoSection,
   },
@@ -33,7 +33,7 @@ const routes = [
     component: catSection,
   },
   {
-    path: '/category/:catId',
+    path: '/category/:name',
     name: 'catVideos',
     component:catVideoSection,
   },

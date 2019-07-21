@@ -27,7 +27,7 @@ import videoThumbnail from '../videoThumbnail'
 export default {
 created(){
 
-    this.$store.dispatch('fetchTagVideos',this.$route.params.tagId).then(res=>{
+    this.$store.dispatch('fetchTagVideos',this.$route.params.name).then(res=>{
     this.keyword = res.tag.name
     this.totalvideos = res.total
   })
