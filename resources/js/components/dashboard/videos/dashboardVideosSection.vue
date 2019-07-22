@@ -114,7 +114,10 @@
             <strong>Porn Star:</strong>
             <b-badge v-for="(star,index) in video.stars" :key="index">{{star.name}}</b-badge>
           </p>
-
+          <p>
+            <strong>Video Link:</strong>
+            <a v-for="(link,index) in video.links" :key="index" :href="link.url"><br>{{link.server_name}}</a>
+          </p>
         </b-col>
       </b-row>
     </b-container>
