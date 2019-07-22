@@ -2,7 +2,7 @@
     <div class="video mt-4">
       <b-card-group>
         <b-card no-body>
-          <router-link :to="{ name: 'video', params: { videoId: video.id }}">
+          <router-link :to="{ name: 'video', params: { videoSlug: video.slug }}">
           <b-card-img
             :src="video.photos[0].url"
             img-top

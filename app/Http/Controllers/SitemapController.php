@@ -46,18 +46,19 @@ class SitemapController extends Controller
       Storage::disk('sitemap')->append('sitemap.xml',' <video:family_friendly>no</video:family_friendly>');
       Storage::disk('sitemap')->append('sitemap.xml',' <video:family_friendly>no</video:family_friendly>');
       Storage::disk('sitemap')->append('sitemap.xml',' <video:live>no</video:live>');
-      foreach ($video->tags as $tag) {
-        Storage::disk('sitemap')->append('sitemap.xml',' <video:tag>'.$tag->name.'</video:tag>');
-      }
-      foreach ($video->cats as $cat) {
-        Storage::disk('sitemap')->append('sitemap.xml',' <video:tag>'.$cat->name.'</video:tag>');
-      }
+      // For Future Cause the Server hang when try to add tags and categories
+      // foreach ($video->tags as $tag) {
+      //   Storage::disk('sitemap')->append('sitemap.xml',' <video:tag>'.$tag->name.'</video:tag>');
+      // }
+      // foreach ($video->cats as $cat) {
+      //   Storage::disk('sitemap')->append('sitemap.xml',' <video:tag>'.$cat->name.'</video:tag>');
+      // }
       Storage::disk('sitemap')->append('sitemap.xml','</video:video>');
 
       Storage::disk('sitemap')->append('sitemap.xml','</url>');
-      Storage::disk('sitemap')->append('sitemap.xml','</urlset>');
-    }
 
+    }
+    Storage::disk('sitemap')->append('sitemap.xml','</urlset>');
     return redirect()->route('stats');
   }
 }
