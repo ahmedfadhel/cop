@@ -4,7 +4,14 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            Pornezium Statistics
+            <div class="row">
+              <div class="col-6">Pornezium Statistics</div>
+              <div class="col-6">
+                <form action="/admin/sitemap/generate" method="get">
+                  <button type="submit" class="btn btn-outline-secondary float-right">Click me</button>
+                </form>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <div class="row">
