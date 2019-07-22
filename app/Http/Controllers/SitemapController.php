@@ -52,12 +52,12 @@ class SitemapController extends Controller
       foreach ($video->cats as $cat) {
         Storage::disk('sitemap')->append('sitemap.xml',' <video:tag>'.$cat->name.'</video:tag>');
       }
-      // Storage::disk('sitemap')->append('sitemap.xml','<lastmod>'.$video->updated_at->tz('UTC')->toAtomString().'</lastmod>');
       Storage::disk('sitemap')->append('sitemap.xml','</video:video>');
 
       Storage::disk('sitemap')->append('sitemap.xml','</url>');
+      Storage::disk('sitemap')->append('sitemap.xml','</urlset>');
     }
-    Storage::disk('sitemap')->append('sitemap.xml','</urlset>');
+
     return redirect()->route('stats');
   }
 }
