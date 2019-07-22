@@ -29,33 +29,27 @@ class SitemapController extends Controller
     Storage::disk('sitemap')->prepend('sitemap.xml',$xml_def);
     $videos = Video::all()->load('photos','links','tags','cats');
     foreach ($videos as $key => $video) {
-      Storage::disk('sitemap')->append('sitemap.xml','<url>');
-      Storage::disk('sitemap')->append('sitemap.xml','<lastmod> http://pornezium.com/video/'.$video->updated_at->tz('UTC')->toAtomString().'</lastmod>');
-      Storage::disk('sitemap')->append('sitemap.xml','<loc> http://pornezium.com/video/'.$video->slug.'</loc>');
-      Storage::disk('sitemap')->append('sitemap.xml','<video:video>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:thumbnail_loc>'.$video->photos[0]->url.'</video:thumbnail_loc>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:title>'.$video->title.'</video:title>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:description>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->description).'</video:description>');
+      $prevideo = '';
+      $tags ='';
+      $cats = '';
+      $links='';
+      $prevideo = $prevideo.'<url>'.'<lastmod> http://pornezium.com/video/'.$video->updated_at->tz('UTC')->toAtomString().'</lastmod>'.'<loc> http://pornezium.com/video/'.$video->slug.'</loc>'.'<video:video>'.'<video:thumbnail_loc>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->photos[0]->url).'</video:thumbnail_loc>'.'<video:title>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->title).'</video:title>'.'<video:description>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->description).'</video:description>'.'<video:duration>'.$video->length.'</video:duration>'.'<video:rating>'.(4+lcg_value())*(abs(5-4)).'</video:rating>'.'<video:view_count>'.$video->views.'</video:view_count>'.'<video:publication_date>'.$video->created_at->tz('UTC')->toAtomString().'</video:publication_date>'.'<video:family_friendly>no</video:family_friendly>'.'<video:live>no</video:live>';
       foreach ($video->links as $link) {
-        Storage::disk('sitemap')->append('sitemap.xml',' <video:content_loc>'.$link->url.'</video:content_loc>');
+        $links = $links.'<video:content_loc>'.$link->url.'</video:content_loc>';
       }
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:duration>'.$video->length.'</video:duration>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:rating>'.(4+lcg_value())*(abs(5-4)).'</video:rating>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:view_count>'.$video->views.'</video:view_count>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:publication_date>'.$video->created_at->tz('UTC')->toAtomString().'</video:publication_date>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:family_friendly>no</video:family_friendly>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:family_friendly>no</video:family_friendly>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:live>no</video:live>');
       // For Future Cause the Server hang when try to add tags and categories
-      // foreach ($video->tags as $tag) {
-      //   Storage::disk('sitemap')->append('sitemap.xml',' <video:tag>'.$tag->name.'</video:tag>');
-      // }
-      // foreach ($video->cats as $cat) {
-      //   Storage::disk('sitemap')->append('sitemap.xml',' <video:tag>'.$cat->name.'</video:tag>');
-      // }
-      Storage::disk('sitemap')->append('sitemap.xml','</video:video>');
+      Storage::disk('sitemap')->append('sitemap.xml',$prevideo);
+      foreach ($video->tags as $tag) {
+        $tags = $tags .' <video:tag>'.$tag->name.'</video:tag>';
+      }
+      Storage::disk('sitemap')->append('sitemap.xml',$tags);
+      foreach ($video->cats as $cat) {
+        $cats = $cats. '<video:category>'.$cat->name.'</video:category>';
+      }
+      Storage::disk('sitemap')->append('sitemap.xml',$cats);
+      Storage::disk('sitemap')->append('sitemap.xml','</video:video>'.'</url>');
 
-      Storage::disk('sitemap')->append('sitemap.xml','</url>');
+      // Storage::disk('sitemap')->append('sitemap.xml','</url>');
 
     }
     Storage::disk('sitemap')->append('sitemap.xml','</urlset>');
