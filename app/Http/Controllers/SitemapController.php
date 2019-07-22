@@ -35,7 +35,7 @@ class SitemapController extends Controller
       Storage::disk('sitemap')->append('sitemap.xml','<video:video>');
       Storage::disk('sitemap')->append('sitemap.xml',' <video:thumbnail_loc>'.$video->photos[0]->url.'</video:thumbnail_loc>');
       Storage::disk('sitemap')->append('sitemap.xml',' <video:title>'.$video->title.'</video:title>');
-      Storage::disk('sitemap')->append('sitemap.xml',' <video:description>'.$video->description.'</video:description>');
+      Storage::disk('sitemap')->append('sitemap.xml',' <video:description>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->description).'</video:description>');
       foreach ($video->links as $link) {
         Storage::disk('sitemap')->append('sitemap.xml',' <video:content_loc>'.$link->url.'</video:content_loc>');
       }
