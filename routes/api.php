@@ -24,3 +24,5 @@ Route::get('alltags','TagController@alltags')->name('getalltags');
 Route::get('tagvideos/{name}','TagController@tagvideos')->name('tagvideos');
 Route::get('allcats','CategoryController@allcats')->name('getallcats');
 Route::get('catvideos/{name}','CategoryController@catvideos')->name('catvideos');
+Route::get('allstars','StarController@allstars')->name('getallstars');
+Route::get('starvideos/{name}','StarController@starvideos')->name('starvideos');

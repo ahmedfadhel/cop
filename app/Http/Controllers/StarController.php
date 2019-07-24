@@ -17,9 +17,28 @@ class StarController extends Controller
    */
   public function __construct()
   {
-    $this->middleware('auth');
+    $this->middleware('auth',['except' => ['allstars','starvideos']]);
   }
+  // Fetch All Stars
 
+  public function allstars()
+  {
+    $stars = Star::orderBy('name','DESC')->with(['photos'])->get();
+    return response()->json([
+      'stars'    => $stars,
+      'status'  => 'success'
+    ]);
+  }
+  public function starvideos($name)
+  {
+    $star = Star::where('name',$name)->first();
+    $videos = $star->videos()->with(['photos'])->get();
+    return response()->json([
+      'videos'  =>$videos,
+      'star'     => $star,
+      'status'  => 'success'
+    ]);
+  }
     /**
      * Display a listing of the resource.
      *

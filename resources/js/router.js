@@ -5,7 +5,8 @@ import tagsSection from './components/main/tags/tagsSection.vue'
 import tagVideoSection from './components/main/tags/tagVideoSection.vue'
 import catSection from './components/main/categories/catSection.vue'
 import catVideoSection from './components/main/categories/catVideoSection.vue'
-
+import starsSection from './components/main/stars/starsSection.vue'
+import starVideoSection from './components/main/stars/starVideoSection.vue'
 const routes = [
   {
     path:'/',
@@ -23,7 +24,7 @@ const routes = [
     component:tagsSection,
   },
   {
-    path: '/tags/:name',
+    path: '/tags/:name/videos',
     name: 'tagVideos',
     component:tagVideoSection,
   },
@@ -33,9 +34,19 @@ const routes = [
     component: catSection,
   },
   {
-    path: '/category/:name',
+    path: '/category/:name/videos',
     name: 'catVideos',
     component:catVideoSection,
+  },
+  {
+    path:'/pornstars',
+    name:'pornstars',
+    component:starsSection
+  },
+  {
+    path:'/pornstars/:star/videos',
+    name:'starVideos',
+    component:starVideoSection
   },
   {
     path: "*",

@@ -11,7 +11,6 @@
           <b-nav-item href="/admin/videos" :active="videos" >Videos</b-nav-item>
           <b-nav-item href="/admin/stars" :active="stars" >Stars</b-nav-item>
           <b-nav-item href="/admin/tags" :active="tags" >Tags</b-nav-item>
-          <b-nav-item href="/admin/sitemap" :active="sitemap" >Sitemap</b-nav-item>
           <b-nav-item href="/admin/category" :active="category" >Categories</b-nav-item>
 
 
@@ -41,7 +40,7 @@ export default {
           this.category = false
           this.tags = false
           this.stats = false
-          this.sitemap = false
+
           break;
         case 'stars':
           this.stars = true
@@ -49,7 +48,7 @@ export default {
           this.category = false
           this.tags = false
           this.stats = false
-          this.sitemap = false
+
           break;
         case 'tags':
           this.tags = true
@@ -64,7 +63,7 @@ export default {
           this.stars = false
           this.tags = false
           this.stats = false
-          this.sitemap = false
+
           break;
         case 'stats':
           this.category = false
@@ -72,7 +71,7 @@ export default {
           this.stars = false
           this.tags = false
           this.stats = true
-          this.sitemap = false
+
 
           break;
         case 'sitemap':
@@ -81,7 +80,6 @@ export default {
           this.stars = false
           this.tags = false
           this.stats = false
-          this.sitemap = true
           break;
         default:
           break;
@@ -96,13 +94,11 @@ export default {
       tags:false,
       category:false,
       stats:false,
-      sitemap:false
     }
   },
   methods:{
     logout(){
       this.$store.dispatch('logout')
-
     },
 
   },

@@ -42,7 +42,7 @@
                     </strong>
                     <span v-for="(cat,index) in video.cats" :key="index" class="mr-1 badge badge-secondary">
                       <router-link
-                      :to="{ name: 'catVideos', params: { catId: cat.id }}"
+                      :to="{ name: 'catVideos', params: { name: cat.name }}"
 
                       >
                       {{cat.name}}
@@ -55,7 +55,7 @@
                     </strong>
                     <span v-for="(tag,index) in video.tags" :key="index" class="mr-1 badge badge-secondary">
                       <router-link
-                      :to="{ name: 'tagVideos', params: { tagId: tag.id }}"
+                      :to="{ name: 'tagVideos', params: { name: tag.name }}"
 
                       >
                       {{tag.name}}
@@ -119,6 +119,8 @@ export default {
       this.$store.commit('setPageDescription',res.desc)
       this.$store.commit('setPageKeywords',res.tags)
       this.showCom()
+      this.$store.commit('setJuicyAds')
+      this.$store.commit('setJuicyPop')
     })
 
   },

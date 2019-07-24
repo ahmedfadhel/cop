@@ -10,8 +10,10 @@ export const store  = new Vuex.Store({
         relatedVideos:[],
         tags:null,
         cats:null,
+        stars:null,
         tagVideos:null,
         catVideos:null,
+        starVideos:null,
         displayVideo:{},
         showAlert:null,
         message:null,
@@ -54,6 +56,12 @@ export const store  = new Vuex.Store({
       },
       getCatVideos(state){
         return state.catVideos
+      },
+      getAllStars(state){
+        return state.stars
+      },
+      getStarVideos(state){
+        return state.starVideos
       },
       getShowAlert(state){
         return state.showAlert
@@ -104,11 +112,17 @@ export const store  = new Vuex.Store({
       setTagVideos(state,payload){
         state.tagVideos = payload
       },
-      setAllCats(context,payload){
-        context.cats = payload
+      setAllCats(state,payload){
+        state.cats = payload
       },
       setCatVideos(state,payload){
         state.catVideos = payload
+      },
+      setAllStars(state,payload){
+        state.stars = payload
+      },
+      setStarVideos(state,payload){
+        state.starVideos = payload
       },
       // Set Juicy Ads Script
       // Bottom leaderboard
@@ -240,6 +254,30 @@ export const store  = new Vuex.Store({
             })
           }
         }).catch((error)=>{
+          console.log(error)
+        })
+      })
+    },
+    // Stars Fetch Api
+    fetchAllStars(context){
+      axios.get(context.state.api+'allstars').then((res)=>{
+        if(res.data.status === 'success'){
+          context.commit('setAllStars',res.data.stars)
+        }
+      });
+    },
+    fetchStarVideos(context,payload){
+      return new Promise((resolve,reject)=>{
+        axios.get(context.state.api+'starvideos/'+payload).then((res)=>{
+          if(res.data.status === 'success'){
+            context.commit('setStarVideos',res.data.videos)
+            return resolve({
+              star:res.data.star,
+              total:res.data.videos.length
+            })
+          }
+
+        }).catch(error=>{
           console.log(error)
         })
       })
