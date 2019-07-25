@@ -30,6 +30,18 @@
 
             </div>
           </div>
+          <div class="row">
+            <div class="mt-4" style="margin:auto">
+              <div class="col-12">
+                <b-pagination-nav
+                  :link-gen="linkGen"
+                  :number-of-pages="totalPages"
+                  @input='viewChange'
+                  use-router
+                ></b-pagination-nav>
+              </div >
+            </div>
+          </div>
         </b-card>
       </div>
     </div>
@@ -39,7 +51,9 @@
 <script>
 export default {
   created() {
-    this.$store.dispatch('fetchAllCats')
+    this.$store.dispatch('fetchAllCats').then(res=>{
+      this.totalPages = res.total
+    })
   },
   mounted(){
     this.showCom()
@@ -49,7 +63,8 @@ export default {
   data:()=>{
     return {
       searchedCat:null,
-      appear:false
+      appear:false,
+      totalPages:null,
     }
   },
   methods: {
@@ -59,6 +74,12 @@ export default {
       if(ele){
         ele.parentNode.removeChild(ele)
       }
+    },
+    linkGen(pageNum) {
+      return pageNum === 1 ? '?' : `?page=${pageNum}`
+    },
+    viewChange(change){
+      this.$store.dispatch('fetchAllCats',change)
     },
   },
   computed: {

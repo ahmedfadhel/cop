@@ -21,6 +21,7 @@ export const store  = new Vuex.Store({
         siteDesc: 'Pornezium.com is free porn site ... ',
         page:null,
         starPage:null,
+        catPage:null,
         api: 'http://pornezium.com/api/',
         url:'http://pornezium.com/admin/',
         index:'http://pornezium.com',
@@ -238,11 +239,18 @@ export const store  = new Vuex.Store({
       })
     },
     fetchAllCats(context,payload){
-      axios.get(context.state.api+'allcats').then((res)=>{
-        if(res.data.status === 'success'){
-          context.commit('setAllCats',res.data.cats)
-        }
+      return new Promise((resolve,reject)=>{
+        context.state.catPage = payload || 1
+        axios.get(context.state.api+'allcats?page='+context.state.catPage).then((res)=>{
+          if(res.data.status === 'success'){
+            context.commit('setAllCats',res.data.cats.data)
+            resolve({
+              total:res.data.cats.last_page
+            })
+          }
+        })
       })
+
     },
     fetchCatVideos(context,payload){
       return new Promise((resolve,reject)=>{

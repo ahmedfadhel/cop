@@ -21,7 +21,7 @@ class CategoryController extends Controller
   // Get All Category for API
   public function allcats()
   {
-    $cats = Category::orderBy('name','DESC')->with(['photos'])->get();
+    $cats = Category::orderBy('name','ASC')->with(['photos'])->paginate(8);
     return response()->json([
       'cats'    => $cats,
       'status'  => 'success'

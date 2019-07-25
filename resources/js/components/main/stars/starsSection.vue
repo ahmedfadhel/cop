@@ -89,11 +89,11 @@ export default {
       }
     },
     linkGen(pageNum) {
-        return pageNum === 1 ? '?' : `?page=${pageNum}`
-      },
-      viewChange(change){
-        this.$store.dispatch('fetchAllStars',change)
-      },
+      return pageNum === 1 ? '?' : `?page=${pageNum}`
+    },
+    viewChange(change){
+      this.$store.dispatch('fetchAllStars',change)
+    },
 
   },
 
