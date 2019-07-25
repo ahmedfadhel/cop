@@ -7,7 +7,7 @@
           header="Porn Stars"
           title="Porn Stars List:"
         >
-          <div class="row mb-4">
+          <div class="row">
             <div class="col-12">
               <div class="input-group flex-nowrap">
                 <input type="text" class="form-control" v-model="searchStar" placeholder="Porn Star to Search..." aria-label="Username" aria-describedby="addon-wrapping">
@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-3" v-for="(star,index) in filteredStars" :key="index">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3 mt-4"  v-for="(star,index) in filteredStars" :key="index">
               <div class="card bg-inverse">
                 <img class="card-img" :src="star.photos[0].url" :alt="star.name">
                 <router-link :to="{name:'starVideos', params:{star:star.name}}">
@@ -27,6 +27,18 @@
                   </div>
                 </router-link>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mt-4" style="margin:auto">
+              <div class="col-12">
+                <b-pagination-nav
+                  :link-gen="linkGen"
+                  :number-of-pages="totalPages"
+                  @input='viewChange'
+                  use-router
+                ></b-pagination-nav>
+              </div >
             </div>
           </div>
         </b-card>
@@ -38,7 +50,9 @@
 <script>
 export default {
   mounted() {
-    this.$store.dispatch('fetchAllStars')
+    this.$store.dispatch('fetchAllStars').then(res=>{
+      this.totalPages = res.total
+    })
     this.showCom()
     this.$store.commit('setJuicyAds')
     this.$store.commit('setJuicyPop')
@@ -47,7 +61,8 @@ export default {
   data() {
     return {
       appear:null,
-      searchStar:null
+      searchStar:null,
+      totalPages:null
     }
   },
   computed:{
@@ -58,10 +73,12 @@ export default {
       if(this.searchStar){
         let filtered = this.allStars.filter((star)=>star.name.includes(this.searchStar))
         return filtered
+
       }else{
+
         return this.allStars
       }
-    }
+    },
   },
   methods: {
     showCom(){
@@ -71,7 +88,15 @@ export default {
         ele.parentNode.removeChild(ele)
       }
     },
+    linkGen(pageNum) {
+        return pageNum === 1 ? '?' : `?page=${pageNum}`
+      },
+      viewChange(change){
+        this.$store.dispatch('fetchAllStars',change)
+      },
+
   },
+
 }
 </script>
 

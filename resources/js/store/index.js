@@ -20,6 +20,7 @@ export const store  = new Vuex.Store({
         variant:null,
         siteDesc: 'Pornezium.com is free porn site ... ',
         page:null,
+        starPage:null,
         api: 'http://pornezium.com/api/',
         url:'http://pornezium.com/admin/',
         index:'http://pornezium.com',
@@ -259,12 +260,21 @@ export const store  = new Vuex.Store({
       })
     },
     // Stars Fetch Api
-    fetchAllStars(context){
-      axios.get(context.state.api+'allstars').then((res)=>{
-        if(res.data.status === 'success'){
-          context.commit('setAllStars',res.data.stars)
-        }
-      });
+    fetchAllStars(context,payload){
+      return new Promise((resolve,reject)=>{
+        context.state.starPage = payload || 1
+        axios.get(context.state.api+'allstars?page='+context.state.starPage)
+          .then((res)=>{
+          if(res.data.status === 'success'){
+            console.log(res.data)
+            context.commit('setAllStars',res.data.stars.data)
+            resolve({
+              total:res.data.stars.last_page
+            })
+          }
+        });
+      })
+
     },
     fetchStarVideos(context,payload){
       return new Promise((resolve,reject)=>{
