@@ -27,7 +27,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-12 col-md-4" >
+                <div class="col-12 col-md-6 col-lg-4" >
                   <p >
                     <strong>
                       Stars:
@@ -65,33 +65,40 @@
                     </span>
                   </p>
                 </div>
-                <div class="col-12 col-md-4">
-                  <p>
-                    <strong>
-                      Video Description:
-                    </strong>
-                    {{video.description}}
-                  </p>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="row">
+                    <div class="col-12">
+                      <p>
+                        <strong>
+                          Video Description:
+                        </strong>
+                        {{video.description}}
+                      </p>
+                    </div>
+                    <div class="col-12">
+                      <p>
+                        <strong>
+                          Uploaded at:
+                        </strong>
+                        {{video.updated_at}}
+                      </p>
+                      <p>
+                        <strong>
+                          Length:
+                        </strong>
+                        {{video.length}} m
+                      </p>
+                      <p>
+                        <strong>
+                          Views:
+                        </strong>
+                        {{video.views}}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-12 col-md-4">
-                  <p>
-                    <strong>
-                      Uploaded at:
-                    </strong>
-                    {{video.updated_at}}
-                  </p>
-                  <p>
-                    <strong>
-                      Length:
-                    </strong>
-                    {{video.length}} m
-                  </p>
-                  <p>
-                    <strong>
-                      Views:
-                    </strong>
-                    {{video.views}}
-                  </p>
+                <div class="col-12 col-md-12 col-lg-4 d-none d-sm-none d-md-block ">
+                  <img :src="video.photos[0].url | imageUrl" :alt="video.slug" class="img-fluid video-thumbnail">
                 </div>
               </div>
             </b-tab>
@@ -164,6 +171,11 @@ export default {
           ele.parentNode.removeChild(ele)
         }
     }
+  },
+  filters:{
+    imageUrl:function(value){
+      return '/storage/videos/'+value
+    }
   }
 }
 </script>
@@ -172,5 +184,10 @@ export default {
 .list-group-item{
     border: 0px;
     padding: 0.50rem 1.25rem;
+}
+.video-thumbnail{
+  height: 25rem;
+  display: block;
+  margin: auto
 }
 </style>
