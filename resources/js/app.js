@@ -30,7 +30,7 @@ const router = new VueRouter({
 import mainSection from './components/main/mainSection.vue'
 import headerSection from './components/general/headerSection.vue'
 // Import Main Section Vue Compoenent End
-Vue.config.devtools = false
+Vue.config.devtools = true
 const app = new Vue({
     el: '#app',
     store,

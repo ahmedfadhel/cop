@@ -8,7 +8,7 @@
             Edit {{$video[0]->title}}
           </div>
           <div class="card-body">
-            <form action="{{route('videos.update',$video[0]->id)}}" method="POST">
+            <form action="{{route('videos.update',$video[0]->id)}}" method="POST" enctype="multipart/form-data">
               @csrf
               <input type="hidden" name="_method" value="PATCH">
             <dashboard-video-edit-form-section

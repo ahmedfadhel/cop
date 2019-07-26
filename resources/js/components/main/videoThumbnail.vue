@@ -4,7 +4,7 @@
         <b-card no-body>
           <router-link :to="{ name: 'video', params: { videoSlug: video.slug }}">
           <b-card-img
-            :src="video.photos[0].url"
+            :src="video.photos[0].url | imageUrl"
             img-top
             alt="Video Image"
           ></b-card-img>
@@ -47,6 +47,9 @@
 
 <script>
 export default {
+  mounted() {
+    console.log(this.video)
+  },
     props:[
         'video',
         'control'
@@ -77,6 +80,9 @@ export default {
           return moment.duration(value).hours() + 'h'
         }
         return moment.duration(value).minutes()+ 'm'
+      },
+      imageUrl:function(value){
+        return '/storage/videos/'+value
       }
     }
 }

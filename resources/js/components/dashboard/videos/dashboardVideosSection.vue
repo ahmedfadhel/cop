@@ -39,7 +39,7 @@
       :filter="filter">
         <template slot="image" slot-scope="row">
            <b-media>
-              <b-img :src="row.item.photos[0].url" width="64" alt="placeholder"></b-img>
+              <b-img :src="row.item.photos[0].url | imageUrl" width="64" alt="placeholder"></b-img>
            </b-media>
         </template>
         <template slot="title" slot-scope="row">
@@ -92,7 +92,7 @@
       <b-row>
         <b-col cols="6">
           <b-img
-            :src="video.image"
+            :src="video.image | imageUrl"
             fluid
             alt="video Image"
           ></b-img>
@@ -116,7 +116,7 @@
           </p>
           <p>
             <strong>Video Link:</strong>
-            <a v-for="(link,index) in video.links" :key="index" :href="link.url"><br>{{link.server_name}}</a>
+            <a :href="video.slug|videoUrl">{{video.title}}</a>
           </p>
         </b-col>
       </b-row>
@@ -146,7 +146,6 @@ export default {
         variant: 'danger'
       })
     }
-
   },
   data() {
       return {
@@ -171,6 +170,7 @@ export default {
           cats:null,
           image:null,
           links:null,
+          slug:null
         }
       }
     },
@@ -211,7 +211,7 @@ export default {
         this.video.tags = video.tags
         this.video.stars = video.stars
         this.video.links = video.links
-
+        this.video.slug = video.slug
         this.$refs['viewVideo'].show()
       },
       editVideo(video){
@@ -252,6 +252,12 @@ export default {
       },
       trimLength:function(val,length){
         return val.substr(0,length)+'...'
+      },
+      imageUrl:function(value){
+        return '/storage/videos/'+value
+      },
+      videoUrl:function(value){
+        return "http://pornezium.com/video/"+value
       }
     }
 }

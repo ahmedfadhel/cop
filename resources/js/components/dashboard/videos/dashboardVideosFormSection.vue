@@ -207,29 +207,31 @@
     <!-- Image Form input Section Start -->
     <b-form-group
       label="Video Image"
-
-      label-for="image">
+      label-for="image"
+    >
       <b-row>
         <b-col sm="6" cols="12">
-          <b-form-input
+          <b-form-file
             id="image"
+            v-model="form.file"
+            placeholder="Choose a file..."
+            drop-placeholder="Drop file here..."
             name="image"
-            v-model="$v.form.image.$model"
-            placeholder="Video Thumbnail eg(http://..)"
-            :state="$v.form.image.$dirty ? !$v.form.image.$error : null"
-            aria-describedby="image-feedback"
-
-          ></b-form-input>
-          <b-form-invalid-feedback id="image-feedback">
-            {{fromError.image}}
-          </b-form-invalid-feedback>
+            @change="onFileChange"
+          ></b-form-file>
         </b-col>
         <b-col sm="6" cols="12">
+          <b-img
+            v-if="url"
+            :src="url"
+            fluid alt="Video Image"
+          >
 
-          <b-img  blank blank-color="#ccc" width="64" alt="placeholder" v-if="!$v.form.image.$model"></b-img>
-          <b-img :src="$v.form.image.$model" fluid alt="Star Image" v-if="$v.form.image.$model"></b-img>
+          </b-img>
         </b-col>
       </b-row>
+
+
     </b-form-group>
     <!-- Image Form input Section End -->
     <b-button type="submit"  variant="outline-primary" :disabled="$v.form.$invalid">Save</b-button>
@@ -246,7 +248,7 @@
     props:['errors','tags','cats','stars','videos'],
     mounted(){
       console.log(this.errors)
-    },
+  },
   components: {
     Multiselect
     },
@@ -258,6 +260,7 @@
         valueV:null,
         selectedC:[],
         selectedCats:[],
+        url:null,
         servers:{
           openload:false,
           vidlox:false,
@@ -267,7 +270,8 @@
           title: null,
           description: null,
           length:null,
-          image:null,
+          // image:null,
+          file:null,
           servers:{
             upload:null,
             vidlox:null,
@@ -278,7 +282,7 @@
           title:'This is a required field and must be between 2 and 10',
           description:'This is a required field and must be between 3 and 50',
           length:'This is a required field',
-          image: 'This is a required field and must be a valid URL',
+          // image: 'This is a required field and must be a valid URL',
           openload:'This field must be a valid upload URL',
           vidlox:'This field must be a valid upload URL',
           verystream:'This field must be a valid upload URL',
@@ -310,10 +314,10 @@
           minLength: minLength(20),
           maxLength: maxLength(100)
         },
-        image:{
-          required,
-          url
-        },
+        // image:{
+        //   required,
+        //   url
+        // },
         length:{
           required
         },
@@ -431,6 +435,12 @@
         });
         return result
       },
+    },
+    methods:{
+      onFileChange(e){
+        const file = e.target.files[0];
+        this.url = URL.createObjectURL(file);
+      }
     }
 
   }

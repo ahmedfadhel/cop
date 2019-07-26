@@ -211,23 +211,18 @@
       label-for="image">
       <b-row>
         <b-col sm="6" cols="12">
-          <b-form-input
-            id="image"
-            name="image"
-            v-model="$v.form.image.$model"
-            placeholder="Video Thumbnail eg(http://..)"
-            :state="$v.form.image.$dirty ? !$v.form.image.$error : null"
-            aria-describedby="image-feedback"
+          <b-form-file
+          v-model="form.file"
+          placeholder="Choose a file..."
+          drop-placeholder="Drop file here..."
+          name="image"
+        ></b-form-file>
 
-          ></b-form-input>
-          <b-form-invalid-feedback id="image-feedback">
-            {{fromError.image}}
-          </b-form-invalid-feedback>
         </b-col>
         <b-col sm="6" cols="12">
-
+          <span>Old Image</span>
           <b-img  blank blank-color="#ccc" width="64" alt="placeholder" v-if="!$v.form.image.$model"></b-img>
-          <b-img :src="$v.form.image.$model" fluid alt="Star Image" v-if="$v.form.image.$model"></b-img>
+          <b-img :src="$v.form.image.$model | imageUrl" fluid alt="Star Image" v-if="$v.form.image.$model"></b-img>
         </b-col>
       </b-row>
     </b-form-group>
@@ -267,6 +262,7 @@
         }
       })
       this.$v.form.image.$model = this.video[0].photos[0].url
+      console.log(this.errors)
     },
   components: {
     Multiselect
@@ -331,8 +327,8 @@
           maxLength: maxLength(100)
         },
         image:{
-          required,
-          url
+          // required,
+
         },
         length:{
           required
@@ -438,6 +434,11 @@
         });
         return result
       },
+    },
+    filters:{
+      imageUrl:function(value){
+        return '/storage/videos/'+value
+      }
     }
 
   }

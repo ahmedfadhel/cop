@@ -8,8 +8,8 @@
             Create New Video
           </div>
           <div class="card-body">
-            <form action="{{route('videos.store')}}" method="POST">
-              @csrf
+            <form action="{{route('videos.store')}}" enctype="multipart/form-data" method="post" accept-charset="UTF-8">
+              {{ csrf_field() }}
             <dashboard-videos-form-section
               :errors="{{json_encode($errors)}}"
               :tags="{{json_encode($tags)}}"

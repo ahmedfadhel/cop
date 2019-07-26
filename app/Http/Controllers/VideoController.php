@@ -11,6 +11,7 @@ use App\Star;
 use App\Part;
 use App\Photo;
 use Str;
+use Storage;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -122,19 +123,18 @@ class VideoController extends Controller
     {
       // Validation Rule Section
       $validator = Validator::make($request->all(), [
-        'title'                                 => 'required|min:20|max:100|string|unique:videos',
-        'description'                           => 'required|min:10|string',
-        'tags'                                  => 'required|array',
-        'cats'                                  => 'required|array',
-        'image'                                 => 'required|active_url',
-        'servers["openload]"'                   => 'active_url|nullable',
-        'servers["ks"]'                         => 'active_url|nullable',
-        'servers["verystream"]'                 => 'active_url|nullable',
-        'length'                                => 'required|string',
+        'title'                                 =>  'required|min:20|max:100|string|unique:videos',
+        'description'                           =>  'required|min:10|string',
+        'tags'                                  =>  'required|array',
+        'cats'                                  =>  'required|array',
+        'servers["openload]"'                   =>  'active_url|nullable',
+        'servers["ks"]'                         =>  'active_url|nullable',
+        'servers["verystream"]'                 =>  'active_url|nullable',
+        'length'                                =>  'required|string',
+        'image'                                 =>  'required|image|mimes:jpeg,bmp,png|max:2048'
       ]);
       // Check Validation
       if ($validator->fails()) {
-
         $request->session()->flash('errors', $validator->messages());
         return redirect()->route('videos.create');
       }
@@ -145,7 +145,8 @@ class VideoController extends Controller
       $tags = $request->input('tags');
       $cats = $request->input('cats');
       $stars = $request->input('stars');
-      $image = $request->input('image');
+      $image = $request->image;
+      $image->storeAs('public/videos', Str::slug($title,'_').'.'.$request->image->getClientOriginalExtension());
       $newTags = explode(',', $tags[0]);
       $newCats = explode(',', $cats[0]);
       $newStars = explode(',', $stars[0]);
@@ -188,7 +189,7 @@ class VideoController extends Controller
       // create Video photo
       try {
         $photo = new Photo;
-        $photo->url = $image;
+        $photo->url = Str::slug($title,'_').'.'.$request->image->getClientOriginalExtension();
         $photo->save();
       } catch (\Exception $th) {
         $request->session()->flash('failed', 'Failed to Store ' . $th->getMessage());
@@ -261,18 +262,18 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+      // dd($request);
       // Validation Rule Section
       $validator = Validator::make($request->all(), [
-        'title'                                 => 'required|min:20|max:100|string|unique:videos,title,'.$id,
-        'description'                           => 'required|min:10|string',
-        'tags'                                  => 'required|array',
-        'cats'                                  => 'required|array',
-        'image'                                 => 'required|active_url',
-        'servers["vidlox"]'                     => 'active_url|nullable',
-        'servers["openload"]'                   => 'active_url||nullable',
-        'servers["verystream"]'                 => 'active_url|nullable',
-        'length'                                => 'required|string',
+        'title'                                 =>  'required|min:20|max:100|string|unique:videos,title,'.$id,
+        'description'                           =>  'required|min:10|string',
+        'tags'                                  =>  'required|array',
+        'cats'                                  =>  'required|array',
+        'image'                                 =>  'nullable|image|mimes:jpeg,bmp,png|max:2048',
+        'servers["vidlox"]'                     =>  'active_url|nullable',
+        'servers["openload"]'                   =>  'active_url||nullable',
+        'servers["verystream"]'                 =>  'active_url|nullable',
+        'length'                                =>  'required|string',
       ]);
       // Check Validation
       if ($validator->fails()) {
@@ -286,7 +287,8 @@ class VideoController extends Controller
       $tags = $request->input('tags');
       $cats = $request->input('cats');
       $stars = $request->input('stars');
-      $image = $request->input('image');
+      // $image = $request->input('image');
+      $image = $request->image;
       $newTags = explode(',', $tags[0]);
       $newCats = explode(',', $cats[0]);
       $newStars = explode(',', $stars[0]);
@@ -297,11 +299,19 @@ class VideoController extends Controller
         $video->title = $title;
         $video->description = $description;
         $video->length = $length;
+        $video->slug = Str::slug($title,'_');
         $video->views = random_int ( 1000 , 5000 );
         // Update Video Photo
-        $video->photos()->whereId($video->photos[0]->id)->update([
-          'url' => $image
-        ]);
+        // If new Image Added Upadted the content
+        if($request->input('image') || $request->has('image')){ //Check if request has image or input image
+          if(Storage::disk('local')->exists("public/videos\/".$video->photos[0]->url)){ //check if the old image are exists
+            Storage::disk('local')->delete("public/videos\/".$video->photos[0]->url); //Delete the old image
+          }
+          $image->storeAs('public/videos', Str::slug($title,'_').'.'.$request->image->getClientOriginalExtension()); //Save the new image
+          $video->photos()->whereId($video->photos[0]->id)->update([
+            'url' => Str::slug($title,'_').'.'.$request->image->getClientOriginalExtension() //Update the url of the image
+          ]);
+        }
 
         foreach ($request->servers as $key => $value) {
           // Update Video Links
