@@ -33,7 +33,9 @@
                       Stars:
                     </strong>
                     <span v-for="(star,index) in video.stars" :key="index" class="mr-1 badge badge-secondary">
-                      {{star.name}}
+                     <router-link :to="{name:'starVideos', params:{star:star.name}}">
+                        {{star.name}}
+                     </router-link>
                     </span>
                   </p>
                   <p >

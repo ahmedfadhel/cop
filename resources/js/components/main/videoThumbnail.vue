@@ -47,9 +47,6 @@
 
 <script>
 export default {
-  mounted() {
-    console.log(this.video)
-  },
     props:[
         'video',
         'control'
