@@ -30,7 +30,6 @@
     (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://certify-js.alexametrics.com/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
     </script>
     <noscript><img src="https://certify.alexametrics.com/atrk.gif?account=mvcet1FYxz20cv" style="display:none" height="1" width="1" alt="" /></noscript>
-    <noscript><img src="http://pornezium.com/images/logo2.png" style="display:none" height="1" width="1" alt="" /></noscript>
     <!-- End Alexa Certify Javascript -->
 </head>
 <body>
@@ -60,7 +59,15 @@
 
     </div>
     {{-- Footer Section Start --}}
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div id="image-bannder">
 
+          </div>
+        </div>
+      </div>
+    </div>
     @include('includes.footer')
     {{-- Footer Section End --}}
     <!-- Scripts -->

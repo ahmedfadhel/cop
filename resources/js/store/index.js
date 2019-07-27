@@ -22,9 +22,9 @@ export const store  = new Vuex.Store({
         page:null,
         starPage:null,
         catPage:null,
-        api: 'http://pornezium.com/api/',
-        url:'http://pornezium.com/admin/',
-        index:'http://pornezium.com',
+        api: 'http://www.pornezium.com/api/',
+        url:'http://www.pornezium.com/admin/',
+        index:'http://www.pornezium.com',
         firstPage:null
     },
     getters:{
