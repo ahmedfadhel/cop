@@ -59,15 +59,6 @@
 
     </div>
     {{-- Footer Section Start --}}
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div id="image-bannder">
-
-          </div>
-        </div>
-      </div>
-    </div>
     @include('includes.footer')
     {{-- Footer Section End --}}
     <!-- Scripts -->

@@ -132,14 +132,7 @@ export default {
       this.showCom()
       this.$store.commit('setJuicyAds')
       this.$store.commit('setJuicyPop')
-      let image =document.getElementById('image-bannder')
-      let content = document.createElement('img')
-      content.src= 'http://www.pornezium.com/storage/videos/'+this.video.photos[0].url
-      content.setAttribute('class','img-fluid mt-4')
-      content.style.height = '10rem'
-      content.style.margin = 'auto'
-      content.style.display = 'block'
-      image.appendChild(content)
+
     })
 
   },
