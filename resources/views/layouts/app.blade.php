@@ -62,7 +62,6 @@
 
     @include('includes.footer')
     {{-- Footer Section End --}}
-
     <!-- Scripts -->
     <script src="{{ asset('js/main/app.js') }}" defer></script>
     <div class="container ads" >

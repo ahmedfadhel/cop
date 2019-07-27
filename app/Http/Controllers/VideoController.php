@@ -56,8 +56,6 @@ class VideoController extends Controller
     }
 
     public function getvideo($slug){
-
-
       $video = Video::where('slug',$slug)->with(['photos','links','tags','cats','stars'])->first();
       return response()->json([
         'video'=>$video,

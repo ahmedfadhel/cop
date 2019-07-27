@@ -33,7 +33,9 @@ class SitemapController extends Controller
       $tags ='';
       $cats = '';
       $links='';
-      $prevideo = $prevideo.'<url>'.'<lastmod> http://pornezium.com/video/'.$video->updated_at->tz('UTC')->toAtomString().'</lastmod>'.'<loc> http://pornezium.com/video/'.$video->slug.'</loc>'.'<video:video>'.'<video:thumbnail_loc>http:://pornezium.com/storage/videos/'.$video->photos[0]->url.'</video:thumbnail_loc>'.'<video:title>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->title).'</video:title>'.'<video:description>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->description).'</video:description>'.'<video:duration>'.$video->length.'</video:duration>'.'<video:rating>'.(4+lcg_value())*(abs(5-4)).'</video:rating>'.'<video:view_count>'.$video->views.'</video:view_count>'.'<video:publication_date>'.$video->created_at->tz('UTC')->toAtomString().'</video:publication_date>'.'<video:family_friendly>no</video:family_friendly>'.'<video:live>no</video:live>';
+      $parsed = date_parse($video->length);
+      $duration = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'];
+      $prevideo = $prevideo.'<url>'.'<lastmod>'.$video->updated_at->tz('UTC')->toAtomString().'</lastmod>'.'<loc> http://pornezium.com/video/'.$video->slug.'</loc>'.'<video:video>'.'<video:thumbnail_loc>http:://pornezium.com/storage/videos/'.$video->photos[0]->url.'</video:thumbnail_loc>'.'<video:title>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->title).'</video:title>'.'<video:description>'.preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $video->description).'</video:description>'.'<video:duration>'.$duration.'</video:duration>'.'<video:rating>'.(4+lcg_value())*(abs(5-4)).'</video:rating>'.'<video:view_count>'.$video->views.'</video:view_count>'.'<video:publication_date>'.$video->created_at->tz('UTC')->toAtomString().'</video:publication_date>'.'<video:family_friendly>no</video:family_friendly>'.'<video:live>no</video:live>';
       foreach ($video->links as $link) {
         $links = $links.'<video:content_loc>'.$link->url.'</video:content_loc>';
       }

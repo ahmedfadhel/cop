@@ -12,6 +12,7 @@
           <b-card-body>
             <b-card-title>
               <router-link
+
                 :to="{ name: 'video', params: { videoSlug: video.slug }}"
                 v-b-tooltip.hover
                 :title="video.title">{{video.title | trimTitle}}</router-link>
@@ -62,7 +63,8 @@ export default {
           let tag = res[Math.floor(Math.random() * res.length)];
           this.$store.dispatch('fetchRelatedVideo',tag.name)
         })
-      }
+      },
+
     },
     filters:{
       trimTitle:function(value){

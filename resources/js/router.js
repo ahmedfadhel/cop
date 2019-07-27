@@ -17,6 +17,10 @@ const routes = [
     path: '/video/:videoSlug',
     name: 'video',
     component:displayVideo,
+    beforeEnter: (to, from, next) => {
+      // ...
+      next()
+    }
   },
   {
     path: '/tags/',

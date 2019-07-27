@@ -98,7 +98,9 @@
                   </div>
                 </div>
                 <div class="col-12 col-md-12 col-lg-4 d-none d-sm-none d-md-block ">
-                  <img :src="video.photos[0].url | imageUrl" :alt="video.slug" class="img-fluid video-thumbnail">
+                  <router-link :to="{name: 'video', params: { videoSlug: video.slug }}">
+                    <img :src="video.photos[0].url | imageUrl" :alt="video.slug" class="img-fluid video-thumbnail">
+                  </router-link>
                 </div>
               </div>
             </b-tab>
@@ -140,8 +142,8 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
-    let id = to.params.videoId
-    this.$store.dispatch('fetchDisplayedVideo',id).then(res=>{
+    let slug = to.params.videoSlug
+    this.$store.dispatch('fetchDisplayedVideo',slug).then(res=>{
       let tag = res.tags[Math.floor(Math.random() * res.tags.length)];
       this.$store.dispatch('fetchRelatedVideo',tag.name)
       this.$store.commit('setPageTitle',res.title)
@@ -174,7 +176,7 @@ export default {
   },
   filters:{
     imageUrl:function(value){
-      return '/storage/videos/'+value
+      return 'http://www.pornezium.com/storage/videos/'+value
     }
   }
 }
