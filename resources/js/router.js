@@ -1,5 +1,4 @@
 import mainSection from './components/main/mainSection'
-import displayVideo from './components/main/displayVideo'
 import pageNotFound from './components/general/pageNotFound.vue'
 import tagsSection from './components/main/tags/tagsSection.vue'
 import tagVideoSection from './components/main/tags/tagVideoSection.vue'
@@ -12,15 +11,6 @@ const routes = [
     path:'/',
     component:mainSection,
     name:'home'
-  },
-  {
-    path: '/video/:videoSlug',
-    name: 'video',
-    component:displayVideo,
-    beforeEnter: (to, from, next) => {
-      // ...
-      next()
-    }
   },
   {
     path: '/tags/',

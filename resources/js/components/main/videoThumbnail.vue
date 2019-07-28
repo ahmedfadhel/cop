@@ -2,20 +2,22 @@
     <div class="video mt-4">
       <b-card-group>
         <b-card no-body>
-          <router-link :to="{ name: 'video', params: { videoSlug: video.slug }}">
+          <!-- <router-link :to="{ name: 'video', params: { videoSlug: video.slug }}"> -->
           <b-card-img
             :src="video.photos[0].url | imageUrl"
             img-top
             alt="Video Image"
           ></b-card-img>
-          </router-link>
+          <!-- </router-link> -->
           <b-card-body>
-            <b-card-title>
-              <router-link
+            <b-card-title @click="displayVideo(video.slug)">
+              <!-- <router-link
 
                 :to="{ name: 'video', params: { videoSlug: video.slug }}"
                 v-b-tooltip.hover
-                :title="video.title">{{video.title | trimTitle}}</router-link>
+                :title="video.title">{{video.title | trimTitle}}</router-link> -->
+                <!-- <a :href="video.slug |videoUrl">{{video.title}}</a> -->
+                <a>{{video.title}}</a>
             </b-card-title>
           </b-card-body>
 
@@ -64,6 +66,9 @@ export default {
           this.$store.dispatch('fetchRelatedVideo',tag.name)
         })
       },
+      displayVideo(value){
+        window.location.href="http://pornezium.com/videos/"+value
+      }
 
     },
     filters:{
@@ -82,6 +87,9 @@ export default {
       },
       imageUrl:function(value){
         return '/storage/videos/'+value
+      },
+      videoUrl:function(value){
+        return 'http://pornezium.com/vidoes/'+value
       }
     }
 }

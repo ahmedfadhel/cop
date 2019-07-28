@@ -12,6 +12,7 @@ use App\Part;
 use App\Photo;
 use Str;
 use Storage;
+use Session;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,10 +28,17 @@ class VideoController extends Controller
   public function __construct()
   {
     // $this->middleware('auth');
-    $this->middleware('auth', ['except' => ['best', 'videos','getvideo','getrelated']]);
+    $this->middleware('auth', ['except' => ['best', 'videos','getvideo','getrelated','display']]);
 
   }
 
+  public function display(Request $request, $slug)
+  {
+    # code...
+    $display = Video::where('slug',$slug)->with(['photos','links','tags','cats','stars'])->first();
+    Session::put('image',$display->photos[0]->url);
+    return view('videos.display')->withDisplay($display);
+  }
   /**
    * Display a Best Videos  resource.
    *

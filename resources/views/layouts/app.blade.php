@@ -61,10 +61,24 @@
     {{-- Footer Section Start --}}
     @include('includes.footer')
     {{-- Footer Section End --}}
+    @if (session()->has('image'))
+        <div class="container" style="display:none">
+          <div class="row">
+            <div class="col-12">
+
+              {{-- <div class="text-center">
+
+                  <span>Video Thumbnail</span> --}}
+                  <img src="/storage/videos/{{Session::get('image')}}" class="img-fluid mt-4">
+              {{-- </div> --}}
+            </div>
+          </div>
+        </div>
+    @endif
     <!-- Scripts -->
     <script src="{{ asset('js/main/app.js') }}" defer></script>
     <div class="container ads" >
-      <div id="juicy-ads" class="leaderboard mt-4"></div>
+      <div id="juicy-ads" class="leaderboard "></div>
     </div>
 </body>
 </html>

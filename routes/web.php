@@ -21,4 +21,5 @@ Route::prefix('admin')->group(function () {
     Route::Get('/sitemap/generate','SitemapController@generate')->name('sitemap-generation');
     Auth::routes();
 });
+Route::get('/videos/{slug}','VideoController@display')->name('displayvideo');
 Route::get('/{any}', 'SpaController@index')->where('any', '^(?!admin).*$');

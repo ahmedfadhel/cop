@@ -1,14 +1,14 @@
 <template>
-  <div class="container" v-if="appear">
+  <div class="container">
     <div class="row">
       <div class="col-12">
         <b-card
-          :header="video.title"
+          :header="display.title"
           header-tag="header"
           class="mt-4"
         >
           <b-tabs content-class="mt-3">
-            <b-tab v-for="(link,index) in video.links" :key="index"
+            <b-tab v-for="(link,index) in display.links" :key="index"
               :title="link.server_name"
             >
               <div class="row">
@@ -23,84 +23,65 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <h1 class="text-center mt-3 video-title">{{video.title}}</h1>
+                  <h1 class="text-center mt-3 video-title">{{display.title}}</h1>
                 </div>
               </div>
               <div class="row">
-                <div class="col-12 col-md-6 col-lg-4" >
+                <div class="col-12 col-md-4" >
                   <p >
                     <strong>
                       Stars:
                     </strong>
-                    <span v-for="(star,index) in video.stars" :key="index" class="mr-1 badge badge-secondary">
-                     <router-link :to="{name:'starVideos', params:{star:star.name}}">
-                        {{star.name}}
-                     </router-link>
+                    <span v-for="(star,index) in display.stars" :key="index" class="mr-1 badge badge-secondary">
+                     <a  @click="starLink(star.name)">{{star.name}}</a>
                     </span>
                   </p>
                   <p >
                     <strong>
                       Categories:
                     </strong>
-                    <span v-for="(cat,index) in video.cats" :key="index" class="mr-1 badge badge-secondary">
-                      <router-link
-                      :to="{ name: 'catVideos', params: { name: cat.name }}"
-
-                      >
-                      {{cat.name}}
-                      </router-link>
+                    <span v-for="(cat,index) in display.cats" :key="index" class="mr-1 badge badge-secondary">
+                       <a  @click="catLink(cat.name)">{{cat.name}}</a>
                     </span>
                   </p>
                   <p>
                     <strong>
                       Tags:
                     </strong>
-                    <span v-for="(tag,index) in video.tags" :key="index" class="mr-1 badge badge-secondary">
-                      <router-link
-                      :to="{ name: 'tagVideos', params: { name: tag.name }}"
-
-                      >
-                      {{tag.name}}
-                      </router-link>
+                    <span v-for="(tag,index) in display.tags" :key="index" class="mr-1 badge badge-secondary">
+                       <a  @click="tagLink(tag.name)">{{tag.name}}</a>
                     </span>
                   </p>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                  <div class="row">
-                    <div class="col-12">
-                      <p>
-                        <strong>
-                          Video Description:
-                        </strong>
-                        {{video.description}}
-                      </p>
-                    </div>
-                    <div class="col-12">
-                      <p>
-                        <strong>
-                          Uploaded at:
-                        </strong>
-                        {{video.updated_at}}
-                      </p>
-                      <p>
-                        <strong>
-                          Length:
-                        </strong>
-                        {{video.length}} m
-                      </p>
-                      <p>
-                        <strong>
-                          Views:
-                        </strong>
-                        {{video.views}}
-                      </p>
-                    </div>
-                  </div>
+                <div class="col-12 col-md-4">
+
+                  <p>
+                    <strong>
+                      Video Description:
+                    </strong>
+                    {{display.description}}
+                  </p>
+
                 </div>
-                <div class="col-12 col-md-12 col-lg-4 d-none d-sm-none d-md-block ">
-                  <router-link :to="{name: 'video', params: { videoSlug: video.slug }}">
-                    <img :src="video.photos[0].url | imageUrl" :alt="video.slug" class="img-fluid video-thumbnail">
-                  </router-link>
+                <div class="col-12 col-md-4">
+                  <p>
+                    <strong>
+                      Uploaded at:
+                    </strong>
+                    {{display.updated_at}}
+                  </p>
+                  <p>
+                    <strong>
+                      Length:
+                    </strong>
+                    {{display.length}} m
+                  </p>
+                  <p>
+                    <strong>
+                      Views:
+                    </strong>
+                    {{display.views}}
+                  </p>
                 </div>
               </div>
             </b-tab>
@@ -121,43 +102,29 @@
 <script>
 import relatedVideos from './relatedVideos.vue'
 export default {
+  props:[
+    'display'
+  ],
   mounted(){
-    this.$store.dispatch('fetchDisplayedVideo',this.$route.params.videoSlug).then(res=>{
-      let tag = res.tags[Math.floor(Math.random() * res.tags.length)];
-      this.searchTags = res.tags
-      this.$store.dispatch('fetchRelatedVideo',tag.name)
-      this.$store.commit('setPageTitle',res.title)
-      this.$store.commit('setPageDescription',res.desc)
-      this.$store.commit('setPageKeywords',res.tags)
-      this.showCom()
+    this.searchTags = this.display.tags
+    this.tag = this.display.tags[Math.floor(Math.random() * this.display.tags.length)].name
+
+     this.showCom()
+     if(this.tag){
+      this.$store.dispatch('fetchRelatedVideo',this.tag)
+     }
       this.$store.commit('setJuicyAds')
       this.$store.commit('setJuicyPop')
-
-    })
-
   },
   data:()=>{
     return {
       searchTags:null,
-      appear:false,
+      tag:null,
     }
   },
-  beforeRouteUpdate (to, from, next) {
-    let slug = to.params.videoSlug
-    this.$store.dispatch('fetchDisplayedVideo',slug).then(res=>{
-      let tag = res.tags[Math.floor(Math.random() * res.tags.length)];
-      this.$store.dispatch('fetchRelatedVideo',tag.name)
-      this.$store.commit('setPageTitle',res.title)
-      this.$store.commit('setPageDescription',res.desc)
-      this.$store.commit('setPageKeywords',res.tags)
 
-    })
-    next()
-  },
   computed:{
-    video:function(){
-      return this.$store.getters.getDisplayVideo
-    },
+
     relatedVideos:function(){
       return this.$store.getters.getRelatedVideos
     },
@@ -173,13 +140,17 @@ export default {
         {
           ele.parentNode.removeChild(ele)
         }
-    }
+    },
+    starLink(value){
+      window.location.href="http://pornezium.com/pornstars/"+value+'/videos'
+    },
+    catLink(value){
+      window.location.href="http://pornezium.com/category/"+value+"/videos"
+    },
+    tagLink(value){
+      window.location.href="http://pornezium.com/tags/"+value+"/videos"
+    },
   },
-  filters:{
-    imageUrl:function(value){
-      return 'http://www.pornezium.com/storage/videos/'+value
-    }
-  }
 }
 </script>
 
@@ -192,5 +163,8 @@ export default {
   height: 25rem;
   display: block;
   margin: auto
+}
+a{
+  cursor: pointer;
 }
 </style>

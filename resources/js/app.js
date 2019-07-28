@@ -29,6 +29,8 @@ const router = new VueRouter({
 // Import Main Section Vue Compoenent Start
 import mainSection from './components/main/mainSection.vue'
 import headerSection from './components/general/headerSection.vue'
+import displayVideoSection from './components/main/displayVideo.vue'
+
 // Import Main Section Vue Compoenent End
 Vue.config.devtools = false
 const app = new Vue({
@@ -38,6 +40,7 @@ const app = new Vue({
     components:{
       // General Section Component
       mainSection,
-      headerSection
+      headerSection,
+      displayVideoSection
     }
 });
