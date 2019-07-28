@@ -22,9 +22,9 @@ export const store  = new Vuex.Store({
         page:null,
         starPage:null,
         catPage:null,
-        api: 'http://pornezium.com/api/',
-        url:'http://pornezium.com/admin/',
-        index:'http://pornezium.com',
+        api: 'http://127.0.0.1:8000/api/',
+        url:'http://127.0.0.1:8000/admin/',
+        index:'http://127.0.0.1:8000',
         firstPage:null
     },
     getters:{
@@ -304,6 +304,19 @@ export const store  = new Vuex.Store({
       axios.post(context.state.url + 'logout').then(response=>{
         location.href = context.state.index
       })
+    },
+    // Links redirection of main website section
+    starUrl(context,payload){
+      window.location.href = context.state.index+'/pornstars/'+payload+'/videos'
+    },
+    catUrl(context,payload){
+      window.location.href = context.state.index+'/category/'+payload+'/videos'
+    },
+    tagUrl(context,payload){
+      window.location.href = context.state.index+'/tags/'+payload+'/videos'
+    },
+    displayVideoUrl(context,payload){
+      window.location.href = context.state.index+'/videos/'+payload
     },
   }
 })

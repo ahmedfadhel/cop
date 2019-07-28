@@ -142,13 +142,13 @@ export default {
         }
     },
     starLink(value){
-      window.location.href="http://pornezium.com/pornstars/"+value+'/videos'
+      this.$store.dispatch('starUrl',value)
     },
     catLink(value){
-      window.location.href="http://pornezium.com/category/"+value+"/videos"
+      this.$store.dispatch('catUrl',value)
     },
     tagLink(value){
-      window.location.href="http://pornezium.com/tags/"+value+"/videos"
+      this.$store.dispatch('tagrUrl',value)
     },
   },
 }
