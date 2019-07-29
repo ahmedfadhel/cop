@@ -230,8 +230,6 @@
           </b-img>
         </b-col>
       </b-row>
-
-
     </b-form-group>
     <!-- Image Form input Section End -->
     <b-button type="submit"  variant="outline-primary" :disabled="$v.form.$invalid">Save</b-button>
@@ -270,7 +268,6 @@
           title: null,
           description: null,
           length:null,
-          // image:null,
           file:null,
           servers:{
             upload:null,
@@ -282,7 +279,6 @@
           title:'This is a required field and must be between 2 and 10',
           description:'This is a required field and must be between 3 and 50',
           length:'This is a required field',
-          // image: 'This is a required field and must be a valid URL',
           openload:'This field must be a valid upload URL',
           vidlox:'This field must be a valid upload URL',
           verystream:'This field must be a valid upload URL',
@@ -314,10 +310,6 @@
           minLength: minLength(20),
           maxLength: maxLength(100)
         },
-        // image:{
-        //   required,
-        //   url
-        // },
         length:{
           required
         },

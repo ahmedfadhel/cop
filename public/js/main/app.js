@@ -1970,6 +1970,11 @@ __webpack_require__.r(__webpack_exports__);
         return this.cats;
       }
     }
+  },
+  filters: {
+    imageUrl: function imageUrl(value) {
+      return '/storage/categories/' + value;
+    }
   }
 });
 
@@ -2653,6 +2658,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     viewChange: function viewChange(change) {
       this.$store.dispatch('fetchAllStars', change);
+    }
+  },
+  filters: {
+    imageUrl: function imageUrl(value) {
+      return '/storage/stars/' + value;
     }
   }
 });
@@ -54981,7 +54991,10 @@ var render = function() {
                           _c("div", { staticClass: "card text-white" }, [
                             _c("img", {
                               staticClass: "card-img img-fluid",
-                              attrs: { src: cat.photos[0].url, alt: cat.name }
+                              attrs: {
+                                src: _vm._f("imageUrl")(cat.photos[0].url),
+                                alt: cat.name
+                              }
                             }),
                             _vm._v(" "),
                             _c(
@@ -55748,7 +55761,7 @@ var render = function() {
                               _c("img", {
                                 staticClass: "card-img",
                                 attrs: {
-                                  src: star.photos[0].url,
+                                  src: _vm._f("imageUrl")(star.photos[0].url),
                                   alt: star.name
                                 }
                               }),

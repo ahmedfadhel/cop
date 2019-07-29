@@ -8,7 +8,7 @@
           Create New Star
         </div>
         <div class="card-body">
-          <form action="{{route('stars.store')}}" method="POST">
+          <form action="{{route('stars.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
           <dashboard-stars-form-section :errors="{{json_encode($errors)}}"></dashboard-stars-form-section>
           </form>

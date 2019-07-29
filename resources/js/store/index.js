@@ -74,7 +74,6 @@ export const store  = new Vuex.Store({
       getVariant(state){
         return state.variant
       },
-
     },
     mutations:{
       setVideos(state,payload){

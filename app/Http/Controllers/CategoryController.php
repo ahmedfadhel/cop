@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Photo;
+use Storage;
+use Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 class CategoryController extends Controller
@@ -74,7 +76,7 @@ class CategoryController extends Controller
       $validator = Validator::make($request->all(), [
         'name'        => 'required|min:3|max:20|string|unique:categories',
         'description' => 'required|min:3|string',
-        'image'       => 'required|active_url'
+        'image'       =>  'required|image|mimes:jpeg,bmp,png|max:2048'
       ]);
 
       if ($validator->fails()) {
@@ -83,7 +85,8 @@ class CategoryController extends Controller
       }
         $name = $request->input('name');
         $description = $request->input('description');
-        $image = $request->input('image');
+        $image = $request->image;
+        $image->storeAs('public/categories', Str::slug($name,'_').'.'.$request->image->getClientOriginalExtension());
 
         $category = new Category;
         $category->name = $name;
@@ -93,7 +96,7 @@ class CategoryController extends Controller
           return view('dashboard.categories.index');
         }
         $photo = new Photo;
-        $photo->url = $image;
+        $photo->url = Str::slug($name,'_').'.'.$request->image->getClientOriginalExtension();
         if(!$photo->save()){
           return view('dashboard.categories.index');
         }
@@ -142,7 +145,7 @@ class CategoryController extends Controller
       $validator = Validator::make($request->all(), [
         'name'        => 'required|min:3|max:50|string|unique:categories,name,'.$id,
         'description' => 'required|min:3|string',
-        'image'       => 'required|active_url'
+        'image'                                 =>  'nullable|image|mimes:jpeg,bmp,png|max:2048',
       ]);
 
       if ($validator->fails()) {
@@ -152,26 +155,23 @@ class CategoryController extends Controller
       $category = Category::findOrFail($id)->load('photos');
       $name = $request->input('name');
       $description = $request->input('description');
-      $image = $request->input('image');
-
+      // $image = $request->input('image');
+      $image = $request->image;
       try {
         //code...
 
         $category->name = $name;
         $category->description = $description;
-        $category->save();
-        if(!$category->photos()->first()){
-          $newPhoto = new Photo;
-          $newPhoto->url = $image;
-          $newPhoto->save();
-          $category->photos();
-          $category->photos()->attach($newPhoto->id);
-        }else{
-          $photo = Photo::find($category->photos[0]->id);
-          $photo->url = $image;
-          $photo->save();
+        if($request->input('image') || $request->has('image')){ //Check if request has image or input image
+          if(Storage::disk('local')->exists("public/categories\/".$category->photos[0]->url)){ //check if the old image are exists
+            Storage::disk('local')->delete("public/categories\/".$category->photos[0]->url); //Delete the old image
+          }
+          $image->storeAs('public/categories', Str::slug($name,'_').'.'.$request->image->getClientOriginalExtension()); //Save the new image
+          $category->photos()->whereId($category->photos[0]->id)->update([
+            'url' => Str::slug($name,'_').'.'.$request->image->getClientOriginalExtension() //Update the url of the image
+          ]);
         }
-
+        $category->save();
       } catch (\Exception $th) {
         //throw $th;
         $request->session()->flash('failed', 'Failed to updated ' . $th->getMessage());
@@ -194,9 +194,12 @@ class CategoryController extends Controller
     {
       //
       if(Auth::check()){
-        $cat = Category::findOrFail($id);
+        $cat = Category::findOrFail($id)->load('photos');
         try {
-
+          if(Storage::disk('local')->exists("public/categories\/".$cat->photos[0]->url)){ //check if the old image are exists
+            Storage::disk('local')->delete("public/categories\/".$cat->photos[0]->url); //Delete the old image
+          }
+          $cat->photos()->whereId($cat->photos[0]->id)->delete();
           $cat->delete();
           return response()->json([
             'status'  => 'success',

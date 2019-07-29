@@ -8,7 +8,7 @@
           Update New {{$star->name}}
         </div>
         <div class="card-body">
-          <form action="{{route('stars.update',$star->id)}}" method="POST">
+          <form action="{{route('stars.update',$star->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="_method" value="PATCH">
 

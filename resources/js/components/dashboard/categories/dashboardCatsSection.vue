@@ -41,7 +41,7 @@
       :filter="filter">
         <template slot="image" slot-scope="row">
            <b-media>
-              <b-img v-if="row.item.photos.length"  :src="row.item.photos[0].url"  width="64" alt="placeholder"></b-img>
+              <b-img v-if="row.item.photos.length"  :src="row.item.photos[0].url | imageUrl"  width="64" alt="placeholder"></b-img>
               <b-img v-else slot="aside" blank blank-color="#ccc" width="64" alt="placeholder"></b-img>
            </b-media>
         </template>
@@ -223,6 +223,9 @@ export default {
       },
       trimLength:function(val,length){
         return val.substr(0,length)+'...'
+      },
+      imageUrl:function(value){
+        return '/storage/categories/'+value
       }
     }
 }

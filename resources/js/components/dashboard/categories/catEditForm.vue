@@ -36,7 +36,7 @@
     <!-- Decription Form input Section End -->
 
     <!-- Image Form input Section Start -->
-    <b-form-group id="example-input-group-2" label="Category Image" label-for="image">
+    <!-- <b-form-group id="example-input-group-2" label="Category Image" label-for="image">
       <b-row>
         <b-col sm="6" cols="12">
           <b-form-input
@@ -57,6 +57,26 @@
           <b-img :src="$v.form.image.$model" fluid alt="Category Image" v-if="$v.form.image.$model"></b-img>
         </b-col>
       </b-row>
+    </b-form-group> -->
+      <b-form-group
+      label="Category Image"
+      label-for="image">
+      <b-row>
+        <b-col sm="6" cols="12">
+          <b-form-file
+          v-model="form.file"
+          placeholder="Choose a file..."
+          drop-placeholder="Drop file here..."
+          name="image"
+        ></b-form-file>
+
+        </b-col>
+        <b-col sm="6" cols="12">
+          <span>Old Image</span>
+          <b-img  blank blank-color="#ccc" width="64" alt="placeholder" v-if="!$v.form.image.$model"></b-img>
+          <b-img :src="$v.form.image.$model | imageUrl" fluid alt="Star Image" v-if="$v.form.image.$model"></b-img>
+        </b-col>
+      </b-row>
     </b-form-group>
     <!-- Image Form input Section End -->
 
@@ -72,7 +92,7 @@
     mixins: [validationMixin],
     props:['errors', 'cat'],
     mounted(){
-      console.log(this.errors)
+      console.log(this.$v.form)
       this.$v.form.name.$model = this.cat.name
       this.$v.form.description.$model = this.cat.description
       this.$v.form.image.$model = this.cat.photos[0].url
@@ -82,7 +102,8 @@
         form: {
           name: null,
           description: null,
-          image:null
+          image:null,
+          file:null,
         },
         fromError:{
           name:'This is a required field and must be between 3 and 20',
@@ -107,8 +128,8 @@
           maxLength: maxLength(20)
         },
         image:{
-          required,
-          url
+          // required,
+          // url
         }
       }
     },
@@ -144,6 +165,11 @@
         }
         return null
       },
+    },
+    filters:{
+      imageUrl:function(value){
+        return '/storage/categories/'+value
+      }
     }
   }
 </script>

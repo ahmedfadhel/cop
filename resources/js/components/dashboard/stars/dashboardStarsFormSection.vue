@@ -43,26 +43,28 @@
     <!-- Gender Section End -->
     <!-- Image Form input Section Start -->
     <b-form-group
-      label="Star Image"
-      label-for="image">
+      label="Video Image"
+      label-for="image"
+    >
       <b-row>
         <b-col sm="6" cols="12">
-          <b-form-input
+          <b-form-file
             id="image"
+            v-model="form.file"
+            placeholder="Choose a file..."
+            drop-placeholder="Drop file here..."
             name="image"
-            v-model="$v.form.image.$model"
-            placeholder="Star Image"
-            :state="$v.form.image.$dirty ? !$v.form.image.$error : null"
-            aria-describedby="image-feedback"
-          ></b-form-input>
-          <b-form-invalid-feedback id="image-feedback">
-            {{fromError.image}}
-          </b-form-invalid-feedback>
+            @change="onFileChange"
+          ></b-form-file>
         </b-col>
         <b-col sm="6" cols="12">
+          <b-img
+            v-if="url"
+            :src="url"
+            fluid alt="Video Image"
+          >
 
-          <b-img  blank blank-color="#ccc" width="64" alt="placeholder" v-if="!$v.form.image.$model"></b-img>
-          <b-img :src="$v.form.image.$model" fluid alt="Star Image" v-if="$v.form.image.$model"></b-img>
+          </b-img>
         </b-col>
       </b-row>
     </b-form-group>
@@ -80,20 +82,21 @@ import { validationMixin } from 'vuelidate'
     mixins: [validationMixin],
     props:['errors'],
     mounted(){
-      console.log(this.$v)
+      console.log(this.errors)
     },
     data() {
       return {
+        url:null,
         form: {
           name: null,
           aliasName: null,
-          image:null,
+          // image:null,
           gender:null,
         },
         fromError:{
           name:'This is a required field and must be between 2 and 10',
           aliasName:'This is a required field and must be between 3 and 50',
-          image: 'This is a required field and must be a valid URL',
+          // image: 'This is a required field and must be a valid URL',
           gender: 'This is a required field'
         }
       }
@@ -113,10 +116,10 @@ import { validationMixin } from 'vuelidate'
           minLength: minLength(3),
           maxLength: maxLength(30)
         },
-        image:{
-          required,
-          url
-        },
+        // image:{
+        //   required,
+        //   url
+        // },
         gender:{
           required
         }
@@ -144,6 +147,12 @@ import { validationMixin } from 'vuelidate'
           return false
         }
         return null
+      }
+    },
+     methods:{
+      onFileChange(e){
+        const file = e.target.files[0];
+        this.url = URL.createObjectURL(file);
       }
     }
   }

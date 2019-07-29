@@ -207,7 +207,6 @@
     <!-- Image Form input Section Start -->
     <b-form-group
       label="Video Image"
-
       label-for="image">
       <b-row>
         <b-col sm="6" cols="12">

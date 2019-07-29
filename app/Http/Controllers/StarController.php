@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Star;
 use App\Photo;
+use Str;
+use Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -74,7 +76,7 @@ class StarController extends Controller
       $validator = Validator::make($request->all(), [
         'name'        => 'required|min:3|max:30|string|unique:stars',
         'alias'       => 'min:3|max:30|string|nullable',
-        'image'       => 'required|url',
+        'image'       =>  'required|image|mimes:jpeg,bmp,png|max:2048',
         'gender'      => 'required|alpha'
       ]);
 
@@ -84,7 +86,8 @@ class StarController extends Controller
       }
         $name   = $request->input('name');
         $alias  = $request->input('alias');
-        $image  = $request->input('image');
+        $image = $request->image;
+        $image->storeAs('public/stars', Str::slug($name,'_').'.'.$request->image->getClientOriginalExtension());
         $gender = $request->input('gender');
       try {
         // Create New Star Section
@@ -95,7 +98,7 @@ class StarController extends Controller
         $star->save();
         // Create New Star Photo Section
         $photo = new Photo;
-        $photo->url = $image;
+        $photo->url = Str::slug($name,'_').'.'.$request->image->getClientOriginalExtension();
         $photo->save();
         // Attach New Star Photo to the New Star Section
         $star->photos()->attach($photo->id);
@@ -146,7 +149,7 @@ class StarController extends Controller
     $validator = Validator::make($request->all(), [
       'name'        => 'required|min:3|max:30|string|unique:stars,name,'.$id,
       'alias'       => 'min:3|max:30|string|nullable',
-      'image'       => 'required|url',
+      'image'       =>  'nullable|image|mimes:jpeg,bmp,png|max:2048',
       'gender'      => 'required|alpha'
     ]);
 
@@ -158,7 +161,8 @@ class StarController extends Controller
       $star = Star::findOrFail($id)->load('photos');
       $name   = $request->input('name');
       $alias  = $request->input('alias');
-      $image  = $request->input('image');
+      // $image  = $request->input('image');
+      $image = $request->image;
       $gender = $request->input('gender');
     try {
       // Update the Star with new Values
@@ -166,9 +170,18 @@ class StarController extends Controller
       $star->alias_name = $alias;
       $star->gender = $gender;
       // Update the new Photo
-      $star->photos()->whereId($star->photos[0]->id)->update([
-        'url' => $image
-      ]);
+      // $star->photos()->whereId($star->photos[0]->id)->update([
+      //   'url' => $image
+      // ]);
+      if($request->input('image') || $request->has('image')){ //Check if request has image or input image
+        if(Storage::disk('local')->exists("public/stars\/".$star->photos[0]->url)){ //check if the old image are exists
+          Storage::disk('local')->delete("public/stars\/".$star->photos[0]->url); //Delete the old image
+        }
+        $image->storeAs('public/stars', Str::slug($name,'_').'.'.$request->image->getClientOriginalExtension()); //Save the new image
+        $star->photos()->whereId($star->photos[0]->id)->update([
+          'url' => Str::slug($name,'_').'.'.$request->image->getClientOriginalExtension() //Update the url of the image
+        ]);
+      }
       $star->save();
       $request->session()->flash('success', $star->name.' has been updated successfully!');
       return redirect()->route('stars.index');
@@ -190,7 +203,11 @@ class StarController extends Controller
     {
       //
       if(Auth::check()){
-        $star = Star::findorFail($id);
+        $star = Star::findorFail($id)->load('photos');
+        if(Storage::disk('local')->exists("public/stars\/".$star->photos[0]->url)){ //check if the old image are exists
+          Storage::disk('local')->delete("public/stars\/".$star->photos[0]->url); //Delete the old image
+        }
+        $star->photos()->whereId($star->photos[0]->id)->delete();
         $star->delete();
         return response()->json([
           'status'  => 'success',

@@ -53,26 +53,22 @@
     <!-- Gender Section End -->
     <!-- Image Form input Section Start -->
     <b-form-group
-      label="Star Image"
+      label="Video Image"
       label-for="image">
       <b-row>
         <b-col sm="6" cols="12">
-          <b-form-input
-            id="image"
-            name="image"
-            v-model="$v.form.image.$model"
-            placeholder="Star Image"
-            :state="imageError"
-            aria-describedby="image-feedback"
-          ></b-form-input>
-          <b-form-invalid-feedback id="image-feedback">
-            {{fromError.image}}
-          </b-form-invalid-feedback>
+          <b-form-file
+          v-model="form.file"
+          placeholder="Choose a file..."
+          drop-placeholder="Drop file here..."
+          name="image"
+        ></b-form-file>
+
         </b-col>
         <b-col sm="6" cols="12">
-
+          <span>Old Image</span>
           <b-img  blank blank-color="#ccc" width="64" alt="placeholder" v-if="!$v.form.image.$model"></b-img>
-          <b-img :src="$v.form.image.$model" fluid alt="Star Image" v-if="$v.form.image.$model"></b-img>
+          <b-img :src="$v.form.image.$model | imageUrl" fluid alt="Star Image" v-if="$v.form.image.$model"></b-img>
         </b-col>
       </b-row>
     </b-form-group>
@@ -183,6 +179,11 @@ import { validationMixin } from 'vuelidate'
         }
         return null
       },
+    },
+    filters:{
+      imageUrl:function(value){
+        return '/storage/stars/'+value
+      }
     }
   }
 </script>

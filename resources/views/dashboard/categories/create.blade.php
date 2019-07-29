@@ -8,7 +8,7 @@
             Create New Category
           </div>
           <div class="card-body">
-            <form action="{{route('category.store')}}" method="POST">
+            <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
               @csrf
             <cat-form-section
               :errors="{{json_encode($errors)}}"

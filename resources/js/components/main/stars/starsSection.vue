@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-6 col-sm-6 col-md-4 col-lg-3 mt-4"  v-for="(star,index) in filteredStars" :key="index">
               <div class="card bg-inverse">
-                <img class="card-img" :src="star.photos[0].url" :alt="star.name">
+                <img class="card-img" :src="star.photos[0].url | imageUrl" :alt="star.name">
                 <router-link :to="{name:'starVideos', params:{star:star.name}}">
                   <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
                     <h4 class="card-title">{{star.name}}</h4>
@@ -96,6 +96,11 @@ export default {
     },
 
   },
+  filters:{
+    imageUrl:function(value){
+      return '/storage/stars/'+value
+    }
+  }
 
 }
 </script>

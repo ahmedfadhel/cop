@@ -20,7 +20,7 @@
           <div class="row mt-4">
             <div class="col-6 col-lg-3 mt-4" v-for="(cat,index) in filteredCats" :key="index">
               <div class="card text-white">
-                <img :src="cat.photos[0].url" class="card-img img-fluid" :alt="cat.name" >
+                <img :src="cat.photos[0].url | imageUrl" class="card-img img-fluid" :alt="cat.name" >
                 <div class="card-img-overlay">
                   <router-link
                     :to="{ name: 'catVideos', params: { name: cat.name }}"
@@ -95,6 +95,11 @@ export default {
       }
     }
   },
+  filters:{
+    imageUrl:function(value){
+      return '/storage/categories/'+value
+    }
+  }
 }
 </script>
 

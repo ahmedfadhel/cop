@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <form action="{{route('category.update',$cat->id)}}" method="post">
+    <form action="{{route('category.update',$cat->id)}}" enctype="multipart/form-data" method="post">
       @csrf
       <input type="hidden" name="_method" value="PATCH">
       <cat-edit-form-section

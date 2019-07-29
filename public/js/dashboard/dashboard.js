@@ -1767,13 +1767,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [vuelidate__WEBPACK_IMPORTED_MODULE_0__["validationMixin"]],
   props: ['errors', 'cat'],
   mounted: function mounted() {
-    console.log(this.errors);
+    console.log(this.$v.form);
     this.$v.form.name.$model = this.cat.name;
     this.$v.form.description.$model = this.cat.description;
     this.$v.form.image.$model = this.cat.photos[0].url;
@@ -1783,7 +1803,8 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         name: null,
         description: null,
-        image: null
+        image: null,
+        file: null
       },
       fromError: {
         name: 'This is a required field and must be between 3 and 20',
@@ -1804,9 +1825,8 @@ __webpack_require__.r(__webpack_exports__);
         minLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["minLength"])(3),
         maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["maxLength"])(20)
       },
-      image: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"],
-        url: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["url"]
+      image: {// required,
+        // url
       }
     }
   },
@@ -1840,6 +1860,11 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return null;
+    }
+  },
+  filters: {
+    imageUrl: function imageUrl(value) {
+      return '/storage/categories/' + value;
     }
   }
 });
@@ -2096,6 +2121,9 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
     },
     trimLength: function trimLength(val, length) {
       return val.substr(0, length) + '...';
+    },
+    imageUrl: function imageUrl(value) {
+      return '/storage/categories/' + value;
     }
   }
 });
@@ -2181,6 +2209,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2191,22 +2245,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      url: null,
       form: {
         name: null,
-        description: null,
-        image: null
+        description: null
       },
       fromError: {
         name: 'This is a required field and must be between 3 and 20',
-        description: 'This is a required field and must be between 3 and 50',
-        image: 'This is required field and must be valid URL'
+        description: 'This is a required field and must be between 3 and 50'
       }
     };
   },
   methods: {
     checkErrors: function checkErrors() {
       this.$v.form.name.$error = false;
-      console.log(this.$v.form.name.$error);
+    },
+    onFileChange: function onFileChange(e) {
+      var file = e.target.files[0];
+      this.url = URL.createObjectURL(file);
     }
   },
   validations: {
@@ -2219,10 +2275,6 @@ __webpack_require__.r(__webpack_exports__);
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"],
         minLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["minLength"])(3),
         maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["maxLength"])(20)
-      },
-      image: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"],
-        url: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["url"]
       }
     }
   },
@@ -2246,18 +2298,6 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.errors.description) {
         this.fromError.description = this.errors.description[0];
-        return false;
-      }
-
-      return null;
-    },
-    imageError: function imageError() {
-      if (this.$v.form.image.$dirty) {
-        return !this.$v.form.image.$error;
-      }
-
-      if (this.errors.image) {
-        this.fromError.image = this.errors.image[0];
         return false;
       }
 
@@ -2477,10 +2517,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2578,6 +2614,11 @@ __webpack_require__.r(__webpack_exports__);
 
       return null;
     }
+  },
+  filters: {
+    imageUrl: function imageUrl(value) {
+      return '/storage/stars/' + value;
+    }
   }
 });
 
@@ -2596,6 +2637,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
 //
 //
 //
@@ -2672,24 +2717,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   mixins: [vuelidate__WEBPACK_IMPORTED_MODULE_0__["validationMixin"]],
   props: ['errors'],
   mounted: function mounted() {
-    console.log(this.$v);
+    console.log(this.errors);
   },
   data: function data() {
     return {
+      url: null,
       form: {
         name: null,
         aliasName: null,
-        image: null,
+        // image:null,
         gender: null
       },
       fromError: {
         name: 'This is a required field and must be between 2 and 10',
         aliasName: 'This is a required field and must be between 3 and 50',
-        image: 'This is a required field and must be a valid URL',
+        // image: 'This is a required field and must be a valid URL',
         gender: 'This is a required field'
       }
     };
@@ -2707,10 +2753,10 @@ __webpack_require__.r(__webpack_exports__);
         minLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["minLength"])(3),
         maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["maxLength"])(30)
       },
-      image: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"],
-        url: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["url"]
-      },
+      // image:{
+      //   required,
+      //   url
+      // },
       gender: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"]
       }
@@ -2742,7 +2788,12 @@ __webpack_require__.r(__webpack_exports__);
       return null;
     }
   }
-});
+}, "methods", {
+  onFileChange: function onFileChange(e) {
+    var file = e.target.files[0];
+    this.url = URL.createObjectURL(file);
+  }
+}));
 
 /***/ }),
 
@@ -2993,6 +3044,9 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
     },
     trimLength: function trimLength(val, length) {
       return val.substr(0, length) + '...';
+    },
+    imageUrl: function imageUrl(value) {
+      return '/storage/stars/' + value;
     }
   }
 });
@@ -3895,7 +3949,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -4368,8 +4421,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -4400,7 +4451,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: null,
         description: null,
         length: null,
-        // image:null,
         file: null,
         servers: {
           upload: null,
@@ -4412,7 +4462,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: 'This is a required field and must be between 2 and 10',
         description: 'This is a required field and must be between 3 and 50',
         length: 'This is a required field',
-        // image: 'This is a required field and must be a valid URL',
         openload: 'This field must be a valid upload URL',
         vidlox: 'This field must be a valid upload URL',
         verystream: 'This field must be a valid upload URL'
@@ -4442,10 +4491,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         minLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["minLength"])(20),
         maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["maxLength"])(100)
       },
-      // image:{
-      //   required,
-      //   url
-      // },
       length: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__["required"]
       },
@@ -55358,13 +55403,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-form-group",
-        {
-          attrs: {
-            id: "example-input-group-2",
-            label: "Category Image",
-            "label-for": "image"
-          }
-        },
+        { attrs: { label: "Category Image", "label-for": "image" } },
         [
           _c(
             "b-row",
@@ -55373,34 +55412,20 @@ var render = function() {
                 "b-col",
                 { attrs: { sm: "6", cols: "12" } },
                 [
-                  _c("b-form-input", {
+                  _c("b-form-file", {
                     attrs: {
-                      id: "image",
-                      name: "image",
-                      placeholder: "Category Image",
-                      state: _vm.imageError,
-                      "aria-describedby": "image-feedback"
+                      placeholder: "Choose a file...",
+                      "drop-placeholder": "Drop file here...",
+                      name: "image"
                     },
                     model: {
-                      value: _vm.$v.form.image.$model,
+                      value: _vm.form.file,
                       callback: function($$v) {
-                        _vm.$set(_vm.$v.form.image, "$model", $$v)
+                        _vm.$set(_vm.form, "file", $$v)
                       },
-                      expression: "$v.form.image.$model"
+                      expression: "form.file"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "b-form-invalid-feedback",
-                    { attrs: { id: "image-feedback" } },
-                    [
-                      _vm._v(
-                        "\n          " +
-                          _vm._s(_vm.fromError.image) +
-                          "\n        "
-                      )
-                    ]
-                  )
+                  })
                 ],
                 1
               ),
@@ -55409,6 +55434,8 @@ var render = function() {
                 "b-col",
                 { attrs: { sm: "6", cols: "12" } },
                 [
+                  _c("span", [_vm._v("Old Image")]),
+                  _vm._v(" "),
                   !_vm.$v.form.image.$model
                     ? _c("b-img", {
                         attrs: {
@@ -55423,9 +55450,9 @@ var render = function() {
                   _vm.$v.form.image.$model
                     ? _c("b-img", {
                         attrs: {
-                          src: _vm.$v.form.image.$model,
+                          src: _vm._f("imageUrl")(_vm.$v.form.image.$model),
                           fluid: "",
-                          alt: "Category Image"
+                          alt: "Star Image"
                         }
                       })
                     : _vm._e()
@@ -55618,7 +55645,9 @@ var render = function() {
                             row.item.photos.length
                               ? _c("b-img", {
                                   attrs: {
-                                    src: row.item.photos[0].url,
+                                    src: _vm._f("imageUrl")(
+                                      row.item.photos[0].url
+                                    ),
                                     width: "64",
                                     alt: "placeholder"
                                   }
@@ -55903,13 +55932,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-form-group",
-        {
-          attrs: {
-            id: "example-input-group-2",
-            label: "Category Image",
-            "label-for": "image"
-          }
-        },
+        { attrs: { label: "Category Image", "label-for": "image" } },
         [
           _c(
             "b-row",
@@ -55918,36 +55941,22 @@ var render = function() {
                 "b-col",
                 { attrs: { sm: "6", cols: "12" } },
                 [
-                  _c("b-form-input", {
+                  _c("b-form-file", {
                     attrs: {
                       id: "image",
-                      name: "image",
-                      placeholder: "Category Image",
-                      state: _vm.$v.form.image.$dirty
-                        ? !_vm.$v.form.image.$error
-                        : null,
-                      "aria-describedby": "image-feedback"
+                      placeholder: "Choose a file...",
+                      "drop-placeholder": "Drop file here...",
+                      name: "image"
                     },
+                    on: { change: _vm.onFileChange },
                     model: {
-                      value: _vm.$v.form.image.$model,
+                      value: _vm.form.file,
                       callback: function($$v) {
-                        _vm.$set(_vm.$v.form.image, "$model", $$v)
+                        _vm.$set(_vm.form, "file", $$v)
                       },
-                      expression: "$v.form.image.$model"
+                      expression: "form.file"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "b-form-invalid-feedback",
-                    { attrs: { id: "image-feedback" } },
-                    [
-                      _vm._v(
-                        "\n          " +
-                          _vm._s(_vm.fromError.image) +
-                          "\n        "
-                      )
-                    ]
-                  )
+                  })
                 ],
                 1
               ),
@@ -55956,24 +55965,9 @@ var render = function() {
                 "b-col",
                 { attrs: { sm: "6", cols: "12" } },
                 [
-                  !_vm.$v.form.image.$model
+                  _vm.url
                     ? _c("b-img", {
-                        attrs: {
-                          blank: "",
-                          "blank-color": "#ccc",
-                          width: "64",
-                          alt: "placeholder"
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.$v.form.image.$model
-                    ? _c("b-img", {
-                        attrs: {
-                          src: _vm.$v.form.image.$model,
-                          fluid: "",
-                          alt: "Category Image"
-                        }
+                        attrs: { src: _vm.url, fluid: "", alt: "Video Image" }
                       })
                     : _vm._e()
                 ],
@@ -56222,7 +56216,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-form-group",
-        { attrs: { label: "Star Image", "label-for": "image" } },
+        { attrs: { label: "Video Image", "label-for": "image" } },
         [
           _c(
             "b-row",
@@ -56231,34 +56225,20 @@ var render = function() {
                 "b-col",
                 { attrs: { sm: "6", cols: "12" } },
                 [
-                  _c("b-form-input", {
+                  _c("b-form-file", {
                     attrs: {
-                      id: "image",
-                      name: "image",
-                      placeholder: "Star Image",
-                      state: _vm.imageError,
-                      "aria-describedby": "image-feedback"
+                      placeholder: "Choose a file...",
+                      "drop-placeholder": "Drop file here...",
+                      name: "image"
                     },
                     model: {
-                      value: _vm.$v.form.image.$model,
+                      value: _vm.form.file,
                       callback: function($$v) {
-                        _vm.$set(_vm.$v.form.image, "$model", $$v)
+                        _vm.$set(_vm.form, "file", $$v)
                       },
-                      expression: "$v.form.image.$model"
+                      expression: "form.file"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "b-form-invalid-feedback",
-                    { attrs: { id: "image-feedback" } },
-                    [
-                      _vm._v(
-                        "\n          " +
-                          _vm._s(_vm.fromError.image) +
-                          "\n        "
-                      )
-                    ]
-                  )
+                  })
                 ],
                 1
               ),
@@ -56267,6 +56247,8 @@ var render = function() {
                 "b-col",
                 { attrs: { sm: "6", cols: "12" } },
                 [
+                  _c("span", [_vm._v("Old Image")]),
+                  _vm._v(" "),
                   !_vm.$v.form.image.$model
                     ? _c("b-img", {
                         attrs: {
@@ -56281,7 +56263,7 @@ var render = function() {
                   _vm.$v.form.image.$model
                     ? _c("b-img", {
                         attrs: {
-                          src: _vm.$v.form.image.$model,
+                          src: _vm._f("imageUrl")(_vm.$v.form.image.$model),
                           fluid: "",
                           alt: "Star Image"
                         }
@@ -56430,7 +56412,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-form-group",
-        { attrs: { label: "Star Image", "label-for": "image" } },
+        { attrs: { label: "Video Image", "label-for": "image" } },
         [
           _c(
             "b-row",
@@ -56439,36 +56421,22 @@ var render = function() {
                 "b-col",
                 { attrs: { sm: "6", cols: "12" } },
                 [
-                  _c("b-form-input", {
+                  _c("b-form-file", {
                     attrs: {
                       id: "image",
-                      name: "image",
-                      placeholder: "Star Image",
-                      state: _vm.$v.form.image.$dirty
-                        ? !_vm.$v.form.image.$error
-                        : null,
-                      "aria-describedby": "image-feedback"
+                      placeholder: "Choose a file...",
+                      "drop-placeholder": "Drop file here...",
+                      name: "image"
                     },
+                    on: { change: _vm.onFileChange },
                     model: {
-                      value: _vm.$v.form.image.$model,
+                      value: _vm.form.file,
                       callback: function($$v) {
-                        _vm.$set(_vm.$v.form.image, "$model", $$v)
+                        _vm.$set(_vm.form, "file", $$v)
                       },
-                      expression: "$v.form.image.$model"
+                      expression: "form.file"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "b-form-invalid-feedback",
-                    { attrs: { id: "image-feedback" } },
-                    [
-                      _vm._v(
-                        "\n          " +
-                          _vm._s(_vm.fromError.image) +
-                          "\n        "
-                      )
-                    ]
-                  )
+                  })
                 ],
                 1
               ),
@@ -56477,24 +56445,9 @@ var render = function() {
                 "b-col",
                 { attrs: { sm: "6", cols: "12" } },
                 [
-                  !_vm.$v.form.image.$model
+                  _vm.url
                     ? _c("b-img", {
-                        attrs: {
-                          blank: "",
-                          "blank-color": "#ccc",
-                          width: "64",
-                          alt: "placeholder"
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.$v.form.image.$model
-                    ? _c("b-img", {
-                        attrs: {
-                          src: _vm.$v.form.image.$model,
-                          fluid: "",
-                          alt: "Star Image"
-                        }
+                        attrs: { src: _vm.url, fluid: "", alt: "Video Image" }
                       })
                     : _vm._e()
                 ],
@@ -56685,7 +56638,7 @@ var render = function() {
                           [
                             _c("b-img", {
                               attrs: {
-                                src: row.item.photos[0].url,
+                                src: _vm._f("imageUrl")(row.item.photos[0].url),
                                 width: "64",
                                 alt: "placeholder"
                               }

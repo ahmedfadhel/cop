@@ -39,7 +39,7 @@
       :filter="filter">
         <template slot="image" slot-scope="row">
            <b-media>
-              <b-img  :src="row.item.photos[0].url"  width="64" alt="placeholder"></b-img>
+              <b-img  :src="row.item.photos[0].url | imageUrl"  width="64" alt="placeholder"></b-img>
            </b-media>
         </template>
         <template slot="name" slot-scope="row">
@@ -214,8 +214,6 @@ export default {
             })
           }
         })
-
-
       }
     },
     filters:{
@@ -224,6 +222,10 @@ export default {
       },
       trimLength:function(val,length){
         return val.substr(0,length)+'...'
+      },
+      imageUrl:function(value){
+
+        return '/storage/stars/'+value
       }
     }
 }

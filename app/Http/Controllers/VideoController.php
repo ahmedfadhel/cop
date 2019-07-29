@@ -178,8 +178,6 @@ class VideoController extends Controller
 
 
       try {
-        //code...
-
         foreach($request->servers as $key => $value){
           $link = new Link;
           $link->server_name = $key;
@@ -362,9 +360,15 @@ class VideoController extends Controller
       if (Auth::check()) { //Check if User is Authenticated
 
         // Find the Video one
-        $video = Video::findOrFail($id);
+        $video = Video::findOrFail($id)->load('links','photos');
         try {
+          // Delete image from database and local storage
+          if(Storage::disk('local')->exists("public/videos\/".$video->photos[0]->url)){ //check if the old image are exists
+            Storage::disk('local')->delete("public/videos\/".$video->photos[0]->url); //Delete the old image
+          }
+          $video->photos()->whereId($video->photos[0]->id)->delete();
           //Delete the Video
+
           $video->delete();
           return response()->json([
                 'status'  => 'success',
