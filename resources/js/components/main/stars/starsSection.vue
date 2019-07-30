@@ -71,7 +71,7 @@ export default {
     },
     filteredStars:function(){
       if(this.searchStar){
-        let filtered = this.allStars.filter((star)=>star.name.includes(this.searchStar))
+        let filtered = this.allStars.filter((star)=>star.name.toLowerCase().includes(this.searchStar.toLowerCase()))
         return filtered
 
       }else{
