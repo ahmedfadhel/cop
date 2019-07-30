@@ -326,7 +326,7 @@
           maxLength: maxLength(100)
         },
         image:{
-          // required,
+          required,
 
         },
         length:{

@@ -80,13 +80,13 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-  import { required, minLength,maxLength,url } from 'vuelidate/lib/validators'
+  import { required, minLength,maxLength } from 'vuelidate/lib/validators'
 
   export default {
     mixins: [validationMixin],
     props:['errors','star'],
     mounted(){
-      console.log(this.errors)
+      console.log(this.$v)
       this.$v.form.name.$model = this.star.name
       this.$v.form.aliasName.$model = this.star.alias_name
       this.$v.form.gender.$model = this.star.gender
@@ -128,7 +128,6 @@ import { validationMixin } from 'vuelidate'
         },
         image:{
           required,
-          url
         },
         gender:{
           required,

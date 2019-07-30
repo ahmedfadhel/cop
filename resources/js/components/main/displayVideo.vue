@@ -148,7 +148,7 @@ export default {
       this.$store.dispatch('catUrl',value)
     },
     tagLink(value){
-      this.$store.dispatch('tagrUrl',value)
+      this.$store.dispatch('tagUrl',value)
     },
   },
 }
