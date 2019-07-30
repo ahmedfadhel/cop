@@ -31,6 +31,15 @@
     </script>
     <noscript><img src="https://certify.alexametrics.com/atrk.gif?account=mvcet1FYxz20cv" style="display:none" height="1" width="1" alt="" /></noscript>
     <!-- End Alexa Certify Javascript -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144191483-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-144191483-1');
+    </script>
 </head>
 <body>
 
