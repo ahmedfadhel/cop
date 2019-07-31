@@ -130,8 +130,8 @@ export const store  = new Vuex.Store({
 
       setJuicyAds(){
         let container = document.getElementById('juicy-ads');
-
-        if(!container.firstChild){
+        document.querySelectorAll('.leaderboard').forEach(ele=>{
+          if(!ele.firstChild){
           // Script one
           let script1 = document.createElement('script')
           script1.type="text/javascript"
@@ -150,11 +150,11 @@ export const store  = new Vuex.Store({
           ins.setAttribute('data-width','728')
           ins.setAttribute('data-height','102')
           // Append to parent
-          container.appendChild(script1)
-          container.appendChild(script2)
-          container.appendChild(ins)
-        }
-
+          ele.appendChild(script1)
+          ele.appendChild(script2)
+          ele.appendChild(ins)
+          }
+        })
       },
       // PopUp at top
       setJuicyPop(){
@@ -317,5 +317,6 @@ export const store  = new Vuex.Store({
     displayVideoUrl(context,payload){
       window.location.href = context.state.index+'/videos/'+payload
     },
+    // Ads Placeing methods
   }
 })

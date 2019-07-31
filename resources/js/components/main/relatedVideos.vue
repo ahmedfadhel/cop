@@ -1,5 +1,5 @@
 <template>
-  <div class="row mt-4 related-video">
+  <div class="row related-video">
     <div class="col-12">
         <b-card>
           <div slot="header">

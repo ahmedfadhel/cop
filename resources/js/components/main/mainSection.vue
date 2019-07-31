@@ -1,6 +1,7 @@
 <template>
-  <div class="container mt-4" v-if="appear">
-    <best-videos v-if="firstPage"></best-videos>
+  <div class="container mt-4">
+    <div id="juicy-ads" class="leaderboard mb-4"></div>
+    <best-videos v-if="firstPage" ></best-videos>
     <div class="row">
       <div class="col-12">
         <b-card
@@ -39,12 +40,9 @@ export default {
       })
     },
      mounted() {
-      // this.appear = true
       this.showCom()
       this.$store.commit('setJuicyAds')
       this.$store.commit('setJuicyPop')
-
-      //  console.log(loader)
     },
     data:()=>{
         return{
@@ -53,7 +51,6 @@ export default {
         }
     },
     components:{
-        // videoThumbnail,
         newVideos,
         bestVideos,
     },
@@ -71,7 +68,6 @@ export default {
           ele.parentNode.removeChild(ele)
         }
       }
-
     },
     computed:{
       firstPage(){

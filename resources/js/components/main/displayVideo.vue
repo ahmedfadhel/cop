@@ -1,6 +1,8 @@
 <template>
   <div class="container">
+    <div id="juicy-ads" class="leaderboard mt-4"></div>
     <div class="row">
+
       <div class="col-12">
         <b-card
           :header="display.title"
@@ -89,6 +91,7 @@
         </b-card>
       </div>
     </div>
+    <div id="juicy-ads" class="leaderboard  mt-4"></div>
     <div class="row">
       <div class="col-12">
         <related-videos

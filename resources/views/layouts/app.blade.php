@@ -86,8 +86,14 @@
     @endif
     <!-- Scripts -->
     <script src="{{ asset('js/main/app.js') }}" defer></script>
-    <div class="container ads" >
+    <div class="container ads mt-4" >
       <div id="juicy-ads" class="leaderboard "></div>
     </div>
+    {{-- PopCash script code --}}
+    <script type="text/javascript">
+      var wid = '504629';
+      var uid = '245388';
+  </script>
+  <script type="text/javascript" src="//cdn.popcash.net/pop.js"></script>
 </body>
 </html>

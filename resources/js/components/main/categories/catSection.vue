@@ -1,5 +1,6 @@
 <template>
-  <div class="container cat" v-if="appear">
+  <div class="container cat">
+    <div id="juicy-ads" class="leaderboard mt-4"></div>
     <div class="row">
       <div class="col-12">
         <b-card
