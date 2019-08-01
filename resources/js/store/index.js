@@ -98,7 +98,7 @@ export const store  = new Vuex.Store({
         state.variant = payload.variant
       },
       setPageTitle(state,payload){
-        document.title = payload
+        document.title = payload + ' - Pornezium.com'
       },
       setPageKeywords(state,payload){
         let keywords = payload.map(x=>x.name).join();

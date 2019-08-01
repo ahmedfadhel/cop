@@ -111,7 +111,9 @@ export default {
   mounted(){
     this.searchTags = this.display.tags
     this.tag = this.display.tags[Math.floor(Math.random() * this.display.tags.length)].name
-
+    this.$store.commit('setPageKeywords',this.display.tags)
+    this.$store.commit('setPageDescription',this.display.description)
+    this.$store.commit('setPageTitle',this.display.title)
      this.showCom()
      if(this.tag){
       this.$store.dispatch('fetchRelatedVideo',this.tag)
