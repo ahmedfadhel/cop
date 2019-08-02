@@ -35,7 +35,7 @@
       stacked="sm"
       :items="categories"
       :fields="fields"
-      per-page="5"
+      per-page="15"
       :current-page="currentPage"
       @filtered="onFiltered"
       :filter="filter">
