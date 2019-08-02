@@ -72,7 +72,7 @@
       <b-pagination
         v-model="currentPage"
         :total-rows="totalRows"
-        per-page="5"
+        per-page="15"
       ></b-pagination>
     </b-col>
   </b-row>
