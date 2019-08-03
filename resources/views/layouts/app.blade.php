@@ -11,11 +11,14 @@
     <meta name="description" content="Pornezium.com is free pornpgraphic site provides thousands of premium porn scenes for free.">
 
     {{-- Meta Keywords  --}}
-    {{-- <meta name="keywords" content="Free Porn, Free Premium Pron,Amature,Milf,Asian,Hardcore,Family,Teen,Ebony,Big Cock, Big Tits,Mother"> --}}
     <meta name="keywords" content="lesbian, japanese,milf,ebony,hentai,anal,mature,thressome,big tits,big dick,amateur,teen,creampie,cartoon,babe,indian,gangbang,step mom,latina,big ass, black,ebony milf,anime,bbw,interracial">
     {{-- juicyads site meta --}}
     <meta name="juicyads-site-verification" content="24b72af007bdd090cca2d95122315685">
+    {{-- Yandex Serach Engine Verifcation Meta --}}
+    <meta name="yandex-verification" content="f7d79cbe0666e3ea" />
 
+    {{-- Bing Search Engine Verifcation Meta --}}
+    <meta name="msvalidate.01" content="2C79DF7E8AEB0E4D3200C6D37CBA435F" />
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
