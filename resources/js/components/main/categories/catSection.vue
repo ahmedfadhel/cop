@@ -35,6 +35,7 @@
             <div class="mt-4" style="margin:auto">
               <div class="col-12">
                 <b-pagination-nav
+                  v-model="pageNumber"
                   :link-gen="linkGen"
                   :number-of-pages="totalPages"
                   @input='viewChange'
@@ -63,9 +64,13 @@ export default {
   },
   data:()=>{
     return {
+      pageNumber:null,
       searchedCat:null,
       appear:false,
       totalPages:null,
+      numberOfDisplay:16,
+      start:0,
+      size:0,
     }
   },
   methods: {
@@ -80,7 +85,8 @@ export default {
       return pageNum === 1 ? '?' : `?page=${pageNum}`
     },
     viewChange(change){
-      this.$store.dispatch('fetchAllCats',change)
+      this.start = this.numberOfDisplay * (change-1)
+      this.size = this.numberOfDisplay * change
     },
   },
   computed: {
@@ -89,10 +95,15 @@ export default {
     },
     filteredCats:function(){
       if(this.searchedCat){
+        this.pageNumber = 1
         let filtered = this.cats.filter((cat)=>cat.name.toLowerCase().includes(this.searchedCat.toLowerCase()))
-        return filtered
+
+        return filtered.slice(this.start,this.size)
       }else{
-        return this.cats
+        if(this.cats){
+          return this.cats.slice(this.start,this.size)
+        }
+
       }
     }
   },

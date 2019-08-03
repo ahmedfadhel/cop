@@ -32,7 +32,7 @@ import headerSection from './components/general/headerSection.vue'
 import displayVideoSection from './components/main/displayVideo.vue'
 
 // Import Main Section Vue Compoenent End
-Vue.config.devtools = false
+Vue.config.devtools = true
 const app = new Vue({
     el: '#app',
     store,

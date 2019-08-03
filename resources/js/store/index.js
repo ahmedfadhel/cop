@@ -240,12 +240,20 @@ export const store  = new Vuex.Store({
     fetchAllCats(context,payload){
       return new Promise((resolve,reject)=>{
         context.state.catPage = payload || 1
-        axios.get(context.state.api+'allcats?page='+context.state.catPage).then((res)=>{
+        // axios.get(context.state.api+'allcats?page='+context.state.catPage).then((res)=>{
+        axios.get(context.state.api+'allcats').then((res)=>{
           if(res.data.status === 'success'){
-            context.commit('setAllCats',res.data.cats.data)
-            resolve({
-              total:res.data.cats.last_page
-            })
+            context.commit('setAllCats',res.data.cats)
+            if(res.data.cats.length < 16){
+              resolve({
+                total:1
+              })
+            }else{
+              resolve({
+                total:res.data.cats.length%16
+              })
+            }
+
           }
         })
       })
@@ -270,13 +278,18 @@ export const store  = new Vuex.Store({
     fetchAllStars(context,payload){
       return new Promise((resolve,reject)=>{
         context.state.starPage = payload || 1
-        axios.get(context.state.api+'allstars?page='+context.state.starPage)
+        // axios.get(context.state.api+'allstars?page='+context.state.starPage)
+        axios.get(context.state.api+'allstars')
           .then((res)=>{
           if(res.data.status === 'success'){
-            console.log(res.data)
-            context.commit('setAllStars',res.data.stars.data)
+            context.commit('setAllStars',res.data.stars)
+            if(res.data.stars.length < 16){
+              resolve({
+                total:1
+              })
+            }
             resolve({
-              total:res.data.stars.last_page
+              total:res.data.stars.length%16
             })
           }
         });

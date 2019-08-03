@@ -34,6 +34,7 @@
             <div class="mt-4" style="margin:auto">
               <div class="col-12">
                 <b-pagination-nav
+                  v-model="pageNumber"
                   :link-gen="linkGen"
                   :number-of-pages="totalPages"
                   @input='viewChange'
@@ -61,9 +62,13 @@ export default {
   },
   data() {
     return {
+      pageNumber:null,
       appear:null,
       searchStar:null,
-      totalPages:null
+      totalPages:null,
+      numberOfDisplay:16,
+      size:0,
+      start:0,
     }
   },
   computed:{
@@ -71,13 +76,20 @@ export default {
       return this.$store.getters.getAllStars
     },
     filteredStars:function(){
+
       if(this.searchStar){
-        let filtered = this.allStars.filter((star)=>star.name.toLowerCase().includes(this.searchStar.toLowerCase()))
-        return filtered
+        this.pageNumber =1
+        let filtered = this.allStars.filter((star)=>{
+          if(star.name.toLowerCase().includes(this.searchStar.toLowerCase())){
+            return star
+          }
+          })
+        return filtered.slice(this.start,this.size)
 
       }else{
-
-        return this.allStars
+        if(this.allStars){
+          return this.allStars.slice(this.start,this.size)
+        }
       }
     },
   },
@@ -93,7 +105,8 @@ export default {
       return pageNum === 1 ? '?' : `?page=${pageNum}`
     },
     viewChange(change){
-      this.$store.dispatch('fetchAllStars',change)
+      this.start = this.numberOfDisplay * (change-1)
+      this.size = this.numberOfDisplay * change
     },
 
   },

@@ -25,7 +25,7 @@ class StarController extends Controller
 
   public function allstars()
   {
-    $stars = Star::orderBy('name', 'ASC')->with(['photos'])->paginate(8);
+    $stars = Star::orderBy('name', 'ASC')->with(['photos'])->get();
     return response()->json([
       'stars'    => $stars,
       'status'  => 'success'
