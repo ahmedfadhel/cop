@@ -21,4 +21,7 @@ class Category extends Model
     public function photos(){
       return $this->belongsToMany('App\Photo');
     }
+    public function albums(){
+      return $this->belongsToMany('App\Album');
+    }
 }

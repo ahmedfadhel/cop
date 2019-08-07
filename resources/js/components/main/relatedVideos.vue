@@ -17,8 +17,8 @@
             </div>
           </div>
           <div class="row">
-              <div class="col-6 col-sm-6 col-md-4 col-lg-3" v-for="(video,index) in relatedVideo" :key="index" >
-                <video-thumbnail :video="video"></video-thumbnail>
+              <div class="col-6 col-sm-6 col-md-4" v-for="(video,index) in relatedVideo" :key="index" >
+                <video-thumbnail :video="video" ></video-thumbnail>
               </div>
           </div>
         </b-card>
@@ -30,6 +30,9 @@
 import videoThumbnail from './videoThumbnail.vue'
 export default {
   props:['tags'],
+  mounted() {
+     this.$store.dispatch('squerJuicyAda')
+  },
     data:()=>{
         return{
 
@@ -51,9 +54,7 @@ export default {
         let tag = this.tags[Math.floor(Math.random() * this.tags.length)]
         this.$store.dispatch('fetchRelatedVideo',tag.name)
       },
-
     }
-
 }
 </script>
 

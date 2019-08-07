@@ -136,8 +136,8 @@ body{
           margin-bottom:0px;
           text-align: center;
           font-size: 1rem;
-          height: 3rem;
-          line-height: 1.5rem;
+          height: 2rem;
+          line-height: 2rem;
           overflow: hidden;
       }
     }
@@ -191,6 +191,41 @@ body{
     }
   }
 }
+.album{
+  img{
+    height: 300px;
+  }
+  .card-img-overlay {
+    position: absolute;
+    top:inherit;
+    padding: 0.7rem 0rem;
+    text-align: center;
+    background: #fa93bbe3;
+    // letter-spacing: 0.2rem;
+    a{
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold
+    }
+  }
+}
+.ad{
+  transform: scale(0.9);
+  &.second-ad{
+    padding-right: 0.1rem 0.1rem
+  }
+  &.third-ad{
+    padding-right: 0.1rem 0.1rem
+  }
+  &.mobile-ad{
+    display: flex;
+    &>iframe{
+      margin: auto
+
+    }
+  }
+}
 // Pagination video style
 .page-item.active .page-link {
   color: $fontColor;
@@ -238,6 +273,17 @@ body{
   .nav-link{
     width: 100%
   }
+  .album {
+    img{
+      height: 150px;
+    }
+    .card-img-overlay{
+      padding: 0px;
+      a{
+        font-weight: normal;
+      }
+    }
+  }
 }
 @include media-breakpoint-between(xs,sm){
   .card{
@@ -280,13 +326,28 @@ body{
 
   }
 }
+@include media-breakpoint-only(sm){
+  .album {
+    img{
+      height: 250px;
+    }
+    // .card-img-overlay{
+    //   padding: 0px;
+    //   a{
+    //     font-weight: normal;
+    //   }
+    // }
+  }
+}
 @include media-breakpoint-only(xl){
   .video{
     .card-footer{
       .info{
+        display: flex;
         .info_item{
           margin-left: 0px;
           padding-right: 3.5px;
+          margin: auto;
           &:not(:first-of-type){
             margin-left: 0px
           }
@@ -313,6 +374,32 @@ body{
       }
     }
   }
+}
+@include media-breakpoint-only(md){
+ .ad{
+   display: flex;
+   &.first-ad{
+     transform:scale(0.75);
+   }
+   &.second-ad{
+    transform:scale(0.75);
+   }
+   &.third-ad{
+    transform:scale(0.75);
+   }
+ }
+ .album {
+  img{
+    height: 250px;
+  }
+  // .card-img-overlay{
+  //   padding: 0px;
+  //   a{
+  //     font-weight: normal;
+  //   }
+  // }
+}
+
 }
 @include media-breakpoint-between(sm,md){
   .card-footer {

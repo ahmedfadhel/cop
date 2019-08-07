@@ -16,4 +16,7 @@ class Photo extends Model
   public function videos(){
     return $this->belongsToMany('App\Video');
   }
+  public function albums(){
+    return $this->belongsToMany('App\Album');
+  }
 }

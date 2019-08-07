@@ -1,7 +1,7 @@
 require('./bootstrap');
 import Vue from 'vue'
 // import BootstrapVue from 'bootstrap-vue'
-import { VBTooltipPlugin,NavbarPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,TabsPlugin } from 'bootstrap-vue'
+import { VBTooltipPlugin,NavbarPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,TabsPlugin,CarouselPlugin } from 'bootstrap-vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import {store} from './store/index'
@@ -17,7 +17,10 @@ Vue.use(PaginationNavPlugin)
 Vue.use(EmbedPlugin)
 Vue.use(TabsPlugin)
 Vue.use(NavbarPlugin)
+Vue.use(CarouselPlugin)
 Vue.use(VueRouter)
+
+
 const router = new VueRouter({
     mode: 'history',
     routes,
@@ -30,6 +33,7 @@ const router = new VueRouter({
 import mainSection from './components/main/mainSection.vue'
 import headerSection from './components/general/headerSection.vue'
 import displayVideoSection from './components/main/displayVideo.vue'
+import displayAlbumSection from './components/main/albums/displayAlbumSection.vue'
 
 // Import Main Section Vue Compoenent End
 Vue.config.devtools = true
@@ -41,6 +45,7 @@ const app = new Vue({
       // General Section Component
       mainSection,
       headerSection,
-      displayVideoSection
+      displayVideoSection,
+      displayAlbumSection
     }
 });

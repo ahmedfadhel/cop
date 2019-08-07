@@ -2,12 +2,10 @@
   <div class="container">
     <div id="juicy-ads" class="leaderboard mt-4"></div>
     <div class="row">
-
-      <div class="col-12">
+      <div class="col-12 col-xl-10 mt-4">
         <b-card
           :header="display.title"
           header-tag="header"
-          class="mt-4"
         >
           <b-tabs content-class="mt-3">
             <b-tab v-for="(link,index) in display.links" :key="index"
@@ -90,13 +88,53 @@
           </b-tabs>
         </b-card>
       </div>
+       <div class="col-12 col-xl-2 mt-4">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-xl-12">
+            <div class="ad first-ad d-none d-sm-block">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-xl-12 d-none d-sm-block">
+            <div class="ad second-ad ">
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-xl-12 d-none d-sm-none d-md-block">
+            <div class="ad third-ad">
+            </div>
+          </div>
+          <div class="col-12 d-xl-none">
+            <div class="ad mobile-ad">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="juicy-ads" class="leaderboard  mt-4"></div>
+    <div id="juicy-ads " class="leaderboard  d-none d-xl-block mt-4"></div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-xl-10">
         <related-videos
           :tags="searchTags"
         ></related-videos>
+      </div>
+      <div class="col-12 col-xl-2">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-xl-12">
+            <div class="ad first-ad d-none d-sm-block">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-xl-12 d-none d-sm-block">
+            <div class="ad second-ad ">
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-xl-12 d-none d-sm-none d-md-block">
+            <div class="ad third-ad">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -120,6 +158,11 @@ export default {
      }
       this.$store.commit('setJuicyAds')
       this.$store.commit('setJuicyPop')
+      this.$store.dispatch('squerJuicyAda')
+      this.$store.dispatch('squerJuicyAdb')
+      this.$store.dispatch('squerJuicyAdc')
+      // this.$store.dispatch('smallJuicyAd')
+      this.$store.dispatch('mobileJuicyAd')
   },
   data:()=>{
     return {

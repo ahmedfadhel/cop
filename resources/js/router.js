@@ -6,6 +6,7 @@ import catSection from './components/main/categories/catSection.vue'
 import catVideoSection from './components/main/categories/catVideoSection.vue'
 import starsSection from './components/main/stars/starsSection.vue'
 import starVideoSection from './components/main/stars/starVideoSection.vue'
+import albumsSection from './components/main/albums/albumsSection.vue'
 const routes = [
   {
     path:'/',
@@ -41,6 +42,11 @@ const routes = [
     path:'/pornstars/:star/videos',
     name:'starVideos',
     component:starVideoSection
+  },
+  {
+    path:'/albums',
+    name:'albums',
+    component:albumsSection
   },
   {
     path: "*",

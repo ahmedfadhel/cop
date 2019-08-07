@@ -20,7 +20,8 @@
     {{-- Bing Search Engine Verifcation Meta --}}
     <meta name="msvalidate.01" content="2C79DF7E8AEB0E4D3200C6D37CBA435F" />
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    {{-- adz2you Ads Network Verifcation Meta --}}
+    <meta name="adz2younet-site-verification" content="9a2565ce21b86a541859f46fb46c653d">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -72,6 +73,7 @@
     </div>
     {{-- Footer Section Start --}}
     @include('includes.footer')
+
     {{-- Footer Section End --}}
     @if (session()->has('image'))
         <div class="container" style="display:none">
@@ -87,6 +89,20 @@
           </div>
         </div>
     @endif
+    @if (session()->has('poster'))
+    <div class="container" style="display:none">
+      <div class="row">
+        <div class="col-12">
+
+          {{-- <div class="text-center">
+
+              <span>Video Thumbnail</span> --}}
+              <img src="/storage/posters/{{Session::get('poster')}}" class="img-fluid mt-4">
+          {{-- </div> --}}
+        </div>
+      </div>
+    </div>
+@endif
     <!-- Scripts -->
     <script src="{{ asset('js/main/app.js') }}" defer></script>
     <div class="container ads mt-4" >

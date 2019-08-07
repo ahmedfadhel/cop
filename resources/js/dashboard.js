@@ -30,9 +30,14 @@ import dashboardEditTagFormSection from './components/dashboard/tags/dashboardEd
  import dashboardStarsSection from './components/dashboard/stars/dashboardStarsSection.vue'
  import dashboardStarsFormSection from './components/dashboard/stars/dashboardStarsFormSection.vue'
  import dashboardStarsEditFormSection from './components/dashboard/stars/dashboardStarsEditFormSection.vue'
+
+//  Dashboard Album Section
+import dashboardAlbumsSection from './components/dashboard/albums/dashboardAlbumsSection.vue'
+import dashboardAlbumsFormSection from './components/dashboard/albums/dashboardAlbumsFormSection.vue'
+import dashboardAlbumsEditFormSection from './components/dashboard/albums/dashboardAlbumsEditFormSection.vue'
  // Dashboard Statistics Section
  import dashboardStatsSection from './components/dashboard/stats/dashboardStatsSection'
- Vue.config.devtools = false
+ Vue.config.devtools = true
  const app = new Vue({
   el: '#app',
   store,
@@ -51,6 +56,9 @@ import dashboardEditTagFormSection from './components/dashboard/tags/dashboardEd
     dashboardStarsSection,
     dashboardStarsFormSection,
     dashboardStarsEditFormSection,
-    dashboardStatsSection
+    dashboardStatsSection,
+    dashboardAlbumsSection,
+    dashboardAlbumsFormSection,
+    dashboardAlbumsEditFormSection
   }
 });

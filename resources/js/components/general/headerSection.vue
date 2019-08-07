@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="sm" variant="info">
+    <b-navbar toggleable="md" variant="info">
       <div class="container">
         <b-navbar-brand href="/">
           <img src="/images/logo2.png" alt="Pornezium.com">
@@ -11,6 +11,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item href="/" active-class="active">Videos</b-nav-item>
           <b-nav-item href="/pornstars" active-class="active">Pornstars</b-nav-item>
+          <b-nav-item href="/albums" active-class="active">Photos</b-nav-item>
           <b-nav-item href="/category" active-class="active">Category</b-nav-item>
           <b-nav-item href="/tags" active-class="active">Tags</b-nav-item>
         </b-navbar-nav>
@@ -32,11 +33,14 @@ export default {
       case 'pornstars':
         document.querySelectorAll('.nav-link')[1].classList.add('active')
         break;
-      case 'category':
+      case 'albums':
         document.querySelectorAll('.nav-link')[2].classList.add('active')
         break;
-      case 'tags':
+      case 'category':
         document.querySelectorAll('.nav-link')[3].classList.add('active')
+        break;
+      case 'tags':
+        document.querySelectorAll('.nav-link')[4].classList.add('active')
         break;
       default:
         break;

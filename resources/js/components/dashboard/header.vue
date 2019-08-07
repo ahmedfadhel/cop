@@ -12,6 +12,7 @@
           <b-nav-item href="/admin/stars" :active="stars" >Stars</b-nav-item>
           <b-nav-item href="/admin/tags" :active="tags" >Tags</b-nav-item>
           <b-nav-item href="/admin/category" :active="category" >Categories</b-nav-item>
+          <b-nav-item href="/admin/album" :active="album" >Albums</b-nav-item>
 
 
         </b-navbar-nav>
@@ -74,12 +75,13 @@ export default {
 
 
           break;
-        case 'sitemap':
+        case 'album':
           this.category = false
           this.videos = false
           this.stars = false
           this.tags = false
           this.stats = false
+          this.album = true
           break;
         default:
           break;
@@ -94,6 +96,7 @@ export default {
       tags:false,
       category:false,
       stats:false,
+      album:false
     }
   },
   methods:{
