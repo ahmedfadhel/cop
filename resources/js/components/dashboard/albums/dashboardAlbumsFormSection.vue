@@ -156,7 +156,7 @@
           poster: null,
         },
         fromError:{
-          title:'This is a required field and must be between 2 and 10',
+          title:'This is a required field and must be between 3 and 150',
           poster: 'This is a required field',
 
         }
@@ -167,7 +167,7 @@
         title: {
           required,
           minLength: minLength(3),
-          maxLength: maxLength(100)
+          maxLength: maxLength(150)
         },
         poster:{
           required
