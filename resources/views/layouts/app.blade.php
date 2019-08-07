@@ -106,12 +106,12 @@
     </div>
     <div class="container">
       <!-- Start JuicyAds Float Ad -->
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-12">
           <script type="text/javascript">juicy_adzone = '783228';</script>
           <script type="text/javascript" src="https://adserver.juicyads.com/js/jfc.js" charset="utf-8"></script>
         </div>
-      </div>
+      </div> --}}
       <!-- End JuicyAds Float Ad -->
     </div>
     {{-- PopCash script code --}}
