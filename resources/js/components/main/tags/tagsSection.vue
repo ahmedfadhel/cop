@@ -43,7 +43,6 @@ export default {
     this.showCom()
     this.$store.dispatch('fetchAllTags')
     this.$store.commit('setJuicyAds')
-    this.$store.commit('setJuicyPop')
   },
   data:()=>{
     return{

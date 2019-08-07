@@ -57,7 +57,6 @@ export default {
     })
     this.showCom()
     this.$store.commit('setJuicyAds')
-    this.$store.commit('setJuicyPop')
 
   },
   data() {

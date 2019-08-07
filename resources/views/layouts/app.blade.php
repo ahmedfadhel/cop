@@ -46,10 +46,6 @@
     </script>
 </head>
 <body>
-
-    <div id="juicy-pop">
-
-    </div>
     <div class="loader" :disable="disable">
       <div class="dot"></div>
       <div class="dot"></div>
@@ -108,6 +104,10 @@
     <div class="container ads mt-4" >
       <div id="juicy-ads" class="leaderboard "></div>
     </div>
+    <!-- Start JuicyAds Float Ad -->
+    <script type="text/javascript">juicy_adzone = '783221';</script>
+    <script type="text/javascript" src="https://adserver.juicyads.com/js/jfc.js" charset="utf-8"></script>
+    <!-- End JuicyAds Float Ad -->
     {{-- PopCash script code --}}
     <script type="text/javascript">
       var wid = '504629';

@@ -168,13 +168,6 @@ export const store  = new Vuex.Store({
           ele.appendChild(ins)
           }
         })
-      },
-      // PopUp at top
-      setJuicyPop(){
-        let script = document.createElement('script')
-        script.type = "text/javascript"
-        script.src = "https://js.juicyads.com/jp.php?c=348423x2x264u4q2r2e4238414&u=http%3A%2F%2Fwww.juicyads.rocks"
-        document.getElementById('juicy-pop').appendChild(script)
       }
     },
     actions:{

@@ -60,7 +60,6 @@ export default {
   mounted(){
     this.showCom()
     this.$store.commit('setJuicyAds')
-    this.$store.commit('setJuicyPop')
   },
   data:()=>{
     return {

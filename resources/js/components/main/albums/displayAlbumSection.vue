@@ -152,7 +152,6 @@ export default {
   mounted() {
     this.showCom()
     this.$store.commit('setJuicyAds')
-    this.$store.commit('setJuicyPop')
     this.$store.dispatch('squerJuicyAda')
     this.$store.dispatch('squerJuicyAdb')
     this.$store.dispatch('squerJuicyAdc')
