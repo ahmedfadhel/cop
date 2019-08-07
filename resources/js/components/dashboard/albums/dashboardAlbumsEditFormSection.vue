@@ -182,7 +182,7 @@ export default {
       title: {
         required,
         minLength: minLength(3),
-        maxLength: maxLength(30)
+        maxLength: maxLength(100)
       },
       poster:{
         required

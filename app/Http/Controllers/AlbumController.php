@@ -98,7 +98,7 @@ class AlbumController extends Controller
 
       // Validation Rule Section
       $validator = Validator::make($request->all(), [
-        'title'                                   =>  'required|min:3|max:30|string|unique:albums',
+        'title'                                   =>  'required|min:3|max:100|string|unique:albums',
         'poster'                                  =>  'required|image|mimes:jpeg,bmp,png|max:2048',
         'tags'                                    =>  'required|array',
         'cats'                                    =>  'required|array',
@@ -202,7 +202,7 @@ class AlbumController extends Controller
       // dd($album);
       // Validation Rule Section
       $validator = Validator::make($request->all(), [
-        'title'                                   =>  'required|min:3|max:30|string|unique:albums,title,'.$album,
+        'title'                                   =>  'required|min:3|max:100|string|unique:albums,title,'.$album,
         'poster'                                  =>  'required|image|mimes:jpeg,bmp,png|max:2048',
         'tags'                                    =>  'required|array',
         'cats'                                    =>  'required|array',
