@@ -114,6 +114,11 @@
       </div> --}}
       <!-- End JuicyAds Float Ad -->
     </div>
+    {{-- adsterra popunder script --}}
+    <script
+      type='text/javascript'
+      src='//pl15091678.pvclouds.com/ea/30/30/ea30309bac0150dc4bd3e8a9e593fde2.js'
+    ></script>
     {{-- PopCash script code --}}
     <script type="text/javascript">
       var wid = '504629';

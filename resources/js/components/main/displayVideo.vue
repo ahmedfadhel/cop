@@ -28,6 +28,7 @@
               </div>
               <div class="row">
                 <div class="col-12 col-md-4" >
+
                   <p >
                     <strong>
                       Stars:
@@ -196,6 +197,21 @@ export default {
     tagLink(value){
       this.$store.dispatch('tagUrl',value)
     },
+    // download:function(){
+    //   axios.get('https://api.verystream.com/file/dlticket?file=GkUJYfw11A3').then(res=>{
+    //     if(res.data.status ===200){
+    //       console.log(res.data)
+    //       let captha = {
+    //         captcha_url: res.data.result.captcha_url,
+    //         captcha_w: res.data.result.captcha_w,
+    //         captcha_h: res.data.result.captcha_h,
+    //       }
+    //       axios.get('https://api.verystream.com/file/dl?file=GkUJYfw11A3&ticket='+res.data.result.ticket+'&captcha_response='+captha).then(res=>{
+    //         console.log(res.data)
+    //       })
+    //     }
+    //   })
+    // }
   },
 }
 </script>
