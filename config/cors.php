@@ -13,14 +13,17 @@ return [
     */
 
     'supportsCredentials' => false,
-    'allowedOrigins' => ['*'],
+    'allowedOrigins' => [
+      'www.pornzium.com',
+      'pornezium.com'
+    ],
     // 'allowedOriginsPatterns' => [],
     'allow_headers' => [
       'Content-Type',
       'X-Auth-Token',
       'Origin',
       'Authorization',
-      'X-CSRF-Token',
+      'X-CSRF-TOKEN',
       'X-Requested-With'
       ],
     'allowedMethods' => ['GET', 'POST', 'PUT','Delete'],
