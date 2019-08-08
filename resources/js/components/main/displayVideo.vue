@@ -265,6 +265,8 @@ export default {
     download:function(){
       this.captcha.failed = null
       this.captcha.message = null
+      delete axios.defaults.headers.common["X-CSRF-TOKEN"];
+      delete axios.defaults.headers.common["X-Requested-With"];
       axios.get('https://api.verystream.com/file/dlticket?file='+this.fileID).then(res=>{
         if(res.data.status ===200){
           this.$refs['captcha'].show()
@@ -286,7 +288,11 @@ export default {
           }
         })
       }
-
+      window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+      token = document.head.querySelector('meta[name="csrf-token"]');
+      if (token) {
+          window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+      }
     },
   },
 }
