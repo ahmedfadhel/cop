@@ -104,6 +104,11 @@
     <div class="container ads mt-4" >
       <div id="juicy-ads" class="leaderboard"></div>
     </div>
+    {{-- Adstarra Webpush ad --}}
+    <script
+      async
+      src='//www.modulepush.com/e6b15d9d34ab3784957482a6bb06d903/invoke.js'
+    ></script>
     {{-- PopCash script code --}}
     <script type="text/javascript">
       var wid = '504629';
