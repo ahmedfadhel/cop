@@ -42,9 +42,9 @@
                             </span>
                           </p>
                         </div>
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                           <button class="btn btn-outline-secondary float-right" @click="download" v-if="allowDownload">Download</button>
-                        </div>
+                        </div> -->
                       </div>
 
                     </div>
@@ -154,7 +154,7 @@
         </div>
       </div>
     </div>
-    <b-modal ref="captcha" hide-footer>
+    <!-- <b-modal ref="captcha" hide-footer>
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -179,7 +179,7 @@
           </div>
         </div>
       </div>
-    </b-modal>
+    </b-modal> -->
   </div>
 </template>
 
@@ -262,38 +262,59 @@ export default {
     tagLink(value){
       this.$store.dispatch('tagUrl',value)
     },
-    download:function(){
-      this.captcha.failed = null
-      this.captcha.message = null
-      delete axios.defaults.headers.common["X-CSRF-TOKEN"];
-      delete axios.defaults.headers.common["X-Requested-With"];
-      axios.get('https://api.verystream.com/file/dlticket?file='+this.fileID).then(res=>{
-        if(res.data.status ===200){
-          this.$refs['captcha'].show()
-          this.captcha.image = res.data.result.captcha_url
-          this.captcha.ticket = res.data.result.ticket
-        }
-      })
-    },
-    submitDownload:function(){
-      if(this.captcha.value){
-        axios.get('https://api.verystream.com/file/dl?file='+this.fileID+'&ticket='+this.captcha.ticket+'&captcha_response='+this.captcha.value).then(res=>{
-          if(res.data.status === 200){
-            window.open(res.data.result.url,'_blank')
-            this.captcha.success = true
-            this.$refs['captcha'].hide()
-          }else{
-            this.captcha.failed = true
-            this.captcha.message = res.data.msg
-          }
-        })
-      }
-      window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-      token = document.head.querySelector('meta[name="csrf-token"]');
-      if (token) {
-          window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-      }
-    },
+    // download:function(){
+    //   this.captcha.failed = null
+    //   this.captcha.message = null
+    //   delete axios.defaults.headers.common["X-CSRF-TOKEN"];
+    //   delete axios.defaults.headers.common["X-Requested-With"];
+    //   axios.get('https://api.verystream.com/file/dlticket?file='+this.fileID+'&key=7e8c2494c84ee7d22ff7').then(res=>{
+    //     if(res.data.status ===200){
+    //       this.$refs['captcha'].show()
+    //       this.captcha.image = res.data.result.captcha_url
+    //       this.captcha.ticket = res.data.result.ticket
+    //     }
+    //   })
+    // },
+    // submitDownload:function(){
+    //   if(this.captcha.value){
+    //     delete axios.defaults.headers.common["X-CSRF-TOKEN"];
+    //     delete axios.defaults.headers.common["X-Requested-With"];
+    //     // axios.get('https://api.verystream.com/file/dl?file='+this.fileID+'&ticket='+this.captcha.ticket+'&captcha_response='+this.captcha.value,{
+    //     //   method:'get',
+    //     //   headers: {
+    //     //     'Access-Control-Allow-Origin': '*',
+    //     //     'Content-Type': 'application/json',
+    //     //   },
+    //     // })
+    //      window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    //     axios({
+    //       method: 'get',
+    //       url: 'https://api.verystream.com/file/dl?file=GkUJYfw11A3&ticket=GkUJYfw11A3~~1565271329~def~fjMT6NOBKz7X1nk8~0~xBZJSyYfEdVcWIjk&captcha_response=pghs',
+
+    //         headers:{
+    //           'Access-Control-Allow-Origin':'verystream.com'
+    //         }
+
+
+    //     }).then(res=>{
+    //       if(res.data.status === 200){
+    //         // window.open(res.data.result.url,'_blank')
+    //         window.location.href = res.data.result.url
+    //         this.captcha.success = true
+    //         this.$refs['captcha'].hide()
+
+    //           token = document.head.querySelector('meta[name="csrf-token"]');
+    //           if (token) {
+    //               window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    //           }
+    //       }else{
+    //         this.captcha.failed = true
+    //         this.captcha.message = res.data.msg
+    //       }
+    //     })
+    //   }
+
+    // },
   },
 }
 </script>

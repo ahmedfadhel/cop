@@ -13,10 +13,7 @@ return [
     */
 
     'supportsCredentials' => false,
-    'allowedOrigins' => [
-      'www.pornzium.com',
-      'pornezium.com'
-    ],
+    'allowedOrigins' => ['*'],
     // 'allowedOriginsPatterns' => [],
     'allow_headers' => [
       'Content-Type',
