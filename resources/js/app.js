@@ -1,7 +1,7 @@
 require('./bootstrap');
 import Vue from 'vue'
 // import BootstrapVue from 'bootstrap-vue'
-import { VBTooltipPlugin,NavbarPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,TabsPlugin,CarouselPlugin } from 'bootstrap-vue'
+import { VBTooltipPlugin,NavbarPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,TabsPlugin,CarouselPlugin,ModalPlugin } from 'bootstrap-vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import {store} from './store/index'
@@ -18,6 +18,7 @@ Vue.use(EmbedPlugin)
 Vue.use(TabsPlugin)
 Vue.use(NavbarPlugin)
 Vue.use(CarouselPlugin)
+Vue.use(ModalPlugin)
 Vue.use(VueRouter)
 
 
@@ -36,7 +37,7 @@ import displayVideoSection from './components/main/displayVideo.vue'
 import displayAlbumSection from './components/main/albums/displayAlbumSection.vue'
 
 // Import Main Section Vue Compoenent End
-Vue.config.devtools = true
+Vue.config.devtools = false
 const app = new Vue({
     el: '#app',
     store,

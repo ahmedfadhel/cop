@@ -25,34 +25,50 @@
                 <div class="col-12">
                   <h1 class="text-center mt-3 video-title">{{display.title}}</h1>
                 </div>
+
               </div>
               <div class="row">
-                <div class="col-12 col-md-4" >
+                <div class="col-12 col-md-4">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <p>
+                            <strong>
+                              Stars:
+                            </strong>
+                            <span v-for="(star,index) in display.stars" :key="index" class="mr-1 badge badge-secondary">
+                            <a  @click="starLink(star.name)">{{star.name}}</a>
+                            </span>
+                          </p>
+                        </div>
+                        <div class="col-6">
+                          <button class="btn btn-outline-secondary float-right" @click="download" v-if="allowDownload">Download</button>
+                        </div>
+                      </div>
 
-                  <p >
-                    <strong>
-                      Stars:
-                    </strong>
-                    <span v-for="(star,index) in display.stars" :key="index" class="mr-1 badge badge-secondary">
-                     <a  @click="starLink(star.name)">{{star.name}}</a>
-                    </span>
-                  </p>
-                  <p >
-                    <strong>
-                      Categories:
-                    </strong>
-                    <span v-for="(cat,index) in display.cats" :key="index" class="mr-1 badge badge-secondary">
-                       <a  @click="catLink(cat.name)">{{cat.name}}</a>
-                    </span>
-                  </p>
-                  <p>
-                    <strong>
-                      Tags:
-                    </strong>
-                    <span v-for="(tag,index) in display.tags" :key="index" class="mr-1 badge badge-secondary">
-                       <a  @click="tagLink(tag.name)">{{tag.name}}</a>
-                    </span>
-                  </p>
+                    </div>
+                    <div class="col-12">
+                      <p >
+                        <strong>
+                          Categories:
+                        </strong>
+                        <span v-for="(cat,index) in display.cats" :key="index" class="mr-1 badge badge-secondary">
+                          <a  @click="catLink(cat.name)">{{cat.name}}</a>
+                        </span>
+                      </p>
+                    </div>
+                    <div class="col-12">
+                      <p>
+                        <strong>
+                          Tags:
+                        </strong>
+                        <span v-for="(tag,index) in display.tags" :key="index" class="mr-1 badge badge-secondary">
+                          <a  @click="tagLink(tag.name)">{{tag.name}}</a>
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-12 col-md-4">
 
@@ -106,7 +122,7 @@
             </div>
           </div>
           <div class="col-12 d-xl-none">
-            <div class="ad mobile-ad">
+            <div id="mobile" class="ad mobile-ad">
             </div>
           </div>
         </div>
@@ -138,6 +154,32 @@
         </div>
       </div>
     </div>
+    <b-modal ref="captcha" hide-footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="alert alert-danger" role="alert" v-if="captcha.failed">
+              {{captcha.message}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <img :src="getCaptchaImage" alt="verystream.com Captcha" v-if="captcha.image">
+          </div>
+          <div class="col-12">
+            <label for="basic-url">Enter Captcha</label>
+            <div class="input-group ">
+              <input type="text" v-model="captcha.value" class="form-control" placeholder="Enter Captcha" aria-label="Captcha" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="col-12 mt-4">
+            <button class="btn btn-outline-secondary" @click="submitDownload" :disabled="!captcha.value" v-if="!captcha.failed">Download</button>
+            <button class="btn btn-outline-secondary" @click="download" v-if="captcha.failed">Re-Download</button>
+          </div>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -162,19 +204,42 @@ export default {
       this.$store.dispatch('squerJuicyAdb')
       this.$store.dispatch('squerJuicyAdc')
       this.$store.dispatch('mobileJuicyAd')
+      this.display.links.forEach(link => {
+        if(link.server_name === 'verystream'){
+          this.fileID = link.url.split('/')[4]
+        }
+      });
   },
   data:()=>{
     return {
       searchTags:null,
       tag:null,
+      fileID:null,
+      captcha:{
+        image:null,
+        ticket:null,
+        value:null,
+        success:null,
+        failed:null,
+        message:null
+      }
     }
   },
 
   computed:{
-
     relatedVideos:function(){
       return this.$store.getters.getRelatedVideos
     },
+    getCaptchaImage:function(){
+      return this.captcha.image
+    },
+    allowDownload:function(){
+      if(this.fileID){
+        return true
+      }else{
+        return false
+      }
+    }
   },
   components:{
     relatedVideos,
@@ -197,21 +262,32 @@ export default {
     tagLink(value){
       this.$store.dispatch('tagUrl',value)
     },
-    // download:function(){
-    //   axios.get('https://api.verystream.com/file/dlticket?file=GkUJYfw11A3').then(res=>{
-    //     if(res.data.status ===200){
-    //       console.log(res.data)
-    //       let captha = {
-    //         captcha_url: res.data.result.captcha_url,
-    //         captcha_w: res.data.result.captcha_w,
-    //         captcha_h: res.data.result.captcha_h,
-    //       }
-    //       axios.get('https://api.verystream.com/file/dl?file=GkUJYfw11A3&ticket='+res.data.result.ticket+'&captcha_response='+captha).then(res=>{
-    //         console.log(res.data)
-    //       })
-    //     }
-    //   })
-    // }
+    download:function(){
+      this.captcha.failed = null
+      this.captcha.message = null
+      axios.get('https://api.verystream.com/file/dlticket?file='+this.fileID).then(res=>{
+        if(res.data.status ===200){
+          this.$refs['captcha'].show()
+          this.captcha.image = res.data.result.captcha_url
+          this.captcha.ticket = res.data.result.ticket
+        }
+      })
+    },
+    submitDownload:function(){
+      if(this.captcha.value){
+        axios.get('https://api.verystream.com/file/dl?file='+this.fileID+'&ticket='+this.captcha.ticket+'&captcha_response='+this.captcha.value).then(res=>{
+          if(res.data.status === 200){
+            window.open(res.data.result.url,'_blank')
+            this.captcha.success = true
+            this.$refs['captcha'].hide()
+          }else{
+            this.captcha.failed = true
+            this.captcha.message = res.data.msg
+          }
+        })
+      }
+
+    },
   },
 }
 </script>

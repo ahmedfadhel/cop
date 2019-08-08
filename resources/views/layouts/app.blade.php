@@ -102,23 +102,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/main/app.js') }}" defer></script>
     <div class="container ads mt-4" >
-      <div id="juicy-ads" class="leaderboard "></div>
+      <div id="juicy-ads" class="leaderboard"></div>
     </div>
-    <div class="container">
-      <!-- Start JuicyAds Float Ad -->
-      {{-- <div class="row">
-        <div class="col-12">
-          <script type="text/javascript">juicy_adzone = '783228';</script>
-          <script type="text/javascript" src="https://adserver.juicyads.com/js/jfc.js" charset="utf-8"></script>
-        </div>
-      </div> --}}
-      <!-- End JuicyAds Float Ad -->
-    </div>
-    {{-- adsterra popunder script --}}
-    <script
-      type='text/javascript'
-      src='//pl15091678.pvclouds.com/ea/30/30/ea30309bac0150dc4bd3e8a9e593fde2.js'
-    ></script>
     {{-- PopCash script code --}}
     <script type="text/javascript">
       var wid = '504629';
