@@ -160,11 +160,10 @@ class AlbumController extends Controller
      * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function show(Album $album)
+    public function show($album)
     {
       //
       // dd($album->load('photos','cats','tags'));
-      // return view('dashboard.albums.show');
       return view('dashboard.albums.show');
     }
 
