@@ -165,6 +165,7 @@ class AlbumController extends Controller
       //
       // dd($album->load('photos','cats','tags'));
       // return view('dashboard.albums.show');
+      return view('dashboard.albums.show');
     }
 
     /**
