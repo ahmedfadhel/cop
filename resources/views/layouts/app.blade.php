@@ -46,6 +46,18 @@
     </script>
 </head>
 <body>
+  {{-- PopCash script code --}}
+  <script type="text/javascript">
+    var wid = '504629';
+    var uid = '245388';
+  </script>
+  <!-- JuicyAds PopUnders v3 Start -->
+  <script
+    type="text/javascript"
+    src="https://js.juicyads.com/jp.php?c=348423x2x264u4q2r2e4238414&u=https%3A%2F%2Ft.hrtyi.com%2Fxpbpgr6khs%3Furl_id%3D0%26aff_id%3D105385%26offer_id%3D3788%26aff_sub%3Dpornezium-directlink%26bo%3D3471%2C3472%2C3473%2C3474%2C3475">
+  </script>
+  <!-- JuicyAds PopUnders v3 End -->
+  {{-- Loader Section --}}
     <div class="loader" :disable="disable">
       <div class="dot"></div>
       <div class="dot"></div>
@@ -56,6 +68,7 @@
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
+    {{-- main Vuejs element --}}
     <div id="app" class="front">
         @include('includes.header')
       {{-- Main Section Start --}}
@@ -109,11 +122,16 @@
       async
       src='//www.modulepush.com/e6b15d9d34ab3784957482a6bb06d903/invoke.js'
     ></script>
-    {{-- PopCash script code --}}
-    <script type="text/javascript">
-      var wid = '504629';
-      var uid = '245388';
-  </script>
+
   <script type="text/javascript" src="//cdn.popcash.net/pop.js"></script>
+  <script>(function() {
+    var script = document.createElement("script");
+    script.async = false;
+    script.src = "//plug.plufdsb.com/wdgt/?PRT=ZGl2PTE1NjUzNjAyNDQxNjYmY2ZmPSZmZj1BcmlhbCZjZnQ9JmZmdD1BcmlhbCZicmM9MDAwMDAwJmliY2g9MDAwMDAwJmZjPWZmZmZmZiZodGM9YjNiM2IzJmRiPTEmYz0zMDAmcGQ9MCZpdz0xJmJyPTAmZnN6PTEyJmZzdD0xNiZjaD0yJmZjdD0wMDAwMDAmaXluPTEmaXQ9bGFuZCZzdD0xJnRhPWxlZnQmdGl0bGVsZW5ndGg9ZnVsbCZ0cD0xJmJ0Yz0wMDAwMDAmZGVjPXVuZGVybGluZSZmdz1ib2xkJnd0PUEmc2V4dWFsX29yaWVudGF0aW9uPXN0cmFpZ2h0Jm51ZGVfc3RhdGU9Ym90aCZ3aWRnZXRfcmVzcG9uc2l2ZT0xJnBvcHVuZGVyPTAmY3VzdG9tY3NzPSZ0YWdzMD0mcGJkZD0wJnBicD10b3AmcGJhPXJpZ2h0Jnd0ZGQ9MCZ3dHY9WW91IG1heSBhbHNvIGxpa2UmZnd0PWJvbGQmc2l0ZWxpbms9MA==&source=&aff_sub=&aff_sub2=&aff_sub3=&aff_sub4=&aff_sub5=&fid=105385&file_id=375300";
+    var dst = document.getElementsByTagName("script")[0];
+    dst.parentNode.insertBefore(script, dst);
+ }
+ )();
+ </script>
 </body>
 </html>

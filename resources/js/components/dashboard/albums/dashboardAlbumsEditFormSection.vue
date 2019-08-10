@@ -149,12 +149,10 @@ export default {
   mixins: [validationMixin],
   props:['album','tags','cats','errors'],
   mounted() {
-    console.log(this.album)
     this.$v.form.title.$model = this.album.title
     this.poster = '/storage/posters/'+this.album.poster
     this.valueT = this.album.tags
     this.valueC = this.album.cats
-    // this.countImages = this.album.photos.length
   },
   components:{
     imageFields,

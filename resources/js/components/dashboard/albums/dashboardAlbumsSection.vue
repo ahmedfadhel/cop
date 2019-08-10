@@ -142,7 +142,6 @@ export default {
         variant: 'danger'
       })
     }
-    console.log(this.albums)
   },
   data() {
       return {
@@ -247,7 +246,6 @@ export default {
         return val.substr(0,length)+'...'
       },
       posterUrl:function(value){
-        console.log(value)
         return '/storage/posters/'+value
       },
       albumUrls:function(value,id){

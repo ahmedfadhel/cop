@@ -33,6 +33,9 @@ export const store  = new Vuex.Store({
       getUrl(state){
         return state.url
       },
+      getApi(state){
+        return state.api
+      },
       getVideos(state){
         return state.videos
       },
