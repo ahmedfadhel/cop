@@ -294,7 +294,8 @@ export default {
     }).then(res=>{
       if(res.status === 200){
         if(res.data.res.status === 200){
-          this.captcha.link  = res.data.res.result.url
+          window.location.replace(res.data.res.result.url)
+          // this.captcha.link  = res.data.res.result.url
         }else{
           this.captcha.disable = null
           this.captcha.failed = true

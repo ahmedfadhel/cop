@@ -51,12 +51,6 @@
     var wid = '504629';
     var uid = '245388';
   </script>
-  <!-- JuicyAds PopUnders v3 Start -->
-  <script
-    type="text/javascript"
-    src="https://js.juicyads.com/jp.php?c=348423x2x264u4q2r2e4238414&u=https%3A%2F%2Ft.hrtyi.com%2Fxpbpgr6khs%3Furl_id%3D0%26aff_id%3D105385%26offer_id%3D3788%26aff_sub%3Dpornezium-directlink%26bo%3D3471%2C3472%2C3473%2C3474%2C3475">
-  </script>
-  <!-- JuicyAds PopUnders v3 End -->
   {{-- Loader Section --}}
     <div class="loader" :disable="disable">
       <div class="dot"></div>
@@ -117,12 +111,6 @@
     <div class="container ads mt-4" >
       <div id="juicy-ads" class="leaderboard"></div>
     </div>
-    {{-- Adstarra Webpush ad --}}
-    <script
-      async
-      src='//www.modulepush.com/e6b15d9d34ab3784957482a6bb06d903/invoke.js'
-    ></script>
-
   <script type="text/javascript" src="//cdn.popcash.net/pop.js"></script>
   <script>(function() {
     var script = document.createElement("script");
