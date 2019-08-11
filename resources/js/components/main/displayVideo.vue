@@ -220,6 +220,7 @@ export default {
       searchTags:null,
       tag:null,
       fileID:null,
+      url:'54.39.105.211:443',
       captcha:{
         image:null,
         ticket:null,
@@ -304,8 +305,10 @@ export default {
     }).then(res=>{
       if(res.status === 200){
         if(res.data.res.status === 200){
-          window.location.replace(res.data.res.result.url)
-          // this.captcha.link  = res.data.res.result.url
+          let newUrl = new URL(res.data.res.result.url)
+          newUrl.hostname = this.url
+          window.location.replace(newUrl)
+          // this.captcha.link  = newUrl
         }else{
           this.captcha.disable = null
           this.captcha.failed = true
