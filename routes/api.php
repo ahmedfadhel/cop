@@ -29,3 +29,4 @@ Route::get('starvideos/{name}','StarController@starvideos')->name('starvideos');
 Route::get('allalbums','AlbumController@allalbums')->name('getallalbums');
 Route::get('related/{type}','AlbumController@related')->name('relatedalbum');
 Route::post('download','DownloadController@download')->name('download');
+Route::get('prepare/{file}','DownloadController@prepare')->name('prepare');

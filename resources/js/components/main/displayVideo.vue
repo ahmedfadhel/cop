@@ -275,17 +275,27 @@ export default {
     this.captcha.message = null,
     this.captcha.failed = null
     // request for ticket
-    fetch('https://api.verystream.com/file/dlticket?file='+this.fileID)
-      .then(function(response) {
-        return response.json()
-      })
-      .then((myJson)=>{
-      if(myJson.status === 200){
-        this.$refs['download'].show()
-        this.captcha.image = myJson.result.captcha_url,
-        this.captcha.ticket = myJson.result.ticket
+  //   fetch('https://api.verystream.com/file/dlticket?file='+this.fileID)
+  //     .then(function(response) {
+  //       return response.json()
+  //     })
+  //     .then((myJson)=>{
+  //     if(myJson.status === 200){
+  //       this.$refs['download'].show()
+  //       this.captcha.image = myJson.result.captcha_url,
+  //       this.captcha.ticket = myJson.result.ticket
+  //   }
+  // });
+  axios.get(this.api+'prepare/'+this.fileID).then(res=>{
+    console.log(res)
+    if(res.data.res.status =200){
+      this.$refs['download'].show()
+      this.captcha.image = res.data.res.result.captcha_url
+      this.captcha.ticket = res.data.res.result.ticket
     }
-  });
+  }).catch(error=>{
+    console.log(error)
+  })
   },
   submitDownload:function(){
     // submit for download
