@@ -31,22 +31,14 @@
                 <div class="col-12 col-md-4">
                   <div class="row">
                     <div class="col-12">
-                      <div class="row">
-                        <div class="col-6">
-                          <p>
-                            <strong>
-                              Stars:
-                            </strong>
-                            <span v-for="(star,index) in display.stars" :key="index" class="mr-1 badge badge-secondary">
-                            <a  @click="starLink(star.name)">{{star.name}}</a>
-                            </span>
-                          </p>
-                        </div>
-                        <div class="col-6">
-                          <button class="btn btn-outline-secondary float-right" @click="download">Download</button>
-                        </div>
-                      </div>
-
+                       <p>
+                          <strong>
+                            Stars:
+                          </strong>
+                          <span v-for="(star,index) in display.stars" :key="index" class="mr-1 badge badge-secondary">
+                          <a  @click="starLink(star.name)">{{star.name}}</a>
+                          </span>
+                        </p>
                     </div>
                     <div class="col-12">
                       <p >
@@ -157,34 +149,6 @@
         </div>
       </div>
     </div>
-    <b-modal ref="download" hide-footer :title="`Download ${display.title}`">
-      <div class="row">
-        <div class="col-12">
-          <div class="alert alert-danger" role="alert" v-if="captcha.failed">
-          {{captcha.message}}
-          </div>
-        </div>
-        <div class="col-12">
-          <img :src="image" alt="Captcha Image" v-if="captcha.image">
-        </div>
-        <div class="col-12">
-          <label>Enter Captcha</label>
-          <div class="input-group mb-3">
-
-            <input type="text" class="form-control" placeholder="Enter Captcha" aria-label="Captcha" aria-describedby="basic-addon1" v-model="captcha.value">
-          </div>
-        </div>
-        <div class="col-12">
-          <button class="mt-3 btn btn-outline-secondary d-inline" @click="submitDownload" v-if="!captcha.link" :disabled="!captcha.disable">Generate Link</button>
-          <button class="mt-3 btn btn-outline-secondary d-inline" @click="download"  v-if="!captcha.link">New Captcha</button>
-          <a :href="captcha.link" v-if="captcha.link" class="btn btn-outline-secondary btn-block">Download</a>
-        </div>
-      </div>
-
-
-
-
-    </b-modal>
   </div>
 </template>
 
@@ -268,59 +232,7 @@ export default {
     },
     tagLink(value){
       this.$store.dispatch('tagUrl',value)
-    },
-    download:function(){
-      // reset values
-    this.captcha.disable = true
-    this.captcha.image = null
-    this.captcha.message = null,
-    this.captcha.failed = null
-    // request for ticket
-  //   fetch('https://api.verystream.com/file/dlticket?file='+this.fileID)
-  //     .then(function(response) {
-  //       return response.json()
-  //     })
-  //     .then((myJson)=>{
-  //     if(myJson.status === 200){
-  //       this.$refs['download'].show()
-  //       this.captcha.image = myJson.result.captcha_url,
-  //       this.captcha.ticket = myJson.result.ticket
-  //   }
-  // });
-  axios.get(this.api+'prepare/'+this.fileID).then(res=>{
-    console.log(res)
-    if(res.data.res.status =200){
-      this.$refs['download'].show()
-      this.captcha.image = res.data.res.result.captcha_url
-      this.captcha.ticket = res.data.res.result.ticket
     }
-  }).catch(error=>{
-    console.log(error)
-  })
-  },
-  submitDownload:function(){
-    // submit for download
-    axios.post(this.api+'download',{
-      link:btoa('https://api.verystream.com/file/dl?file='+this.fileID+'&ticket='+this.captcha.ticket+'&captcha_response='+this.captcha.value)
-    }).then(res=>{
-      if(res.status === 200){
-        if(res.data.res.status === 200){
-          let newUrl = new URL(res.data.res.result.url)
-          newUrl.hostname = this.url
-          window.location.replace(newUrl)
-          // this.captcha.link  = newUrl
-        }else{
-          this.captcha.disable = null
-          this.captcha.failed = true
-          this.captcha.message = res.data.res.msg
-          this.captcha.value = null
-
-        }
-      }
-    }).catch(error=>{
-      console.log(error)
-    })
-  }
   },
   computed:{
     api:function(){
