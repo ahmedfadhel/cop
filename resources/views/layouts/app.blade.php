@@ -27,14 +27,6 @@
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- Start Alexa Certify Javascript -->
-    <script type="text/javascript">
-    _atrk_opts = { atrk_acct:"mvcet1FYxz20cv", domain:"pornezium.com",dynamic: true};
-    (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://certify-js.alexametrics.com/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
-    </script>
-    <noscript><img src="https://certify.alexametrics.com/atrk.gif?account=mvcet1FYxz20cv" style="display:none" height="1" width="1" alt="" /></noscript>
-    <!-- End Alexa Certify Javascript -->
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144191483-1"></script>
     <script>
