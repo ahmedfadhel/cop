@@ -11,7 +11,7 @@
     <meta name="description" content="Pornezium.com is free pornpgraphic site provides thousands of premium porn scenes for free.">
 
     {{-- Meta Keywords  --}}
-    <meta name="keywords" content="lesbian, japanese,milf,ebony,hentai,anal,mature,thressome,big tits,big dick,amateur,teen,creampie,cartoon,babe,indian,gangbang,step mom,latina,big ass, black,ebony milf,anime,bbw,interracial">
+    <meta name="keywords" content="lesbian, japanese, milf, ebony, hentai, anal, mature, thressome, big tits, big dick, amateur, teen, creampie, cartoon, babe, indian, gangbang, step mom, latina,big ass, black,ebony milf, anime, bbw, interracial">
     {{-- juicyads site meta --}}
     <meta name="juicyads-site-verification" content="24b72af007bdd090cca2d95122315685">
     {{-- Yandex Serach Engine Verifcation Meta --}}
@@ -24,7 +24,6 @@
     <meta name="adz2younet-site-verification" content="9a2565ce21b86a541859f46fb46c653d">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -35,6 +34,7 @@
     </script>
     <noscript><img src="https://certify.alexametrics.com/atrk.gif?account=mvcet1FYxz20cv" style="display:none" height="1" width="1" alt="" /></noscript>
     <!-- End Alexa Certify Javascript -->
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144191483-1"></script>
     <script>
@@ -51,6 +51,7 @@
     var wid = '504629';
     var uid = '245388';
   </script>
+  <script type="text/javascript" src="//cdn.popcash.net/pop.js"></script>
   {{-- Loader Section --}}
     <div class="loader" :disable="disable">
       <div class="dot"></div>
@@ -82,12 +83,7 @@
         <div class="container" style="display:none">
           <div class="row">
             <div class="col-12">
-
-              {{-- <div class="text-center">
-
-                  <span>Video Thumbnail</span> --}}
-                  <img src="/storage/videos/{{Session::get('image')}}" class="img-fluid mt-4">
-              {{-- </div> --}}
+              <img src="/storage/videos/{{Session::get('image')}}" class="img-fluid mt-4">
             </div>
           </div>
         </div>
@@ -96,12 +92,7 @@
     <div class="container" style="display:none">
       <div class="row">
         <div class="col-12">
-
-          {{-- <div class="text-center">
-
-              <span>Video Thumbnail</span> --}}
-              <img src="/storage/posters/{{Session::get('poster')}}" class="img-fluid mt-4">
-          {{-- </div> --}}
+            <img src="/storage/posters/{{Session::get('poster')}}" class="img-fluid mt-4">
         </div>
       </div>
     </div>
@@ -111,6 +102,6 @@
     <div class="container ads mt-4" >
       <div id="juicy-ads" class="leaderboard"></div>
     </div>
-  <script type="text/javascript" src="//cdn.popcash.net/pop.js"></script>
+
 </body>
 </html>
