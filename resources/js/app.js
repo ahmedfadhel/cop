@@ -1,7 +1,7 @@
 require('./bootstrap');
 import Vue from 'vue'
 // import BootstrapVue from 'bootstrap-vue'
-import { VBTooltipPlugin,NavbarPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,TabsPlugin,CarouselPlugin,ModalPlugin } from 'bootstrap-vue'
+import {NavbarPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,TabsPlugin,CarouselPlugin } from 'bootstrap-vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import {store} from './store/index'
@@ -10,15 +10,12 @@ import routes from './router';
 window.moment = require('moment')
 
 Vue.use(Vuex)
-// Vue.use(BootstrapVue)
-Vue.use(VBTooltipPlugin)
 Vue.use(CardPlugin)
 Vue.use(PaginationNavPlugin)
 Vue.use(EmbedPlugin)
 Vue.use(TabsPlugin)
 Vue.use(NavbarPlugin)
 Vue.use(CarouselPlugin)
-Vue.use(ModalPlugin)
 Vue.use(VueRouter)
 
 

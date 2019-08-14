@@ -10,11 +10,6 @@
                   Best Videos
                 </div>
               </div>
-              <div class="col-6">
-                <span class="float-right" v-b-tooltip.hover title="Refresh" @click="refreshBestVideos">
-                  <span class="icon-spinner11"></span>
-                </span>
-              </div>
             </div>
           </div>
           <!-- Best Videos Display template iteration -->
@@ -48,12 +43,6 @@ export default {
       bestVideos:function(){
         return this.$store.getters.getBestVideos
       }
-    },
-    methods:{
-      refreshBestVideos(){
-        this.$store.dispatch('fetchBestVideos')
-      }
     }
-
 }
 </script>

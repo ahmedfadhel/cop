@@ -10,7 +10,7 @@
                 </div>
               </div>
               <div class="col-6">
-                <span class=" float-right" v-b-tooltip.hover title="Refresh" @click="refreshRelatedVideos">
+                <span class=" float-right" @click="refreshRelatedVideos">
                   <span class="icon-spinner11"></span>
                 </span>
               </div>
@@ -35,7 +35,6 @@ export default {
   },
     data:()=>{
         return{
-
         }
     },
     components:{
