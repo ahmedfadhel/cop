@@ -22,8 +22,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     {{-- adz2you Ads Network Verifcation Meta --}}
     <meta name="adz2younet-site-verification" content="9a2565ce21b86a541859f46fb46c653d">
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
