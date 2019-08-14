@@ -2,12 +2,19 @@
     <div class="video mt-4">
       <b-card-group>
         <b-card no-body>
-          <b-card-img
+          <!-- <b-card-img
             :src="video.photos[0].url | imageUrl"
+
             img-top
             alt="Video Image"
             @click="displayVideo(video.slug)"
-          ></b-card-img>
+          ></b-card-img> -->
+          <img
+            :src="`/videos/img128/${video.photos[0].url}`"
+            :srcset="`/videos/img128/${video.photos[0].url} 1x,/videos/img300/${video.photos[0].url} 2x,`"
+            alt="Video Image"
+            class="card-img"
+            @click="displayVideo(video.slug)">
           <b-card-body>
             <b-card-title @click="displayVideo(video.slug)">
               <a>{{video.title}}</a>
@@ -85,7 +92,10 @@ export default {
         return moment.duration(value).minutes()+ 'm'
       },
       imageUrl:function(value){
-        return '/videos/img300/'+value
+        return 'storage/videos/'+value
+      },
+      imageUrlSmall:function(value){
+        return '/videos/img128/'+value
       },
     }
 }
