@@ -85,7 +85,7 @@ export default {
         return moment.duration(value).minutes()+ 'm'
       },
       imageUrl:function(value){
-        return '/storage/videos/'+value
+        return '/videos/img300/'+value
       },
     }
 }
