@@ -42,7 +42,7 @@
     var wid = '504629';
     var uid = '245388';
   </script>
-  <script type="text/javascript" src="//cdn.popcash.net/pop.js"></script>
+  <script Defer type="text/javascript" src="//cdn.popcash.net/pop.js"></script>
   {{-- Loader Section --}}
     <div class="loader" :disable="disable">
       <div class="dot"></div>

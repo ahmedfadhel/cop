@@ -154,6 +154,7 @@ export const store  = new Vuex.Store({
           script1.src="https://adserver.juicyads.com/js/jads.js"
           script1.setAttribute('data-cfasync','false')
           script1.async = true
+          script1.defer = true
           // script 2
           let script2 =document.createElement('script')
           script2.type = "text/javascript"
