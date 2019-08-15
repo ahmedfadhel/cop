@@ -47,3 +47,5 @@ const app = new Vue({
       displayAlbumSection
     }
 });
+
+
