@@ -10,8 +10,8 @@
             @click="displayVideo(video.slug)"
           ></b-card-img> -->
           <img
-            :src="`/videos/img128/${video.photos[0].url}`"
-            :srcset="`/videos/img128/${video.photos[0].url} 1x,/videos/img300/${video.photos[0].url} 2x,`"
+            :src="`/videos/img300/${video.photos[0].url}`"
+
             alt="Video Image"
             class="card-img"
             @click="displayVideo(video.slug)">
