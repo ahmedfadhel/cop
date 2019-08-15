@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div id="juicy-ads" class="leaderboard mt-4"></div>
-      <div class="row mt-4">
-        <div class="col-12">
-          <div class="top-main-ad d-flex justify-content-center ">
-            <div id='nativeAds_1565860406807'></div>
-          </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="top-main-ad d-flex justify-content-center ">
+          <div id='nativeAds_1565860406807'></div>
         </div>
       </div>
+    </div>
     <div class="row">
       <div class="col-12 col-xl-10 mt-4">
         <b-card
