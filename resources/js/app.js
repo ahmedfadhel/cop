@@ -1,4 +1,6 @@
 require('./bootstrap');
+require('./creakReavnue');
+
 import Vue from 'vue'
 // import BootstrapVue from 'bootstrap-vue'
 import {NavbarPlugin,CardPlugin,EmbedPlugin,PaginationNavPlugin,TabsPlugin,CarouselPlugin } from 'bootstrap-vue'

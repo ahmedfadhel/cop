@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use SimpleXMLElement;
 use App\Video;
+use App\Album;
 use Storage;
 class SitemapController extends Controller
 {
@@ -56,5 +57,19 @@ class SitemapController extends Controller
     }
     Storage::disk('sitemap')->append('sitemap.xml','</urlset>');
     return redirect()->route('stats');
+  }
+  public function images()
+  {
+    // $albums = Album::all()->load('photos');
+    // $image_xml_def = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">';
+    // if(Storage::disk('sitemap')->exists('sitemap_albums.xml')){
+    //   Storage::disk('sitemap')->delete('sitemap_albums.xml');
+    // }
+    // foreach ($albums as $key => $album) {
+    //   # code...
+    //   $pre_image = '';
+
+    //   $pre_image = $pre_image .'<url>'.'<loc>http://pornezium.com/ablums/'.$album->$slug.'</loc>
+    // }
   }
 }

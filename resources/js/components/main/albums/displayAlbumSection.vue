@@ -194,7 +194,7 @@ export default {
       return '/storage/albums/'+id+'/'+value
     },
     albumUrl:function(value){
-      return '/album/'+value
+      return '/albums/'+value
     }
   },
 
