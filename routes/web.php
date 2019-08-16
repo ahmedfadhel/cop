@@ -20,6 +20,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('/album','AlbumController');
     Route::Get('/stats','StatsController@index')->name('stats');
     Route::Get('/sitemap/generate','SitemapController@generate')->name('sitemap-generation');
+    Route::Get('/sitemap/images','SitemapController@images')->name('sitemap-images');
+    Route::Get('/sitemap/all','SitemapController@all')->name('sitemap-all');
     Auth::routes();
 });
 Route::get('/videos/{slug}','VideoController@display')->name('displayvideo');

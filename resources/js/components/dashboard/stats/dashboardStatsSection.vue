@@ -5,10 +5,16 @@
         <div class="card">
           <div class="card-header">
             <div class="row">
-              <div class="col-6">Pornezium Statistics</div>
-              <div class="col-6">
-                <form action="/admin/sitemap/generate" method="get">
+              <div class="col-3">Pornezium Statistics</div>
+              <div class="col-9">
+                <form action="/admin/sitemap/all" method="get">
                   <button type="submit" class="btn btn-outline-secondary float-right">Generate Sitemap</button>
+                </form>
+                <form action="/admin/sitemap/generate" method="get">
+                  <button type="submit" class="btn btn-outline-secondary float-right mr-4">Generate Videos Sitemap</button>
+                </form>
+                <form action="/admin/sitemap/images" method="get">
+                  <button type="submit" class="btn btn-outline-secondary float-right mr-4">Generate Images Sitemap</button>
                 </form>
               </div>
             </div>
