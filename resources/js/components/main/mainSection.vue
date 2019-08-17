@@ -16,7 +16,7 @@
                   :link-gen="linkGen"
                   :number-of-pages="totalPages"
 
-                  @input='viewChange'
+                  @change='viewChange'
                   use-router
                 ></b-pagination-nav>
               </div >
