@@ -67,13 +67,7 @@
 
     </div>
 
-    <div class="fixed-bottom d-flex justify-content-center text-right" id="bottom-ad">
 
-        <div id='nativeAds_1565811882419'></div>
-        <span id="close-bottom-ad"class="close-bottom-color">
-          X
-        </span>
-      </div>
     {{-- Footer Section Start --}}
     @include('includes.footer')
 
@@ -99,15 +93,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/main/app.js') }}" defer></script>
-    <div class="container mb-4">
-        <div class="row">
-          <div class="col-12">
-            <div class="top-main-ad d-flex justify-content-center ">
-                <div id='nativeAds_1565862448964'></div>
-            </div>
-          </div>
-        </div>
-      </div>
     <div class="container ads mt-4" >
       <div id="juicy-ads" class="leaderboard"></div>
     </div>

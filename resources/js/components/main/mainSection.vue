@@ -1,17 +1,6 @@
 <template>
   <div class="container mt-4">
     <div id="juicy-ads" class="leaderboard mb-4"></div>
-
-    <!-- CrackRevenu Top Main Large Medium Ad -->
-    <div class="container mb-4">
-      <div class="row">
-        <div class="col-12">
-          <div class="top-main-ad d-flex justify-content-center ">
-            <div id='nativeAds_1565860406807'></div>
-          </div>
-        </div>
-      </div>
-    </div>
     <best-videos v-if="firstPage" ></best-videos>
     <div class="row">
       <div class="col-12">
