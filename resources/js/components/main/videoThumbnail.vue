@@ -2,19 +2,10 @@
     <div class="video mt-4">
       <b-card-group>
         <b-card no-body>
-          <!-- <b-card-img
-            :src="video.photos[0].url | imageUrl"
-
-            img-top
-            alt="Video Image"
-            @click="displayVideo(video.slug)"
-          ></b-card-img> -->
-          <img
-            :src="`/videos/img300/${video.photos[0].url}`"
-
-            alt="Video Image"
-            class="card-img"
-            @click="displayVideo(video.slug)">
+            <picture class="card-img">
+              <source :srcset="`/videos/img300/${video.photos[0].url}`" media="(min-width: 576px)" />
+              <img :src="`/videos/img128/${video.photos[0].url}`" class="card-img" @click="displayVideo(video.slug)"/>
+            </picture>
           <b-card-body>
             <b-card-title @click="displayVideo(video.slug)">
               <a>{{video.title}}</a>
