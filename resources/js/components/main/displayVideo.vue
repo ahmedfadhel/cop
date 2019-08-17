@@ -7,8 +7,8 @@
           :header="display.title"
           header-tag="header"
         >
-          <div class="row" v-for="(link,index) in display.links" :key="index">
-            <div class="col-12">
+          <div class="row">
+            <div class="col-12" v-for="(link,index) in display.links" :key="index">
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe :src="link.url" allowfullscreen="allowfullscreen" class="embed-responsive-item">
                 </iframe>
