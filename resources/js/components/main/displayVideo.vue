@@ -13,12 +13,10 @@
             >
               <div class="row">
                 <div class="col-12">
-                <b-embed
-                    type="iframe"
-                    aspect="16by9"
-                    :src="link.url"
-                    allowfullscreen
-                  ></b-embed>
+                  <div  class="embed-responsive embed-responsive-16by9">
+                    <iframe src="https://verystream.com/e/32ZUBxxwK3L/FamiliesTied.19.07.19.Angel.Allwood.And.Zoe.Sparx.XXX.SD.MP4-KLEENEX.mp4" allowfullscreen="allowfullscreen" class="embed-responsive-item">
+                    </iframe>
+                  </div>
                 </div>
               </div>
               <div class="row">
