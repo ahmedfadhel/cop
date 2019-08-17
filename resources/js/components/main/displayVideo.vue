@@ -7,92 +7,86 @@
           :header="display.title"
           header-tag="header"
         >
-          <b-tabs content-class="mt-3">
-            <b-tab v-for="(link,index) in display.links" :key="index"
-              :title="link.server_name"
-            >
+          <div class="row" v-for="(link,index) in display.links" :key="index">
+            <div class="col-12">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe src="https://verystream.com/e/32ZUBxxwK3L/FamiliesTied.19.07.19.Angel.Allwood.And.Zoe.Sparx.XXX.SD.MP4-KLEENEX.mp4" allowfullscreen="allowfullscreen" class="embed-responsive-item">
+                </iframe>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h1 class="text-center mt-3 video-title">{{display.title}}</h1>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-4">
               <div class="row">
                 <div class="col-12">
-                  <div  class="embed-responsive embed-responsive-16by9">
-                    <iframe src="https://verystream.com/e/32ZUBxxwK3L/FamiliesTied.19.07.19.Angel.Allwood.And.Zoe.Sparx.XXX.SD.MP4-KLEENEX.mp4" allowfullscreen="allowfullscreen" class="embed-responsive-item">
-                    </iframe>
-                  </div>
+                    <p>
+                      <strong>
+                        Stars:
+                      </strong>
+                      <span v-for="(star,index) in display.stars" :key="index" class="mr-1 badge badge-secondary">
+                      <a  @click="starLink(star.name)">{{star.name}}</a>
+                      </span>
+                    </p>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-12">
-                  <h1 class="text-center mt-3 video-title">{{display.title}}</h1>
-                </div>
-
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  <div class="row">
-                    <div class="col-12">
-                       <p>
-                          <strong>
-                            Stars:
-                          </strong>
-                          <span v-for="(star,index) in display.stars" :key="index" class="mr-1 badge badge-secondary">
-                          <a  @click="starLink(star.name)">{{star.name}}</a>
-                          </span>
-                        </p>
-                    </div>
-                    <div class="col-12">
-                      <p >
-                        <strong>
-                          Categories:
-                        </strong>
-                        <span v-for="(cat,index) in display.cats" :key="index" class="mr-1 badge badge-secondary">
-                          <a  @click="catLink(cat.name)">{{cat.name}}</a>
-                        </span>
-                      </p>
-                    </div>
-                    <div class="col-12">
-                      <p>
-                        <strong>
-                          Tags:
-                        </strong>
-                        <span v-for="(tag,index) in display.tags" :key="index" class="mr-1 badge badge-secondary">
-                          <a  @click="tagLink(tag.name)">{{tag.name}}</a>
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-4">
-
-                  <p>
+                  <p >
                     <strong>
-                      Video Description:
+                      Categories:
                     </strong>
-                    {{display.description}}
+                    <span v-for="(cat,index) in display.cats" :key="index" class="mr-1 badge badge-secondary">
+                      <a  @click="catLink(cat.name)">{{cat.name}}</a>
+                    </span>
                   </p>
-
                 </div>
-                <div class="col-12 col-md-4">
+                <div class="col-12">
                   <p>
                     <strong>
-                      Uploaded at:
+                      Tags:
                     </strong>
-                    {{display.updated_at}}
-                  </p>
-                  <p>
-                    <strong>
-                      Length:
-                    </strong>
-                    {{display.length}} m
-                  </p>
-                  <p>
-                    <strong>
-                      Views:
-                    </strong>
-                    {{display.views}}
+                    <span v-for="(tag,index) in display.tags" :key="index" class="mr-1 badge badge-secondary">
+                      <a  @click="tagLink(tag.name)">{{tag.name}}</a>
+                    </span>
                   </p>
                 </div>
               </div>
-            </b-tab>
-          </b-tabs>
+            </div>
+            <div class="col-12 col-md-4">
+
+              <p>
+                <strong>
+                  Video Description:
+                </strong>
+                {{display.description}}
+              </p>
+
+            </div>
+            <div class="col-12 col-md-4">
+              <p>
+                <strong>
+                  Uploaded at:
+                </strong>
+                {{display.updated_at}}
+              </p>
+              <p>
+                <strong>
+                  Length:
+                </strong>
+                {{display.length}} m
+              </p>
+              <p>
+                <strong>
+                  Views:
+                </strong>
+                {{display.views}}
+              </p>
+            </div>
+          </div>
         </b-card>
       </div>
        <div class="col-12 col-xl-2 mt-4">
