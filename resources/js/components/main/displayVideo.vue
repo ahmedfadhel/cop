@@ -10,7 +10,7 @@
           <div class="row" v-for="(link,index) in display.links" :key="index">
             <div class="col-12">
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe src="https://verystream.com/e/32ZUBxxwK3L/FamiliesTied.19.07.19.Angel.Allwood.And.Zoe.Sparx.XXX.SD.MP4-KLEENEX.mp4" allowfullscreen="allowfullscreen" class="embed-responsive-item">
+                <iframe :src="link.url" allowfullscreen="allowfullscreen" class="embed-responsive-item">
                 </iframe>
               </div>
             </div>
