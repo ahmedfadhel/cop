@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import videoThumbnail from './videoThumbnail.vue'
+const videoThumbnail = () => import('./videoThumbnail.vue')
 export default {
     created(){
       this.$store.dispatch('fetchBestVideos')

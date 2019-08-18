@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import videoThumbnail from '../videoThumbnail'
+const videoThumbnail = () => import('../videoThumbnail.vue')
 
 export default {
 created(){

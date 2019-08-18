@@ -1,16 +1,14 @@
 require('./bootstrap');
 
 import Vue from 'vue'
-// import BootstrapVue from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue'
 import {NavbarPlugin,CardPlugin,PaginationNavPlugin,CarouselPlugin } from 'bootstrap-vue'
-import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import {store} from './store/index'
 import routes from './router';
 
 window.moment = require('moment')
 
-Vue.use(Vuex)
 Vue.use(CardPlugin)
 Vue.use(PaginationNavPlugin)
 Vue.use(NavbarPlugin)
@@ -27,11 +25,10 @@ const router = new VueRouter({
 });
 
 // Import Main Section Vue Compoenent Start
-import mainSection from './components/main/mainSection.vue'
 import headerSection from './components/general/headerSection.vue'
-import displayVideoSection from './components/main/displayVideo.vue'
-import displayAlbumSection from './components/main/albums/displayAlbumSection.vue'
-
+const mainSection = () => import('./components/main/mainSection.vue')
+const displayVideoSection = () => import('./components/main/displayVideo.vue')
+const displayAlbumSection = () => import('./components/main/albums/displayAlbumSection.vue')
 // Import Main Section Vue Compoenent End
 Vue.config.devtools = false
 const app = new Vue({
@@ -43,19 +40,19 @@ const app = new Vue({
       mainSection,
       headerSection,
       displayVideoSection,
-      displayAlbumSection
+      displayAlbumSection,
     }
 });
 
 
 // Load External JS File
 
-if(!document.getElementById('popcash')){
-  let popCash = document.createElement('script')
-  popCash.setAttribute('id','popcash')
-  popCash.src = "//cdn.popcash.net/pop.js"
-  popCash.type = "text/javascript"
-  popCash.defer = true
-  document.body.appendChild(popCash)
-}
+// if(!document.getElementById('popcash')){
+//   let popCash = document.createElement('script')
+//   popCash.setAttribute('id','popcash')
+//   popCash.src = "//cdn.popcash.net/pop.js"
+//   popCash.type = "text/javascript"
+//   popCash.defer = true
+//   document.body.appendChild(popCash)
+// }
 

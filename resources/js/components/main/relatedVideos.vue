@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import videoThumbnail from './videoThumbnail.vue'
+const videoThumbnail = () => import('./videoThumbnail.vue')
 export default {
   props:['tags'],
   mounted() {
