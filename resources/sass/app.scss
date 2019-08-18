@@ -241,6 +241,15 @@ body{
     color: $mainColor
   }
 }
+// Lazy Image Loading Styling
+.v-lazy-image {
+  filter: blur(5px);
+  transition: filter 0.5s;
+}
+
+.v-lazy-image-loaded {
+  filter: blur(0);
+}
 @media screen and (max-width:320px){
   .video {
     img{

@@ -2,15 +2,21 @@
     <div class="video mt-4">
       <b-card-group>
         <b-card no-body>
-            <img
+            <!-- <img
             :src="`/videos/img300/${video.photos[0].url}`"
 
             alt="Video Image"
             class="card-img"
-            @click="displayVideo(video.slug)">
+            @click="displayVideo(video.slug)"> -->
+            <a :href="`/videos/${video.slug}`">
+              <v-lazy-image
+              :src="`/videos/img300/${video.photos[0].url}`"
+              :src-placeholder="`/videos/img150/${video.photos[0].url}`"
+              class="card-img"/>
+            </a>
           <b-card-body>
-            <b-card-title @click="displayVideo(video.slug)">
-              <a>{{video.title}}</a>
+            <b-card-title>
+              <a :href="`/videos/${video.slug}`">{{video.title}}</a>
             </b-card-title>
           </b-card-body>
 
@@ -43,6 +49,7 @@
 </template>
 
 <script>
+const VLazyImage = ()=> import('v-lazy-image')
 export default {
     props:[
         'video',
@@ -90,6 +97,9 @@ export default {
       imageUrlSmall:function(value){
         return '/videos/img128/'+value
       },
+    },
+    components:{
+      VLazyImage
     }
 }
 </script>

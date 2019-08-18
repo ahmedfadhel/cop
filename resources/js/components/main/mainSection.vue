@@ -15,7 +15,6 @@
                 <b-pagination-nav
                   :link-gen="linkGen"
                   :number-of-pages="totalPages"
-
                   @change='viewChange'
                   use-router
                 ></b-pagination-nav>
@@ -31,7 +30,6 @@
 <script>
 import newVideos from './newVideos.vue'
 import bestVideos from './bestVideos.vue'
-import { setTimeout } from 'timers';
 
 export default {
     created(){
