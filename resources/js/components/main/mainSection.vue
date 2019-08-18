@@ -8,7 +8,7 @@
           header="New Videos"
           header-tag="header"
         >
-          <new-videos ></new-videos>
+          <new-videos></new-videos>
           <div class="row">
             <div class="mt-4" style="margin:auto">
               <div class="col-12">
@@ -28,9 +28,8 @@
 </template>
 
 <script>
-import newVideos from './newVideos.vue'
-import bestVideos from './bestVideos.vue'
-
+const newVideos = () => import('./newVideos')
+const bestVideos = () => import('./bestVideos')
 export default {
     created(){
       this.$store.dispatch('fetchVideos').then(res=>{

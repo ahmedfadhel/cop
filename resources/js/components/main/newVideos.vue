@@ -12,7 +12,6 @@ import videoThumbnail from './videoThumbnail'
 export default {
   data:()=>{
     return {
-
     }
   },
   components:{
