@@ -6,7 +6,9 @@
               <v-lazy-image
               :src="`/videos/img300/${video.photos[0].url}`"
               :src-placeholder="`/videos/img150/${video.photos[0].url}`"
-              class="card-img"/>
+              class="card-img"
+              :alt="video.title"
+              />
             </a>
           <b-card-body>
             <b-card-title>

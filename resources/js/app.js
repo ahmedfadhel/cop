@@ -47,12 +47,12 @@ const app = new Vue({
 
 // Load External JS File
 
-// if(!document.getElementById('popcash')){
-//   let popCash = document.createElement('script')
-//   popCash.setAttribute('id','popcash')
-//   popCash.src = "//cdn.popcash.net/pop.js"
-//   popCash.type = "text/javascript"
-//   popCash.defer = true
-//   document.body.appendChild(popCash)
-// }
+if(!document.getElementById('popcash')){
+  let popCash = document.createElement('script')
+  popCash.setAttribute('id','popcash')
+  popCash.src = "//cdn.popcash.net/pop.js"
+  popCash.type = "text/javascript"
+  popCash.defer = true
+  document.body.appendChild(popCash)
+}
 
