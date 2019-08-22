@@ -76,7 +76,7 @@ class StarController extends Controller
       $validator = Validator::make($request->all(), [
         'name'        => 'required|min:3|max:30|string|unique:stars',
         'alias'       => 'min:3|max:30|string|nullable',
-        'image'       =>  'required|image|mimes:jpeg,bmp,png|max:2048',
+        'image'       =>  'required|image|mimes:jpeg,bmp,png,webp|max:2048',
         'gender'      => 'required|alpha'
       ]);
 
@@ -149,7 +149,7 @@ class StarController extends Controller
     $validator = Validator::make($request->all(), [
       'name'        => 'required|min:3|max:30|string|unique:stars,name,'.$id,
       'alias'       => 'min:3|max:30|string|nullable',
-      'image'       =>  'nullable|image|mimes:jpeg,bmp,png|max:2048',
+      'image'       =>  'nullable|image|mimes:jpeg,bmp,png,webp|max:2048',
       'gender'      => 'required|alpha'
     ]);
 
